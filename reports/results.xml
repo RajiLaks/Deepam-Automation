@@ -1,6 +1,27 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="13.182786">
-<testsuite name="Login.spec.js" timestamp="2025-11-27T06:55:08.027Z" hostname="chromium" tests="1" failures="0" skipped="0" time="9.489" errors="0">
-<testcase name="Login › TC001 - Login with valid data" classname="Login.spec.js" time="9.489">
+<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="6.604552000000001">
+<testsuite name="HelpDeskTests\HelpDeskLoginTest.spec.js" timestamp="2025-11-27T07:39:49.114Z" hostname="chromium" tests="1" failures="1" skipped="0" time="3.995" errors="0">
+<testcase name="Login › TC001 - Login with valid data" classname="HelpDeskTests\HelpDeskLoginTest.spec.js" time="3.995">
+<failure message="HelpDeskLoginTest.spec.js:9:5 TC001 - Login with valid data" type="FAILURE">
+<![CDATA[  [chromium] › HelpDeskTests\HelpDeskLoginTest.spec.js:9:5 › Login › TC001 - Login with valid data ─
+
+    Error: page.goto: Target page, context or browser has been closed
+    Call log:
+      - navigating to "https://qa-deepam.medyaan.com/", waiting until "load"
+
+
+       at ..\Page\UrlLaunchPage.js:9
+
+       7 |
+       8 |     async LaunchURL(URL){
+    >  9 |         await this.page.goto(URL);
+         |                         ^
+      10 |         await this.page.waitForTimeout(2000);
+      11 |         await this.page.pause();
+      12 |     }
+        at UrlLaunchPage.LaunchURL (C:\Users\JV\Desktop\Deepam\Deepam-Automation\Page\UrlLaunchPage.js:9:25)
+        at C:\Users\JV\Desktop\Deepam\Deepam-Automation\test\HelpDeskTests\HelpDeskLoginTest.spec.js:14:25
+]]>
+</failure>
 </testcase>
 </testsuite>
 </testsuites>
