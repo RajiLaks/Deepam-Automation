@@ -2,7 +2,7 @@ const {expect} = require ('@playwright/test');
 class DoctorLoginPage{
     constructor(page){
         this.page = page;
-        this.SignInDropdownButton = page.locator('//button[@id="__BVID__19__BV_toggle_"]');
+        this.SignInDropdownButton = page.locator('//button[text()="Sign In"]');
     }
 
     async LoginWithValidData(){
