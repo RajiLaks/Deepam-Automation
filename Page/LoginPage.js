@@ -1,5 +1,5 @@
 const {expect} = require ('@playwright/test');
-class UrlLaunchPage{
+class LoginPage{
     constructor(page){
         this.page = page;
         this.SignInDropdownButton = page.locator('//button[text()="Sign In"]');
@@ -102,4 +102,4 @@ class UrlLaunchPage{
 
 }
 
-module.exports = {UrlLaunchPage};
+module.exports = {LoginPage};
