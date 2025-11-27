@@ -1,6 +1,26 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="12.73883">
-<testsuite name="DoctorTests\DoctorLoginTest.spec.js" timestamp="2025-11-27T07:51:23.895Z" hostname="chromium" tests="1" failures="0" skipped="0" time="9.151" errors="0">
-<testcase name="Login › TC001 - Login with valid data" classname="DoctorTests\DoctorLoginTest.spec.js" time="9.151">
+<testsuites id="" name="" tests="2" failures="1" skipped="0" errors="0" time="8.699091999999998">
+<testsuite name="DoctorTests\DoctorLoginTest.spec.js" timestamp="2025-11-27T08:06:01.062Z" hostname="chromium" tests="2" failures="1" skipped="0" time="5.434" errors="0">
+<testcase name="Login › TC001 - URL launched successfully" classname="DoctorTests\DoctorLoginTest.spec.js" time="5.361">
+</testcase>
+<testcase name="Login › TC002 - Verify the user login the application with valid data" classname="DoctorTests\DoctorLoginTest.spec.js" time="0.073">
+<failure message="DoctorLoginTest.spec.js:18:7 TC002 - Verify the user login the application with valid data" type="FAILURE">
+<![CDATA[  [chromium] › DoctorTests\DoctorLoginTest.spec.js:18:7 › Login › TC002 - Verify the user login the application with valid data 
+
+    TypeError: Cannot read properties of undefined (reading 'locator')
+
+       at ..\Page\DoctorPage\DoctorLoginPage.js:5
+
+      3 |     constructor(page){
+      4 |         this.page = page;
+    > 5 |         this.SignInDropdownButton = page.locator('//button[@id="__BVID__19__BV_toggle_"]');
+        |                                          ^
+      6 |     }
+      7 |
+      8 |     async LoginWithValidData(){
+        at DoctorLoginPage (C:\Users\RajalakshmiRajasekar\Desktop\Deepam_Automation\Deepam\Page\DoctorPage\DoctorLoginPage.js:5:42)
+        at C:\Users\RajalakshmiRajasekar\Desktop\Deepam_Automation\Deepam\test\DoctorTests\DoctorLoginTest.spec.js:19:27
+]]>
+</failure>
 </testcase>
 </testsuite>
 </testsuites>
