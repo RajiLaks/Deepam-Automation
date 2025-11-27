@@ -12,6 +12,8 @@ test.describe('Login', async()=>{
         const dataset = await excelreader.readExcel('C:/Users/JV/Desktop/Deepam/Deepam-Automation/Utils/Deepam_Dataset.xlsx', 'Login');
         const {URL} = dataset[0];
         await loginpage.LaunchURL(URL);
+        const {MobileNo, Password} = dataset[1];
+        await loginpage.HelpDeskLogin(MobileNo, Password);
     })
   
 })
