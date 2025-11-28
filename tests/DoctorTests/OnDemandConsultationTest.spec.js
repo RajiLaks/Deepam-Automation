@@ -1,0 +1,33 @@
+const {test} = require ('@playwright/test');
+const {LoginPage} = require ('../../Pages/BasePage/LoginPage');
+const {ExcelReader} = require ('../../Utils/ExcelReader');
+const {OnDemandConsultation} = require ('../../Pages/DoctorPage/OnDemandConsultationPage');
+
+let page;
+let context;
+test.describe('TS01', async()=>{
+    test.beforeAll('On-Demand Consultation flow',async({browser})=>{
+        context = await browser.newContext({
+        viewport: { width: 1200, height: 600},
+        });
+        page = await context.newPage();
+        const loginpage = new LoginPage(page);
+        const excelreader = new ExcelReader();
+        const dataset = await excelreader.readExcel('C:/Users/RajalakshmiRajasekar/Desktop/Deepam_Automation/Deepam/Utils/Deepam_Dataset.xlsx', 'Login');
+        const {URL,MobileNo, Password} = dataset[0];
+        await loginpage.LaunchURL(URL);    
+        await loginpage.DoctorLogin(MobileNo, Password);
+
+    } )
+
+    test('TC001 - Navigate to the On-Demand consultation screen', async()=>{
+        const ondemandconsultation = new OnDemandConsultation(page);
+        await ondemandconsultation.ODC_Screen();
+    })
+
+    test('TC002 - Verify that the Waiting appointment screen', async()=>{
+        const waiting = new OnDemandConsultation(page);
+        await waiting.Waiting();
+    })
+
+} )

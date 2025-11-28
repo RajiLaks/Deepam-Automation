@@ -1,6 +1,6 @@
 const {test} = require ('@playwright/test');
 const {LoginPage} = require ('../../Page/LoginPage');
-const {ExcelReader} = require ('../../ExcelReader');
+const {ExcelReader} = require ('../../Utils/ExcelReader');
 
 let page;
 let context;

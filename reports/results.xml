@@ -1,6 +1,8 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="14.847783000000002">
-<testsuite name="DoctorTests\DoctorLoginTest.spec.js" timestamp="2025-11-27T10:49:17.134Z" hostname="chromium" tests="1" failures="0" skipped="0" time="11.332" errors="0">
-<testcase name="Login › TC001 - Login with valid data" classname="DoctorTests\DoctorLoginTest.spec.js" time="11.332">
+<testsuites id="" name="" tests="2" failures="0" skipped="0" errors="0" time="27.259626">
+<testsuite name="DoctorTests\OnDemandConsultationTest.spec.js" timestamp="2025-11-28T04:52:28.463Z" hostname="chromium" tests="2" failures="0" skipped="0" time="10.448" errors="0">
+<testcase name="TS01 › TC001 - Navigate to the On-Demand consultation screen" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="1.066">
+</testcase>
+<testcase name="TS01 › TC002 - Verify that the Waiting appointment screen" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="9.382">
 </testcase>
 </testsuite>
 </testsuites>
