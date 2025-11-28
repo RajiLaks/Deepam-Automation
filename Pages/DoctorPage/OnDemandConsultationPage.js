@@ -25,6 +25,7 @@ class OnDemandConsultation{
             await this.viewButton.scrollIntoViewIfNeeded();
             await this.page.waitForTimeout(1000);
             await this.viewButton.click();
+            console.log("Gokul");
         await this.page.pause();
         }
     }
