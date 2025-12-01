@@ -1,12 +1,6 @@
-<<<<<<< Updated upstream
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="21.180358000000002">
-<testsuite name="PharmacyAdminTests\AddSupplierTest.spec.js" timestamp="2025-11-28T12:58:42.500Z" hostname="chromium" tests="1" failures="0" skipped="0" time="6.759" errors="0">
-<testcase name="Supplier Module Test › TC002_AddSupplier" classname="PharmacyAdminTests\AddSupplierTest.spec.js" time="6.759">
-=======
 <testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="20.49706">
 <testsuite name="HelpDeskTests\PatientDetails.spec.js" timestamp="2025-12-01T04:42:32.300Z" hostname="chromium" tests="1" failures="0" skipped="0" time="4.275" errors="0">
 <testcase name="Patient Details › TC001 - Verify application opens and closes the Add Patient Box" classname="HelpDeskTests\PatientDetails.spec.js" time="4.275">
->>>>>>> Stashed changes
 </testcase>
 </testsuite>
 </testsuites>
