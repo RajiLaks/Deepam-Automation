@@ -1,12 +1,133 @@
-<<<<<<< Updated upstream
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="21.180358000000002">
-<testsuite name="PharmacyAdminTests\AddSupplierTest.spec.js" timestamp="2025-11-28T12:58:42.500Z" hostname="chromium" tests="1" failures="0" skipped="0" time="6.759" errors="0">
-<testcase name="Supplier Module Test › TC002_AddSupplier" classname="PharmacyAdminTests\AddSupplierTest.spec.js" time="6.759">
-=======
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="20.49706">
-<testsuite name="HelpDeskTests\PatientDetails.spec.js" timestamp="2025-12-01T04:42:32.300Z" hostname="chromium" tests="1" failures="0" skipped="0" time="4.275" errors="0">
-<testcase name="Patient Details › TC001 - Verify application opens and closes the Add Patient Box" classname="HelpDeskTests\PatientDetails.spec.js" time="4.275">
->>>>>>> Stashed changes
+<testsuites id="" name="" tests="6" failures="5" skipped="0" errors="0" time="92.485011">
+<testsuite name="PharmacyAdminTests\ProductCategoryTest.spec.js" timestamp="2025-12-01T13:25:44.452Z" hostname="chromium" tests="6" failures="5" skipped="0" time="80.074" errors="0">
+<testcase name="Supplier Module Test › TC001_Manufacturer with valid data" classname="PharmacyAdminTests\ProductCategoryTest.spec.js" time="13.389">
+<failure message="ProductCategoryTest.spec.js:26:5 TC001_Manufacturer with valid data" type="FAILURE">
+<![CDATA[  [chromium] › PharmacyAdminTests\ProductCategoryTest.spec.js:26:5 › Supplier Module Test › TC001_Manufacturer with valid data 
+
+    TypeError: productCategoryPage.enterManufacturerDetails is not a function
+
+      32 |         const categoryDataset = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'PharmacyAdmin_ProductCategory');
+      33 |         const { Name, Description } = categoryDataset[0];
+    > 34 |         await productCategoryPage.enterManufacturerDetails(Name, Description);
+         |                                   ^
+      35 |         await productCategoryPage.clickSubmitBtn();
+      36 |         await productCategoryPage.getToastMessage(categoryDataset[0].Toast);
+      37 |
+        at D:\Playwright Automation\Deepam-Automation\tests\PharmacyAdminTests\ProductCategoryTest.spec.js:34:35
+
+    Error Context: ..\test-results\PharmacyAdminTests-Product-ecc9e-anufacturer-with-valid-data-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\PharmacyAdminTests-Product-ecc9e-anufacturer-with-valid-data-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Supplier Module Test › TC002_Manufacturer with Invalid data" classname="PharmacyAdminTests\ProductCategoryTest.spec.js" time="13.725">
+<failure message="ProductCategoryTest.spec.js:41:5 TC002_Manufacturer with Invalid data" type="FAILURE">
+<![CDATA[  [chromium] › PharmacyAdminTests\ProductCategoryTest.spec.js:41:5 › Supplier Module Test › TC002_Manufacturer with Invalid data 
+
+    TypeError: productCategoryPage.enterManufacturerDetails is not a function
+
+      47 |         const categoryDataset = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'PharmacyAdmin_ProductCategory');
+      48 |         const { Name, Description } = categoryDataset[0];
+    > 49 |         await productCategoryPage.enterManufacturerDetails(Name, Description);
+         |                                   ^
+      50 |         await productCategoryPage.clickSubmitBtn();
+      51 |         const errorDetails = await productCategoryPage.validateErrorMessage();
+      52 |         console.log(errorDetails);
+        at D:\Playwright Automation\Deepam-Automation\tests\PharmacyAdminTests\ProductCategoryTest.spec.js:49:35
+
+    Error Context: ..\test-results\PharmacyAdminTests-Product-8dad5-ufacturer-with-Invalid-data-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\PharmacyAdminTests-Product-8dad5-ufacturer-with-Invalid-data-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Supplier Module Test › TC003_Manufacturer details without data" classname="PharmacyAdminTests\ProductCategoryTest.spec.js" time="14.107">
+<system-out>
+<![CDATA[{
+  mandatoryFields: [33m1[39m,
+  error: [ [32m'\n                    Category is required\n                  '[39m ]
+}
+]]>
+</system-out>
+</testcase>
+<testcase name="Supplier Module Test › TC004_verify the cancel button" classname="PharmacyAdminTests\ProductCategoryTest.spec.js" time="13.555">
+<failure message="ProductCategoryTest.spec.js:69:5 TC004_verify the cancel button" type="FAILURE">
+<![CDATA[  [chromium] › PharmacyAdminTests\ProductCategoryTest.spec.js:69:5 › Supplier Module Test › TC004_verify the cancel button 
+
+    TypeError: productCategoryPage.clickManufacturerModule is not a function
+
+      71 |         const excelreader = new ExcelReader();
+      72 |         await productCategoryPage.clickProductModule();
+    > 73 |         await productCategoryPage.clickManufacturerModule();
+         |                                   ^
+      74 |         await productCategoryPage.clickAddManufacturerBtn();
+      75 |         const categoryDataset = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'PharmacyAdmin_ProductCategory');
+      76 |         const { Name, Description} = categoryDataset[0];
+        at D:\Playwright Automation\Deepam-Automation\tests\PharmacyAdminTests\ProductCategoryTest.spec.js:73:35
+
+    Error Context: ..\test-results\PharmacyAdminTests-Product-37751-04-verify-the-cancel-button-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\PharmacyAdminTests-Product-37751-04-verify-the-cancel-button-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Supplier Module Test › TC005_Edit the Existing Manufacturer Details" classname="PharmacyAdminTests\ProductCategoryTest.spec.js" time="12.474">
+<failure message="ProductCategoryTest.spec.js:87:5 TC005_Edit the Existing Manufacturer Details" type="FAILURE">
+<![CDATA[  [chromium] › PharmacyAdminTests\ProductCategoryTest.spec.js:87:5 › Supplier Module Test › TC005_Edit the Existing Manufacturer Details 
+
+    TypeError: productCategoryPage.clickManufacturerModule is not a function
+
+      89 |         const excelreader = new ExcelReader();
+      90 |         await productCategoryPage.clickProductModule();
+    > 91 |         await productCategoryPage.clickManufacturerModule();
+         |                                   ^
+      92 |
+      93 |         const categoryDataset = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'PharmacyAdmin_ProductCategory');
+      94 |         const { Name, Description} = categoryDataset[2];
+        at D:\Playwright Automation\Deepam-Automation\tests\PharmacyAdminTests\ProductCategoryTest.spec.js:91:35
+
+    Error Context: ..\test-results\PharmacyAdminTests-Product-7105b-isting-Manufacturer-Details-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\PharmacyAdminTests-Product-7105b-isting-Manufacturer-Details-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Supplier Module Test › TC006_Delete the Existing Manufacturer Details" classname="PharmacyAdminTests\ProductCategoryTest.spec.js" time="12.824">
+<failure message="ProductCategoryTest.spec.js:106:5 TC006_Delete the Existing Manufacturer Details" type="FAILURE">
+<![CDATA[  [chromium] › PharmacyAdminTests\ProductCategoryTest.spec.js:106:5 › Supplier Module Test › TC006_Delete the Existing Manufacturer Details 
+
+    TypeError: productCategoryPage.clickManufacturerModule is not a function
+
+      108 |         const excelreader = new ExcelReader();
+      109 |         await productCategoryPage.clickProductModule();
+    > 110 |         await productCategoryPage.clickManufacturerModule();
+          |                                   ^
+      111 |
+      112 |         const categoryDataset = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'PharmacyAdmin_ProductCategory');
+      113 |
+        at D:\Playwright Automation\Deepam-Automation\tests\PharmacyAdminTests\ProductCategoryTest.spec.js:110:35
+
+    Error Context: ..\test-results\PharmacyAdminTests-Product-68c14-isting-Manufacturer-Details-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\PharmacyAdminTests-Product-68c14-isting-Manufacturer-Details-chromium\error-context.md]]
+]]>
+</system-out>
 </testcase>
 </testsuite>
 </testsuites>
