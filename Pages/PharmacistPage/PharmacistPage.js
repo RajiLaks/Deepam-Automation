@@ -6,12 +6,12 @@ exports.Pharmacist = class Pharmacist {
         this.page = page;
         this.createorder = page.locator("//button[@class='btn book-btn btn-secondary']");
         //
-        this.CusName = page.locator("//div[@class='search-grid p-0 col']//div//input[@id='searchVal']")
-        this.madicine = page.locator("//div[@class='p-0 col']//div//input[@id='searchVal']")
-        this.batch = page.locator("//select[@id='batchId']")
-        this.quantity = page.locator("//input[@id='quantity']")
-        this.add = page.locator("//button[@class='btn add-med-btn btn-secondary btn-sm']")
-
+        this.CusName=page.locator("//div[@class='search-grid p-0 col']//div//input[@id='searchVal']")
+        this.madicine=page.locator("//div[@class='p-0 col']//div//input[@id='searchVal']")
+        this.batch=page.locator("//select[@id='batchId']")
+        this.quantity=page.locator("//input[@id='quantity']")
+        this.add=page.locator("//button[@class='btn add-med-btn btn-secondary btn-sm']")
+        
 
 
     }
@@ -27,14 +27,14 @@ exports.Pharmacist = class Pharmacist {
         const locator = this.page("//div[(@class='latest-table')or(@class='search-grid px-0 py-1 pb-2 col')or(@class='search-grid px-0 col')]//input")
         await this.page.waitFor({ state: 'visible' })
         const length = await locator.count();
-        const index = length <= 2 ? 2 : 1
+        const index = length ? 2 : 1
         const search = this.page(`(//div[(@class='latest-table')or(@class='search-grid px-0 py-1 pb-2 col')or(@class='search-grid px-0 col')]//input)[${index}]`)
         console.log(search);
 
         await search.fill(data)
     }
     //Go to Latest
-    async Latest_Button() {
+       async Latest_Button() {
 
         await this.history.waitFor({ state: 'visible' });
 
@@ -45,7 +45,7 @@ exports.Pharmacist = class Pharmacist {
         await this.page.waitForTimeout(1000);
 
     }
-    //Go to History page.
+        //Go to History page.
     async History_Button() {
 
         await this.history.waitFor({ state: 'visible' });
@@ -65,11 +65,11 @@ exports.Pharmacist = class Pharmacist {
         await this.dashbord.click();
         await this.page.waitForTimeout(1000);
     }
-    async Batch(batch) {
+   async Batch(batch) {
         await this.batch.selectOption({ value: batch });
         await this.page.waitForTimeout(500);
     }
-    async Quantity(quan) {
+       async Quantity(quan) {
         await this.quantity.fill(quan);
         await this.page.waitForTimeout(500);
     }
@@ -77,7 +77,7 @@ exports.Pharmacist = class Pharmacist {
         await this.add.click();
         await this.page.waitForTimeout(1000);
     }
-    async Edit_Material(edit) {
+      async Edit_Material(edit) {
         const edit_mat = this.page.locator(`//div[@col-id='medicine' and normalize-space()='${edit}']/following-sibling::div[@col-id='action']/div/div/div/button[@class="btn edit-btn btn-secondary"]`)
 
         await edit_mat.waitFor({ state: 'visible' });
@@ -86,7 +86,7 @@ exports.Pharmacist = class Pharmacist {
         await this.page.waitForTimeout(1000);
     }
     async Delete_Material(dele) {
-
+       
         const dele_mat = dele.toLowerCase()
         const delete_mat = this.page.locator(`//div[@col-id='medicine' and contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${dele_mat}')]/following-sibling::div[@col-id='action']/div/div/div/button[@class="btn delete-btn btn-secondary"]`)
 
