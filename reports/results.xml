@@ -1,12 +1,6 @@
-<testsuites id="" name="" tests="2" failures="0" skipped="0" errors="0" time="21.336002999999998">
-<testsuite name="DoctorTests\OnDemandConsultationTest.spec.js" timestamp="2025-11-28T06:11:49.100Z" hostname="chromium" tests="2" failures="0" skipped="0" time="6.195" errors="0">
-<testcase name="TS01 › TC001 - Navigate to the On-Demand consultation screen" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="1.907">
-</testcase>
-<testcase name="TS01 › TC002 - Verify that the Waiting appointment screen" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="4.288">
-<system-out>
-<![CDATA[Gokul
-]]>
-</system-out>
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="21.180358000000002">
+<testsuite name="PharmacyAdminTests\AddSupplierTest.spec.js" timestamp="2025-11-28T12:58:42.500Z" hostname="chromium" tests="1" failures="0" skipped="0" time="6.759" errors="0">
+<testcase name="Supplier Module Test › TC002_AddSupplier" classname="PharmacyAdminTests\AddSupplierTest.spec.js" time="6.759">
 </testcase>
 </testsuite>
 </testsuites>

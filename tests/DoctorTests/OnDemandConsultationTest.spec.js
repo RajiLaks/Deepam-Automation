@@ -5,6 +5,7 @@ const {OnDemandConsultation} = require ('../../Pages/DoctorPage/OnDemandConsulta
 
 let page;
 let context;
+
 test.describe('TS01', async()=>{
     test.beforeAll('On-Demand Consultation flow',async({browser})=>{
         context = await browser.newContext({
@@ -17,8 +18,7 @@ test.describe('TS01', async()=>{
         const {URL,MobileNo, Password} = dataset[0];
         await loginpage.LaunchURL(URL);    
         await loginpage.DoctorLogin(MobileNo, Password);
-
-    } )
+    })
 
     test('TC001 - Navigate to the On-Demand consultation screen', async()=>{
         const ondemandconsultation = new OnDemandConsultation(page);
@@ -30,4 +30,4 @@ test.describe('TS01', async()=>{
         await waiting.Waiting();
     })
 
-} )
+})
