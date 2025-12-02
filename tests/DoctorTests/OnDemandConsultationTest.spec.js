@@ -35,4 +35,20 @@ test.describe('TS01', async()=>{
         await ongoing.OngoingScreen();
     })
 
-} )
+    test('TC004 - Verify that the Vitals screen displays the all data and it should be editable.', async()=>{
+        const vitals = new OnDemandConsultation(page);
+        const excelreader = new ExcelReader();
+        const vitals_data = await excelreader.readExcel("Utils/Deepam_Dataset.xlsx", "Doctor-EHR");
+        const {Systolic, Diastolic, height, weight, Temp, pulseRate, SpO2Level} = vitals_data[0];
+        await vitals.Vitals(Systolic, Diastolic, height, weight, Temp, pulseRate, SpO2Level);
+    })
+    
+    test('TC005 - Verify that the Medical History fields should be present and editable', async()=>{
+        const medicalHistory = new OnDemandConsultation(page);
+        const excelreader = new ExcelReader();
+        const Data_MH = await excelreader.readExcel("Utils/Deepam_Dataset.xlsx", "Doctor-EHR");
+        const {diabeteseDetails} = Data_MH[0];
+        await medicalHistory.MedicalHistoryDropDown(diabeteseDetails);
+    })
+
+})
