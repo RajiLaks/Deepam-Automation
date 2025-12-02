@@ -5,9 +5,45 @@ class OnDemandConsultation{
         this.page = page;
         this.ODC = page.locator('(//p[@class="icon-head"])[1]'); //ODC - OnDemand Consultation
         this.waitingText = page.locator('(//div[@class="text-center mt-2"])[2]/span');
-        this.WaitingNoData = page.locator('(//p[@class="patient-waiting-fontsize"])[3]');
-        this.viewButton = page.locator('//button[@class="btn primary-btn view-btn-size btn-secondary"]');
+        this.WaitingNoData = page.locator('(//div[@class="card-body text-center"])[2]/p');
+        this.Scroll = page.locator('(//p[@class="profile-details mt-1"])[8]');
+        this.viewButton = page.locator("//div[@class='row']//div[3]//div[1]//div[1]//div[1]//div[1]//div[1]//div[1]//div[1]//div[1]//div[3]//div[1]//button[1]");
+        
+        //Patient appointment- Doctor will accept
+        this.backbutton = page.locator('(//div[@class="rectangle-view"])/button[1]');    
+        this.ViewEHR = page.locator('(//div[@class="rectangle-view"])/button[2]');
+        this.Reports = page.locator('//a[text()="Reports"]');
+        this.MedicalHistory = page.locator('//a[text()="Medical History"]');
+        this.SurgeryHistory = page.locator('//a[text()="Surgery History"]');
+        this.FamilyHistory = page.locator('//a[text()="Family History"]');
+        this.Allergies = page.locator('//a[text()="Allergies"]');
+        this.Medications = page.locator('//a[text()="Medications"]');
+        this.LifeStyle = page.locator('//a[text()="Life Style"]');
+        this.closeEHR = page.locator('//div[@class="rectangle-view"]/button');
+        this.AcceptButton = page.locator('//div[@class="row back-align margintext"]/div[2]');
+
+        //Ongoing
+        this.ongoingButton = page.locator('(//div[@class="card type-card"])[1]');
+        this.countForOngoing = page.locator('(//div[@class="text-center mt-2"])[1]/span');
+        this.continueButton = page.locator('(//button[@class="btn primary-btn continue-btn-size btn-secondary"])[1]');
+        this.OngoingNoData = page.locator('(//div[@class="card-body text-center"])[1]/p');
+        
+
+        //Notes
+        //this.cheifComplaints = page.locator('(//textarea[@class="form-control form-control"])[3]');
+        this.diagnosis = page.locator('//div[@id="infodiagnosis"]');
+        this.notes = page.locator('(//div[@class="nav-item"])[3]');
+        this.NotesText = page.locator('//a[text()="NOTES"]');
+        this.Notes_BackButton = page.locator('//button[@class="btn secondary-btn back-btn-size btn-secondary"]');
+        this.followUp = page.locator('//h4[text()="Follow Up"]');
+        //this.TreatmentPlan = page.locator('(//textarea[@class="form-control form-control"])[5]');
+
+        //RX
+        this.RXText = page.locator('//a[text()="RX"]');
+        this.BackButton = page.locator('//button[@class="btn mr-2 secondary-btn back-btn-size btn-secondary"]');
     }
+
+
 
     async ODC_Screen(){
         await this.ODC.click();
@@ -22,13 +58,86 @@ class OnDemandConsultation{
             console.log(NoPatient);
         }
         else{
+            await this.page.waitForTimeout(1000);
             await this.viewButton.scrollIntoViewIfNeeded();
             await this.page.waitForTimeout(1000);
             await this.viewButton.click();
-            console.log("Gokul");
-        await this.page.pause();
+            await this.page.waitForTimeout(1000);
+            await this.backbutton.click();
+            await this.page.waitForTimeout(1000);
+            await this.viewButton.click();
+            await this.page.waitForTimeout(1000);
+            await this.ViewEHR.click();
+            await this.page.waitForTimeout(1000);
+            await this.Reports.scrollIntoViewIfNeeded();
+            await this.page.waitForTimeout(1000);
+            await this.MedicalHistory.click();
+            await this.page.waitForTimeout(1000);
+            await this.SurgeryHistory.click();
+            await this.page.waitForTimeout(1000);
+            await this.FamilyHistory.click();
+            await this.page.waitForTimeout(1000);
+            await this.Allergies.click();
+            await this.page.waitForTimeout(1000);
+            await this.Medications.click();
+            await this.page.waitForTimeout(1000);
+            await this.LifeStyle.click();
+            await this.page.waitForTimeout(1000);
+            await this.Reports.click();
+            await this.page.waitForTimeout(1000);
+            await this.closeEHR.scrollIntoViewIfNeeded();
+            await this.page.waitForTimeout(1000);
+            await this.closeEHR.click();
+            await this.AcceptButton.click();
+            await this.page.waitForTimeout(1000);
+            
         }
     }
 
+    async OngoingScreen(){
+        await this.ongoingButton.click();
+        await this.continueButton.scrollIntoViewIfNeeded();
+        await this.page.waitForTimeout(1000);
+        await this.continueButton.click();
+        await this.page.waitForTimeout(1000);
+        const rx_text = await this.RXText.innerText();
+        const notes_text = await this.NotesText.innerText();
+        if (rx_text === "RX"){
+            await this.BackButton.scrollIntoViewIfNeeded();
+            await this.BackButton.click();
+        }
+        else if(notes_text === "NOTES"){
+            await this.diagnosis.scrollIntoViewIfNeeded();
+            await this.page.waitForTimeout(1000);
+        }
+        else{
+            console.log("RajiR");
+        }
+        await this.page.pause();
+    }
+
+/*
+    async NotesScreen(){
+        const notetab = await this.notes.innerText();
+        expect(notetab).toContainText("Notes");
+        await this.cheifComplaints.scrollIntoViewIfNeeded();
+    }
+    
+    async Ongoing(){
+        await this.ongoingButton.click();
+        const Ongoing_Count = await this.countForOngoing.innerText();
+        const CountOngoing = parseInt(await Ongoing_Count.trim(), 10);
+        if(CountOngoing === 0){
+            const NoAppointment = await this.OngoingNoData.innerText();
+            console.log(NoAppointment);
+        }
+        else{
+            await this.continueButton.scrollIntoViewIfNeeded();
+            await this.page.waitForTimeout(1000);
+            await this.continueButton.click();
+            await this.page.pause();
+        }
+    }
+        */
 }
 module.exports = {OnDemandConsultation};

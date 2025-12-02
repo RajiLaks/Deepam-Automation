@@ -9,7 +9,7 @@ let context;
 test.describe('TS01', async()=>{
     test.beforeAll('On-Demand Consultation flow',async({browser})=>{
         context = await browser.newContext({
-        viewport: { width: 1200, height: 600},
+        viewport: { width: 1200, height: 580},
         });
         page = await context.newPage();
         const loginpage = new LoginPage(page);
@@ -30,4 +30,9 @@ test.describe('TS01', async()=>{
         await waiting.Waiting();
     })
 
-})
+    test('TC003 - Verify that the ongoing appointment screen', async()=>{
+        const ongoing = new OnDemandConsultation(page);
+        await ongoing.OngoingScreen();
+    })
+
+} )

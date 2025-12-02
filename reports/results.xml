@@ -1,12 +1,50 @@
-<<<<<<< Updated upstream
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="21.180358000000002">
-<testsuite name="PharmacyAdminTests\AddSupplierTest.spec.js" timestamp="2025-11-28T12:58:42.500Z" hostname="chromium" tests="1" failures="0" skipped="0" time="6.759" errors="0">
-<testcase name="Supplier Module Test › TC002_AddSupplier" classname="PharmacyAdminTests\AddSupplierTest.spec.js" time="6.759">
-=======
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="20.49706">
-<testsuite name="HelpDeskTests\PatientDetails.spec.js" timestamp="2025-12-01T04:42:32.300Z" hostname="chromium" tests="1" failures="0" skipped="0" time="4.275" errors="0">
-<testcase name="Patient Details › TC001 - Verify application opens and closes the Add Patient Box" classname="HelpDeskTests\PatientDetails.spec.js" time="4.275">
->>>>>>> Stashed changes
+<testsuites id="" name="" tests="3" failures="1" skipped="2" errors="0" time="33.709407">
+<testsuite name="DoctorTests\OnDemandConsultationTest.spec.js" timestamp="2025-12-01T09:47:34.076Z" hostname="chromium" tests="3" failures="1" skipped="2" time="0" errors="0">
+<testcase name="TS01 › TC001 - Navigate to the On-Demand consultation screen" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="0">
+<failure message="OnDemandConsultationTest.spec.js:23:5 TC001 - Navigate to the On-Demand consultation screen" type="FAILURE">
+<![CDATA[  [chromium] › DoctorTests\OnDemandConsultationTest.spec.js:23:5 › TS01 › TC001 - Navigate to the On-Demand consultation screen 
+
+    "beforeAll" hook timeout of 30000ms exceeded.
+
+       8 |
+       9 | test.describe('TS01', async()=>{
+    > 10 |     test.beforeAll('On-Demand Consultation flow',async({browser})=>{
+         |          ^
+      11 |         context = await browser.newContext({
+      12 |         viewport: { width: 1200, height: 580},
+      13 |         });
+        at C:\Users\RajalakshmiRajasekar\Desktop\Deepam_Automation\Deepam\tests\DoctorTests\OnDemandConsultationTest.spec.js:10:10
+
+    Error: page.waitForTimeout: Test ended.
+
+       at ..\Pages\BasePage\LoginPage.js:26
+
+      24 |     async DoctorLogin(MobileNo, Password){
+      25 |         await this.Doctor.click();
+    > 26 |         await this.page.waitForTimeout(1000);
+         |                         ^
+      27 |         await this.mobileNo.fill(MobileNo);
+      28 |         await this.page.waitForTimeout(1000);
+      29 |         await this.password.fill(Password);
+        at LoginPage.DoctorLogin (C:\Users\RajalakshmiRajasekar\Desktop\Deepam_Automation\Deepam\Pages\BasePage\LoginPage.js:26:25)
+        at C:\Users\RajalakshmiRajasekar\Desktop\Deepam_Automation\Deepam\tests\DoctorTests\OnDemandConsultationTest.spec.js:20:9
+
+    Error Context: ..\test-results\DoctorTests-OnDemandConsul-df7ed--Demand-consultation-screen-chromium\error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\test-results\DoctorTests-OnDemandConsul-df7ed--Demand-consultation-screen-chromium\error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="TS01 › TC002 - Verify that the Waiting appointment screen" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="TS01 › TC003 - Verify that the ongoing appointment screen" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="0">
+<skipped>
+</skipped>
 </testcase>
 </testsuite>
 </testsuites>
