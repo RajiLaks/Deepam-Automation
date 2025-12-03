@@ -1,4 +1,4 @@
-const { get } = require("http");
+const { count } = require("console");
 
 exports.CreateNewOrder = class CreateNewOrder {
 
@@ -10,7 +10,7 @@ exports.CreateNewOrder = class CreateNewOrder {
         this.searchmad = page.locator("//div[@class='p-0 col']//div//input[@id='searchVal']")
         this.batch = page.locator("//select[@id='batchId']")
         this.quantity = page.locator("//input[@id='quantity']")
-        this.add = page.locator("//button[@class='btn add-med-btn btn-secondary btn-sm']")
+        this.add = page.locator("//button[@class='btn add-med-btn btn-secondary btn-sm']/*[@data-icon='plus']")
         this.clear_searchmat = page.locator("//img[@class='search-grid-imagetwo']")
         //
         this.discount = page.locator("//div[@id='percentGroup']//input")
@@ -28,7 +28,7 @@ exports.CreateNewOrder = class CreateNewOrder {
         this.history = page.locator("//div[contains(@class,'options-div')]//button[@class='btn history-btn btn-secondary btn-sm']//*[name()='svg' and @data-icon='history']")
         this.dashbord = page.locator("//div[contains(@class,'options-div')]//button[@class='btn close-btn btn-secondary btn-sm']//*[name()='svg' and @data-icon='home']")
         this.newOrder = page.locator("//div[contains(@class,'options-div')]//button[@class='btn add-cancel-btn btn-secondary btn-sm']//*[name()='svg' and @data-icon='check']")
-       
+
         //
         this.back = this.page.locator("//button[@class='btn back-btn-size secondary-btn btn-secondary']")
     }
@@ -38,19 +38,21 @@ exports.CreateNewOrder = class CreateNewOrder {
         await this.createorder.click();
 
     }
-    async NewOrder(Cusname, Smed, bat, quan, mode, Money) {
+    async NewOrder(Cusname, Smed, bat, quan, dis, Rtype, Rdata, mode, Money) {
 
-        await this.CreateNewOrder();
         await this.CustomerName(Cusname);
         await this.Search_Madicine(Smed);
         await this.Batch(bat);
         await this.Quantity(quan);
         await this.Add_button();
+        await this.Discount(dis);
+        // await this.page.pause()
+        await this.Reference(Rtype, Rdata);
         await this.PaymentMode(mode)
         await this.Received(Money)
         await this.Pay_Button()
 
-        await this.page.waitForTimeout(3000)
+        await this.page.waitForTimeout(1000)
     }
 
     async CustomerName(sh_cus) {
@@ -72,7 +74,7 @@ exports.CreateNewOrder = class CreateNewOrder {
         const locator = this.page.locator(`//ul[@id='search-forminput-med']/li/div[contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${med}')]`);
         await this.page.waitForTimeout(500)
         const count = await locator.count()
-      //  console.log("Count", count);
+        //  console.log("Count", count);
 
         if (count == 0) {
 
@@ -101,18 +103,48 @@ exports.CreateNewOrder = class CreateNewOrder {
         await this.page.waitForTimeout(500);
     }
     async Add_button() {
+        await this.page.waitForTimeout(500);
         await this.add.click();
         await this.page.waitForTimeout(1000);
     }
-    async Discount() {
+    async Discount(fill) {
+        await this.discount.waitFor({ state: 'visible' });
+        if (fill != null) {
+            await this.discount.fill(fill)
+        }
+    }
+    async Rupees$(fill) {
+        await this.rupees.waitFor({ state: 'visible' });
+        if (fill != null) {
+            await this.rupees.fill(fill)
+        }
+    }
+    async Reference(type, fill) {
 
-        await this.Discount();
+        const selecttype = this.page.locator(`//label[text()='Reference']/following-sibling::div/button[contains(text(),'${type}')]`)
+        await this.page.waitForTimeout(500);
+        const Text = this.page.locator(`//div[@class='refform-height']/input`)
+        if (type != null) {
+            const clickable = await Text.isDisabled()
+            console.log("isEnable:", clickable);
 
+            if (clickable == false) {
+                await selecttype.waitFor({ state: 'visible' });
+                await selecttype.click();
+            } else if (clickable == true) {
+                await selecttype.dblclick();
+                await Text.fill(type);
+            }
+        }
+        if (fill != null && await Text.isEnabled()) {
+            await Text.waitFor({ state: 'visible' });
+            await this.Text.fill(fill)
+        }
+        await this.page.waitForTimeout(500);
     }
     async PaymentMode(PM) {
         const mode = this.page.locator(`//div[@class='payment-card my-2']//div[@role='group']/button[contains(text(),'${PM}')]`)
         await mode.waitFor({ state: 'visible' });
-
         await mode.click();
 
     }
@@ -144,6 +176,17 @@ exports.CreateNewOrder = class CreateNewOrder {
     async Pay_Button() {
         await this.p_button.waitFor({ state: 'visible' });
         await this.p_button.click();
+    }
+    async Tick_Material(tick) {
+        var tick_mat = this.page.locator(`//div[@class='ag-center-cols-viewport']//div[@role='rowgroup']/*/div[contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${tick}')]/following-sibling::div[@col-id='action']/div/div/input`)
+
+        await tick_mat.click(tick);
+        await this.page.waitForTimeout(1000);
+
+    }
+    async Untick_Material(tick) {
+
+        await this.Tick_Material(tick)
     }
 
     async Edit_Material(medi, bat) {
@@ -177,26 +220,37 @@ exports.CreateNewOrder = class CreateNewOrder {
         }
 
     }
-    async Delete_Material(dele) {
+    async Delete_Material(medi, bat) {
+        const med = medi.toLowerCase();
+        const batch = bat.toLowerCase();
 
-        const dele_mat = dele.toLowerCase()
-        const delete_mat = this.page.locator(`//div[@col-id='medicine' and contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${dele_mat}')]/following-sibling::div[@col-id='action']/div/div/div/button[@class="btn delete-btn btn-secondary"]`)
+        const delete_mat = [
+            //Click delete by Medicine name
+            {
+                Delete: this.page.locator(`//div[@col-id='medicine' and contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${med}')]/following-sibling::div[@col-id='action']/div/div/div/button[@class="btn delete-btn btn-secondary"]`)
+            },
+            //Click delete by Medicine and batch
+            {
+                Delete: this.page.locator(`//div[@col-id='medicine' and contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${med}')]/following-sibling::div[@col-id='batchid' and contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${batch}')]/following-sibling::div[@col-id='action']/div/div/div/button[@class="btn delete-btn btn-secondary"]`)
+            },
+            //Click delete by batch
+            {
+                Delete: this.page.locator(`//div[@col-id='batchid' and contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${batch}')]/following-sibling::div[@col-id='action']/div/div/div/button[@class="btn delete-btn btn-secondary"]`)
+            }
+        ]
+        for (const { Delete } of delete_mat) {
+            const isvisible = await Delete.isVisible();
+            console.log(isvisible);
 
-        await delete_mat.waitFor({ state: 'visible' });
-        await delete_mat.click();
-        await this.page.waitForTimeout(1000);
+            if (isvisible) {
+                await Delete.waitFor({ state: 'visible' });
+                await Delete.click()
+                return;
+            }
+
+        }
     }
-    async Tick_Material(tick) {
-        var tick_mat = this.page.locator(`//div[@class='ag-center-cols-viewport']//div[@role='rowgroup']/*/div[contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${tick}')]/following-sibling::div[@col-id='action']/div/div/input`)
 
-        await tick_mat.click(tick);
-        await this.page.waitForTimeout(1000);
-
-    }
-    async Untick_Material(tick) {
-
-        await this.Tick_Material(tick)
-    }
     //Go to Latest
     async Latest_Button() {
 
@@ -208,7 +262,7 @@ exports.CreateNewOrder = class CreateNewOrder {
 
     }
     //Go to NewOrder Page
-      async NewOrder_Button() {
+    async NewOrder_Button() {
 
         await this.newOrder.waitFor({ state: 'visible' });
 
@@ -276,15 +330,7 @@ exports.CreateNewOrder = class CreateNewOrder {
 
         await search.fill(data)
     }
-    async Back() {
-        const locator = this.page.locator("//button[(@class='btn back-btn-size secondary-btn btn-secondary')or(@class='btn cancelbtn-color btn-secondary')]")
-        const length = await locator.count();
-        const index = length <= 2 ? 1 : 2
-        const back = this.page.locator(`(//button[(@class='btn back-btn-size secondary-btn btn-secondary')or(@class='btn cancelbtn-color btn-secondary')])[${index}]`)
-        await back.waitFor({ state: 'visible' })
-        await back.click();
-        await this.page.waitForTimeout(1000);
-    }
+
 
 
 }

@@ -18,22 +18,16 @@ exports.History = class History {
         //for Page Load Locator
         this.loaded = page.locator("//div[@class='v-window__container']//div//div//div//div[@role='grid']")
 
-        //Back button
-        this.backbut = page.locator(`//button[@class='btn secondary-btn back-btn-size btn-secondary' or @class='cancelbtn-color']`)
-        const backcount = this.backbut.count();
-        const backindex = backcount >= 2 ? 2 : 1
-        this.back = page.locator(`(//button[@class='btn secondary-btn back-btn-size btn-secondary' or @class='cancelbtn-color'])[${backindex}]`)
-
         //Print button
         this.print = page.locator("//button[@class='submit_btn primary_btn submitbtn-color']")
 
 
         //Return button and Return Submit Button
         this.return = page.locator("//button[@class='btn reference-btn btn-one btn-secondary']")
-        this.return_but = page.locator("//button[@class='btn submitbtn-color submit-height-one btn-primary']")
+        this.return_but = page.locator("//button[@class='btn return-btn-size primary-btn btn-primary']")
         this.return_reason = page.locator("//textarea[@id='cancelReason']")
 
-        this.reorder= page.locator("//button[@class='btn reference-btn btn-secondary']")
+        this.reorder = page.locator("//button[@class='btn reference-btn btn-secondary']")
         this.bill = page.locator("//button[@class='btn reference-btn btn-two btn-secondary']")
 
         //Confirm Message Box
@@ -81,26 +75,27 @@ exports.History = class History {
         await this.page.waitForTimeout(1000);
 
     }
-   async View_History(OrID, name) {
+    async View_History(OrID, name) {
         const ID = OrID.toLowerCase();
         const pname = name.toLowerCase();
 
- 
+
         const view_mat = [
             //View by Order ID and Patient name or Mobile num.
             {
                 view: this.page.locator(`//div[@col-id='pharmacyid' and contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${ID}')]/following-sibling::div[(@col-id='patientname' or @col-id='mobilenumber') and contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${pname}')]/following-sibling::div[@col-id='action']`)
             }
-           
+
         ]
         for (const { view } of view_mat) {
-           // console.log(view);
-        await this.page.waitForTimeout(500);
-            
-           const isvisible = await view.isVisible();
-            console.log(isvisible);
-
-            if (isvisible) {
+            // console.log(view);
+            await this.page.waitForTimeout(500);
+            const count = await view.count();
+            if (count > 1) {
+                await view.first().waitFor({ state: 'visible' });
+                await view.first().click()
+                break;
+            } else if (count == 1) {
                 await view.waitFor({ state: 'visible' });
                 await view.click()
                 return;
@@ -109,7 +104,7 @@ exports.History = class History {
         }
         await this.bill.waitFor({ state: 'visible' });
         await this.page.waitForTimeout(1000);
-        
+
 
     }
     async Bill_Button() {
@@ -130,17 +125,17 @@ exports.History = class History {
 
     async Return_Quan(medi, RQ) {
         const med = medi.toLowerCase();
+
         const returnQ1 = this.page.locator(`//div[@col-id="medicine" and contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${med}')]//following-sibling::div[@col-id="quantityupdate"]`)
         await returnQ1.waitFor({ state: 'visible' });
-
         await returnQ1.click()
 
         await this.page.waitForTimeout(500);
 
-        const returnQ2 = this.page.locator(`//div[@col-id="medicine" and contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'para')]//following-sibling::div[@col-id="quantityupdate"]/div/input`)
+        const returnQ2 = this.page.locator(`//div[@col-id="medicine" and contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${med}')]//following-sibling::div[@col-id="quantityupdate"]/div/input`)
 
 
-        await returnQ2.fill(`${RQ}`, { force: true });
+        await returnQ2.fill(RQ, { force: true });
         await returnQ2.press(`Enter`, { force: true });
 
         await this.page.waitForTimeout(500);
@@ -170,7 +165,7 @@ exports.History = class History {
 
         await this.reorder.click()
         await this.history.waitFor({ state: 'visible' });
-        
+
         await this.page.waitForTimeout(500);
     }
     async ConfirmYes() {
@@ -184,6 +179,21 @@ exports.History = class History {
     async CancelIcon() {
 
         await this.cancelIcon.click();
+        await this.page.waitForTimeout(1000);
+    }
+     async Back() {
+        const locator = this.page.locator("//button[(@class='btn back-btn-size secondary-btn btn-secondary')or(@class='btn cancelbtn-color btn-secondary')]")
+        //Bill Page for visible purpose
+        const isvis = await this.page.locator("//div[@id='payment-bill']").isVisible();
+         if (isvis) {
+
+            await this.page.locator("//button[@class='btn back-btn-size secondary-btn btn-secondary']").click();
+
+        } else {
+            await this.page.locator("//button[@class='btn cancelbtn-color btn-secondary']").click();
+
+        }
+
         await this.page.waitForTimeout(1000);
     }
 }
