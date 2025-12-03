@@ -9,7 +9,7 @@ class ExcelReader {
     {
     const workbook = xlsx.readFile(path.resolve(filePath));
     const sheet = workbook.Sheets[sheetName];
-    const data = xlsx.utils.sheet_to_json(sheet, { raw: false });
+    const data = xlsx.utils.sheet_to_json(sheet, { raw: false,defval: ' '  });
     return data;
 }
 }

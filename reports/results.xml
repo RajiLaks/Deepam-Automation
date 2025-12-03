@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="20.49706">
 <testsuite name="HelpDeskTests\PatientDetails.spec.js" timestamp="2025-12-01T04:42:32.300Z" hostname="chromium" tests="1" failures="0" skipped="0" time="4.275" errors="0">
@@ -21,6 +22,185 @@
 </testcase>
 <testcase name="TS01 › TC005 - Verify that the Medical History fields should be present and editable" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="10.278">
 >>>>>>> 1015080527871def77cd97c818808066826fc09a
+=======
+<testsuites id="" name="" tests="16" failures="0" skipped="14" errors="0" time="27.522038000000002">
+<testsuite name="PharmacistTest\CreateNewOrder.spec.js" timestamp="2025-12-02T13:41:54.981Z" hostname="chromium" tests="16" failures="0" skipped="14" time="25.154" errors="0">
+<testcase name="Pharmacist › TC001 - Login Pharmacist" classname="PharmacistTest\CreateNewOrder.spec.js" time="20.415">
+</testcase>
+<testcase name="Pharmacist › TC002 - Create a New Order with Valid Credential" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC003 - Create a New Order with invalid Credential" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC004 - Create and Edit the Medicine and pay" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC005 - Create New Order with Multiple Medicine and pay" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC006 - Create New Order with Multiple Medicine and pay" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC007 - Goto Create Order page and Come back to Dashboard" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC008 - Goto Create Order page and View Ordered_History" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC009 - Goto Reorder page and Click the Neworder Module" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC010 - Goto Return page and Click the Neworder Module" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC011 - Goto New Order page and Click the Latest Module then Comeback" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC012 - Goto Reorder page and order the same medicine" classname="PharmacistTest\CreateNewOrder.spec.js" time="4.739">
+<system-out>
+<![CDATA[Excel data: [
+  {
+    CustomerName: [32m'Pradeep'[39m,
+    SearchMed: [32m'Ascoril'[39m,
+    BatchNo: [32m'asc000'[39m,
+    Quantity: [32m'1'[39m,
+    Discount: [32m' '[39m,
+    Amount: [32m' '[39m,
+    Reference: [32m' '[39m,
+    PaymentMode: [32m'Cash'[39m,
+    Received: [32m'21'[39m,
+    __EMPTY: [32m' '[39m,
+    OrderID: [32m'3354'[39m
+  },
+  {
+    CustomerName: [32m'Muthu'[39m,
+    SearchMed: [32m'Citrazine'[39m,
+    BatchNo: [32m'cit123'[39m,
+    Quantity: [32m'2'[39m,
+    Discount: [32m' '[39m,
+    Amount: [32m' '[39m,
+    Reference: [32m' '[39m,
+    PaymentMode: [32m'Card'[39m,
+    Received: [32m'0'[39m,
+    __EMPTY: [32m' '[39m,
+    OrderID: [32m' '[39m
+  },
+  {
+    CustomerName: [32m' '[39m,
+    SearchMed: [32m'DOLO'[39m,
+    BatchNo: [32m'dolo12'[39m,
+    Quantity: [32m'2'[39m,
+    Discount: [32m' '[39m,
+    Amount: [32m' '[39m,
+    Reference: [32m' '[39m,
+    PaymentMode: [32m'UPI'[39m,
+    Received: [32m' '[39m,
+    __EMPTY: [32m' '[39m,
+    OrderID: [32m' '[39m
+  },
+  {
+    CustomerName: [32m' '[39m,
+    SearchMed: [32m'paracetomol'[39m,
+    BatchNo: [32m'para12'[39m,
+    Quantity: [32m'2'[39m,
+    Discount: [32m' '[39m,
+    Amount: [32m' '[39m,
+    Reference: [32m' '[39m,
+    PaymentMode: [32m' '[39m,
+    Received: [32m' '[39m,
+    __EMPTY: [32m' '[39m,
+    OrderID: [32m' '[39m
+  }
+]
+[33mtrue[39m
+negative
+[33m331[39m
+]]>
+</system-out>
+</testcase>
+<testcase name="Pharmacist › TC013 - Goto Reorder page and Click the Neworder Module" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC014 - Goto Reorder page and Click the Neworder Module" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC015 - Goto Reorder page and Click the Neworder Module" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC016 - Goto Reorder page and Click the Neworder Module" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+>>>>>>> Stashed changes
 </testcase>
 </testsuite>
 </testsuites>
