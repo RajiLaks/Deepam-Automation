@@ -47,8 +47,56 @@ test.describe('TS01', async()=>{
         const medicalHistory = new OnDemandConsultation(page);
         const excelreader = new ExcelReader();
         const Data_MH = await excelreader.readExcel("Utils/Deepam_Dataset.xlsx", "Doctor-EHR");
-        const {diabeteseDetails} = Data_MH[0];
-        await medicalHistory.MedicalHistoryDropDown(diabeteseDetails);
+        const {diabeteseDetails, Subclinical_Hypothyroidism, asthma} = Data_MH[0];
+        await medicalHistory.MedicalHistoryDropDown(diabeteseDetails, Subclinical_Hypothyroidism, asthma);
+    })
+
+    test('TC006 - Verify that the Surgery details field displays the data and it should be editable', async()=>{
+        const surgeryhistory = new OnDemandConsultation(page);
+        await surgeryhistory.Surgery_History();
+    })
+
+    test('TC007 - Verify that the Family details field displays the data and it should be editable', async()=>{
+        const family_history = new OnDemandConsultation(page);
+        await family_history.Family_History();
+    })
+
+    test('TC008 - Verify that the allergies details field displays the data and it should be editable', async()=>{
+        const Allergieshistory = new OnDemandConsultation(page);
+        await Allergieshistory.Allergies_Dropdown();
+    })   
+    
+    test('TC009 - Verify that the OnExamination details field displays the data and it should be editable', async()=>{
+        const onexamination = new OnDemandConsultation(page);
+        await onexamination.On_Examination();
+    }) 
+    
+    test('TC010 - Verify that the medicataion details field displays the data and it should be editable', async()=>{
+        const medicaionDetails = new OnDemandConsultation(page);
+        await medicaionDetails.Medicationdropdown();
+    }) 
+
+    test('TC011 - Verify that the life style details field displays the data and it should be editable', async()=>{
+        const lifestyle = new OnDemandConsultation(page);
+        await lifestyle.Life_Style();
+    }) 
+
+    test('TC012 - Verify that the appointment history details field displays the data and it should be editable', async()=>{
+        const appointmenthistory = new OnDemandConsultation(page);
+        await appointmenthistory.Appointment_History();
+    }) 
+
+    test('TC013 - Verify that the reports screen displays the data and it should be editable', async()=>{
+        const reportsdetails = new OnDemandConsultation(page);
+        await reportsdetails.Reports_Screen();
+    }) 
+
+    test('TC014 - Verify that the Notes screen displays the data and it should be editable', async()=>{
+        const notesscreen = new OnDemandConsultation(page);
+        const excelreader = new ExcelReader();
+        const Data_Notes = await excelreader.readExcel("Utils/Deepam_Dataset.xlsx", "Doctor-EHR");
+        const {Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan} = Data_Notes[0];
+        await notesscreen.NotesScreen(Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan);
     })
 
 })

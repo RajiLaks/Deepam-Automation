@@ -1,20 +1,44 @@
-<testsuites id="" name="" tests="5" failures="0" skipped="0" errors="0" time="48.26881099999999">
-<testsuite name="DoctorTests\OnDemandConsultationTest.spec.js" timestamp="2025-12-02T09:44:42.526Z" hostname="chromium" tests="5" failures="0" skipped="0" time="24.027" errors="0">
-<testcase name="TS01 › TC001 - Navigate to the On-Demand consultation screen" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="2.526">
+<testsuites id="" name="" tests="14" failures="0" skipped="0" errors="0" time="1382.5989510000002">
+<testsuite name="DoctorTests\OnDemandConsultationTest.spec.js" timestamp="2025-12-04T10:10:53.269Z" hostname="chromium" tests="14" failures="0" skipped="0" time="1356.93" errors="0">
+<testcase name="TS01 › TC001 - Navigate to the On-Demand consultation screen" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="2.504">
 </testcase>
-<testcase name="TS01 › TC002 - Verify that the Waiting appointment screen" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="0.028">
+<testcase name="TS01 › TC002 - Verify that the Waiting appointment screen" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="0.014">
 <system-out>
-<![CDATA[
-                      Doctor, There are no pending prescriptions
-                    
+<![CDATA[Doctor, The patient is yet to arrive!
 ]]>
 </system-out>
 </testcase>
-<testcase name="TS01 › TC003 - Verify that the ongoing appointment screen" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="5.395">
+<testcase name="TS01 › TC003 - Verify that the ongoing appointment screen" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="5.478">
+<system-out>
+<![CDATA[RX
+]]>
+</system-out>
 </testcase>
-<testcase name="TS01 › TC004 - Verify that the Vitals screen displays the all data and it should be editable." classname="DoctorTests\OnDemandConsultationTest.spec.js" time="5.8">
+<testcase name="TS01 › TC004 - Verify that the Vitals screen displays the all data and it should be editable." classname="DoctorTests\OnDemandConsultationTest.spec.js" time="6.081">
 </testcase>
-<testcase name="TS01 › TC005 - Verify that the Medical History fields should be present and editable" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="10.278">
+<testcase name="TS01 › TC005 - Verify that the Medical History fields should be present and editable" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="6.465">
+<system-out>
+<![CDATA[Medical History updated successfully.
+]]>
+</system-out>
+</testcase>
+<testcase name="TS01 › TC006 - Verify that the Surgery details field displays the data and it should be editable" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="2.353">
+</testcase>
+<testcase name="TS01 › TC007 - Verify that the Family details field displays the data and it should be editable" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="3.252">
+</testcase>
+<testcase name="TS01 › TC008 - Verify that the allergies details field displays the data and it should be editable" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="2.14">
+</testcase>
+<testcase name="TS01 › TC009 - Verify that the OnExamination details field displays the data and it should be editable" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="2.45">
+</testcase>
+<testcase name="TS01 › TC010 - Verify that the medicataion details field displays the data and it should be editable" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="1.464">
+</testcase>
+<testcase name="TS01 › TC011 - Verify that the life style details field displays the data and it should be editable" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="1.477">
+</testcase>
+<testcase name="TS01 › TC012 - Verify that the appointment history details field displays the data and it should be editable" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="1.334">
+</testcase>
+<testcase name="TS01 › TC013 - Verify that the reports screen displays the data and it should be editable" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="2.477">
+</testcase>
+<testcase name="TS01 › TC014 - Verify that the Notes screen displays the data and it should be editable" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="1319.441">
 </testcase>
 </testsuite>
 </testsuites>
