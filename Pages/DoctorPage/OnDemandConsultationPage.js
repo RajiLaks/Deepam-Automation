@@ -40,6 +40,7 @@ class OnDemandConsultation{
         this.symptoms = page.locator('(//textarea[@class="form-control form-control"])[1]');
         this.CheifComplaintField = page.locator('(//textarea[@class="form-control form-control"])[3]');
         this.Diagnosis = page.locator('(//textarea[@class="form-control form-control"])[4]');
+        this.notes_continuebutton = page.locator('//div[@class="col-12 notes-button"]/button[2]');
 
         //RX
         this.RXText = page.locator('//a[text()="RX"]');
@@ -124,10 +125,14 @@ class OnDemandConsultation{
         await this.page.waitForTimeout(1000);
         await this.CheifComplaintField.clear();
         await this.CheifComplaintField.fill(Cheif_Complaint);
+        await this.page.waitForTimeout(1000);
         await this.TreatmentPlan.scrollIntoViewIfNeeded();
         await this.Diagnosis.fill(Diagnosis_data);
+        await this.page.waitForTimeout(1000);
         await this.TreatmentPlan.fill(treatment_plan);
         await this.followUp.scrollIntoViewIfNeeded();
+        await this.page.waitForTimeout(1000);
+        await this.notes_continuebutton.click();
         await this.page.pause();
     }       
 
