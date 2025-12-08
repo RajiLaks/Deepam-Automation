@@ -45,6 +45,7 @@ class OnDemandConsultation{
         //RX
         this.RXText = page.locator('//a[text()="RX"]');
         this.BackButton = page.locator('//button[@class="btn mr-2 secondary-btn back-btn-size btn-secondary"]');
+        this.SearchMedicine = page.locator('//input[@id="searchInput"]');
 
         //Vitals
         this.vitalsButton = page.locator('(//div[@class="row emraccordionrow"])[1]/a[@role="button"]');
@@ -113,28 +114,17 @@ class OnDemandConsultation{
         //Reports
         this.reports = page.locator('(//div[@class="row emraccordionrow"])[10]/a[@role="button"]');
         this.EHR_nextButton = page.locator('//div[@class="col-12 close-button"]/button[2]');
-
     } 
-    
-    async NotesScreen(Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan){
-        //const notetab = await this.notes.innerText();
-        expect(this.notes).toHaveText("NOTES");
-        await this.page.waitForTimeout(1000);
-        await this.symptoms.clear();
-        await this.symptoms.fill(Symptoms);
-        await this.page.waitForTimeout(1000);
-        await this.CheifComplaintField.clear();
-        await this.CheifComplaintField.fill(Cheif_Complaint);
-        await this.page.waitForTimeout(1000);
-        await this.TreatmentPlan.scrollIntoViewIfNeeded();
-        await this.Diagnosis.fill(Diagnosis_data);
-        await this.page.waitForTimeout(1000);
-        await this.TreatmentPlan.fill(treatment_plan);
-        await this.followUp.scrollIntoViewIfNeeded();
-        await this.page.waitForTimeout(1000);
-        await this.notes_continuebutton.click();
+    async RX(medicine){
+        await this.SearchMedicine.click();
         await this.page.pause();
-    }       
+        await this.SearchMedicine.fill(medicine); 
+        await this.SearchMedicine.press("ArrowDown");
+        await this.SearchMedicine.press("Enter");
+        await this.page.pause();
+
+    }
+          
 
     async ODC_Screen(){  
         await this.ODC.click();
@@ -207,6 +197,7 @@ class OnDemandConsultation{
             await this.followUp.scrollIntoViewIfNeeded();
             await this.page.waitForTimeout(1000);
             await this.Notes_BackButton.click();
+               
         }
         else{          
             await this.BackButton.scrollIntoViewIfNeeded();
@@ -217,7 +208,7 @@ class OnDemandConsultation{
             await this.page.waitForTimeout(1000);
             await this.followUp.scrollIntoViewIfNeeded();
             await this.page.waitForTimeout(1000);
-            await this.Notes_BackButton.click();
+            await this.Notes_BackButton.click(); 
         }
         
     }
@@ -330,6 +321,28 @@ class OnDemandConsultation{
         await this.page.waitForTimeout(1000);
         await this.EHR_nextButton.click();
     }
+
+    async NotesScreen(Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan){
+        //const notetab = await this.notes.innerText();
+        expect(this.notes).toHaveText("NOTES");
+        await this.page.waitForTimeout(1000);
+        await this.symptoms.clear();
+        await this.symptoms.fill(Symptoms);
+        await this.page.waitForTimeout(1000);
+        await this.CheifComplaintField.clear();
+        await this.CheifComplaintField.fill(Cheif_Complaint);
+        await this.page.waitForTimeout(1000);
+        await this.TreatmentPlan.scrollIntoViewIfNeeded();
+        await this.Diagnosis.fill(Diagnosis_data);
+        await this.page.waitForTimeout(1000);
+        await this.TreatmentPlan.fill(treatment_plan);
+        await this.followUp.scrollIntoViewIfNeeded();
+        await this.page.waitForTimeout(1000);
+        await this.notes_continuebutton.click();
+        await this.page.pause();
+    } 
+
+    
 
     
 
