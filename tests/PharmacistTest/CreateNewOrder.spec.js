@@ -215,12 +215,12 @@ test.describe.serial('Pharmacist', () => {
     });
 
 
-    test('TC015 - Goto Purchased Bill Page ', async () => {
+    test.skip('TC015 - Goto Purchased Bill Page ', async () => {
         const data = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'Pharmacist');
         console.log("Excel data:", data);
         const Create = new CreateNewOrder(page);
         const His = new History(page);
-         await Create.CreateNewOrder();
+        await Create.CreateNewOrder();
         await His.History();
         await His.View_History(data[0].OrderID, data[1].CustomerName)
         await His.Bill_Button();
@@ -235,7 +235,7 @@ test.describe.serial('Pharmacist', () => {
         const His = new History(page);
         await Create.CreateNewOrder();
         await Create.Latest_Button();
-        await Create.CancelIcon();
+        await Create.Cancelclose();
 
 
     });
@@ -248,83 +248,87 @@ test.describe.serial('Pharmacist', () => {
         await Create.ConfirmYes();
     })
 
-    test.skip('TC018 - Goto Reorder page and Click the Neworder Module', async () => {
+    test.skip('TC018 - View the Appointment Orders and Click Create Cancel Icon', async () => {
         const data = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'Pharmacist');
         console.log("Excel data:", data);
         const Create = new CreateNewOrder(page);
         const His = new History(page);
-        await Create.CreateNewOrder();
-        await His.History();
-        await His.View_History(data[0].OrderID, data[1].CustomerName)
-        await His.Reorder_Button();
-        await Create.NewOrder_Button();
-        await Create.ConfirmYes();
+        await Create.View_Appointment(data[0].CustomerName, data[0].OrderID, data[0].CusNumber);
+        // await page.pause();
+        await Create.Cancelclose();
+
 
     });
-    test.skip('TC019 - Goto Reorder page and Click the Neworder Module', async () => {
+    test.skip('TC019 - View the Appointment Orders and pay the order', async () => {
         const data = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'Pharmacist');
         console.log("Excel data:", data);
         const Create = new CreateNewOrder(page);
-        const His = new History(page);
-        await Create.CreateNewOrder();
-        await His.History();
-        await His.View_History(data[0].OrderID, data[1].CustomerName)
-        await His.Reorder_Button();
-        await Create.NewOrder_Button();
-        await Create.ConfirmYes();
+        await Create.View_Appointment(data[0].CustomerName, data[0].OrderID, data[0].CusNumber);
+        await Create.CreateRequest_Button();
+        await Create.PaymentMode(data[2].PaymentMode);
+        await Create.Received(data[0].PaymentMode);
+        await Create.Pay_Button();
+        await Create.ConfirmNo();
 
     });
-    test.skip('TC020 - Goto Reorder page and Click the Neworder Module', async () => {
+    test.skip('TC020 - View the Appointment & goto Order page,then Reduce the Quantity and Pay', async () => {
         const data = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'Pharmacist');
         console.log("Excel data:", data);
         const Create = new CreateNewOrder(page);
         const His = new History(page);
-        await Create.CreateNewOrder();
-        await His.History();
-        await His.View_History(data[0].OrderID, data[1].CustomerName)
-        await His.Reorder_Button();
-        await Create.NewOrder_Button();
-        await Create.ConfirmYes();
+        await Create.View_Appointment(data[0].CustomerName, data[0].OrderID, data[0].CusNumber);
+        await Create.CreateRequest_Button();
+        await His.Return_Quan(data[3].SearchMed, data[3].Quantity)
+        await Create.PaymentMode(data[2].PaymentMode);
+        await Create.Received(data[0].PaymentMode);
+        await Create.Pay_Button();
+        await Create.ConfirmNo();
+
 
     });
-    test.skip('TC021 - Goto Reorder page and Click the Neworder Module', async () => {
+    test.skip('TC021 - Pay the Appointment order with Extra medicines', async () => {
         const data = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'Pharmacist');
         console.log("Excel data:", data);
         const Create = new CreateNewOrder(page);
-        const His = new History(page);
-        await Create.CreateNewOrder();
-        await His.History();
-        await His.View_History(data[0].OrderID, data[1].CustomerName)
-        await His.Reorder_Button();
-        await Create.NewOrder_Button();
-        await Create.ConfirmYes();
+        await Create.View_Appointment(data[0].CustomerName, data[0].OrderID, data[0].CusNumber);
+        await Create.CreateRequest_Button();
+        await Create.Search_Madicine(data[2].SearchMed);
+        await Create.Batch(data[2].BatchNo);
+        await Create.Quantity(data[2].Quantity);
+        await Create.Add_button();
+        await Create.PaymentMode(data[2].PaymentMode);
+        await Create.Received(data[0].PaymentMode);
+        await Create.Pay_Button();
+        await Create.ConfirmNo();
 
     });
-    test.skip('TC022 - Goto Reorder page and Click the Neworder Module', async () => {
+    test.skip('TC022 - Pay the Appointment order with Untick the Appointment medicine and add Extra medicines', async () => {
         const data = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'Pharmacist');
         console.log("Excel data:", data);
         const Create = new CreateNewOrder(page);
-        const His = new History(page);
-        await Create.CreateNewOrder();
-        await His.History();
-        await His.View_History(data[0].OrderID, data[1].CustomerName)
-        await His.Reorder_Button();
-        await Create.NewOrder_Button();
-        await Create.ConfirmYes();
+        await Create.View_Appointment(data[2].CustomerName, data[0].OrderID, data[0].CusNumber);
+        await Create.CreateRequest_Button();
+        await Create.Untick_Material(data[4].BatchNo);
+        await Create.Search_Madicine(data[2].SearchMed);
+        await Create.Batch(data[2].BatchNo);
+        await Create.Quantity(data[2].Quantity);
+        await Create.Add_button();
+        await Create.PaymentMode(data[2].PaymentMode);
+        await Create.Received(data[0].PaymentMode);
+        await Create.Pay_Button();
+        await Create.ConfirmNo();
 
     });
-    test.skip('TC023 - Goto Reorder page and Click the Neworder Module', async () => {
+    test('TC023 - Goto Reorder page and Click the Neworder Module', async () => {
         const data = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'Pharmacist');
         console.log("Excel data:", data);
         const Create = new CreateNewOrder(page);
         const His = new History(page);
-        await Create.CreateNewOrder();
-        await His.History();
-        await His.View_History(data[0].OrderID, data[1].CustomerName)
-        await His.Reorder_Button();
-        await Create.NewOrder_Button();
-        await Create.ConfirmYes();
-
+        await Create.CreateOrder_Appointment(data[0].CustomerName, data[0].OrderID, data[0].CusNumber);
+        await Create.PaymentMode(data[2].PaymentMode);
+        await Create.Received(data[0].PaymentMode);
+        await Create.Pay_Button();
+        await Create.ConfirmNo();
     });
     test.skip('TC024 - Goto Reorder page and Click the Neworder Module', async () => {
         const data = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'Pharmacist');
@@ -332,12 +336,9 @@ test.describe.serial('Pharmacist', () => {
         const Create = new CreateNewOrder(page);
         const His = new History(page);
         await Create.CreateNewOrder();
-        await His.History();
-        await His.View_History(data[0].OrderID, data[1].CustomerName)
-        await His.Reorder_Button();
-        await Create.NewOrder_Button();
-        await Create.ConfirmYes();
+        await Create.Latest_Button();
 
+      
     });
     test.skip('TC025 - Goto Reorder page and Click the Neworder Module', async () => {
         const data = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'Pharmacist');

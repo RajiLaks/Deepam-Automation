@@ -1,4 +1,3 @@
-const { count } = require("console");
 
 exports.CreateNewOrder = class CreateNewOrder {
 
@@ -6,6 +5,7 @@ exports.CreateNewOrder = class CreateNewOrder {
         this.page = page;
         this.createorder = page.locator("//button[@class='btn book-btn btn-secondary']");
         //
+        this.crequest = page.locator("//button[contains(@class,'btn create')][contains(text(),'Create')]")
         this.cusName = page.locator("//div[@class='search-grid p-0 col']//div//input[@id='searchVal']")
         this.searchmad = page.locator("//div[@class='p-0 col']//div//input[@id='searchVal']")
         this.batch = page.locator("//select[@id='batchId']")
@@ -19,8 +19,8 @@ exports.CreateNewOrder = class CreateNewOrder {
         this.p_button = page.locator("//button[@class='btn pay-btn-size primary-btn btn-primary']")
 
         //Confirm 
-        this.confirmNo = page.locator("//span[text()='Confirm']/../../following-sibling::div/button[@class='el-button el-button--default el-button--small']")
-        this.confirmYes = page.locator("//span[text()='Confirm']/../../following-sibling::div/button[@class='el-button el-button--default el-button--small el-button--primary ']")
+        this.confNo = page.locator("//span[text()='Confirm']/../../following-sibling::div/button[@class='el-button el-button--default el-button--small']")
+        this.confYes = page.locator("//span[text()='Confirm']/../../following-sibling::div/button[@class='el-button el-button--default el-button--small el-button--primary ']")
         this.cancelIcon = page.locator("//span[text()='Confirm']/../following-sibling::button[@class='el-message-box__headerbtn']");
 
         //
@@ -32,6 +32,59 @@ exports.CreateNewOrder = class CreateNewOrder {
         //
         this.back = this.page.locator("//button[@class='btn back-btn-size secondary-btn btn-secondary']")
     }
+    async View_Appointment(Cus, ord, num) {
+
+        const cus_name = Cus.toLowerCase()
+        const ord_num = ord.toLowerCase()
+        const mb_num = num.toLowerCase()
+
+        //view locator with Patient name, Patient Id, Order ID & Mobile number
+
+        const view = this.page.locator(`//div[(@col-id='patientname' or @col-id='displayid') and contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${cus_name}')]/following-sibling::div[@col-id='orderid' and contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${ord_num}')]/following-sibling::div[@col-id='mobilenumber' and contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${mb_num}')]/following-sibling::div[@col-id='action']/div/div/button[@class='btn edit-btn btn-secondary']`)
+
+        //console.log(view);
+        await this.page.waitForTimeout(500);
+        const count = await view.count();
+        if (count > 1) {
+            await view.first().waitFor({ state: 'visible' });
+            await view.first().click()
+        } else if (count == 1) {
+            await view.waitFor({ state: 'visible' });
+            await view.click()
+            return;
+        }
+        const load = this.page.locator("//div[@class='ag-center-cols-viewport']//div[@role='rowgroup']").first()
+        await load.waitFor({ state: 'visible' })
+
+        await this.page.waitForTimeout(500)
+    }
+    async CreateOrder_Appointment(Cus, ord, num) {
+
+        const cus_name = Cus.toLowerCase()
+        const ord_num = ord.toLowerCase()
+        const mb_num = num.toLowerCase()
+
+        //CreatePay locator with Patient name, Patient Id, Order ID & Mobile number
+
+        const CreatePay = this.page.locator(`//div[(@col-id='patientname' or @col-id='displayid') and contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${cus_name}')]/following-sibling::div[@col-id='orderid' and contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${ord_num}')]/following-sibling::div[@col-id='mobilenumber' and contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${mb_num}')]/following-sibling::div[@col-id='action']/div/div/button[@class='btn active-btn btn-secondary']`)
+
+        //console.log(CreatePay);
+        await this.page.waitForTimeout(500);
+        const count = await CreatePay.count();
+        if (count > 1) {
+            await CreatePay.first().waitFor({ state: 'visible' });
+            await CreatePay.first().click()
+        } else if (count == 1) {
+            await CreatePay.waitFor({ state: 'visible' });
+            await CreatePay.click()
+            return;
+        }
+        const load = this.page.locator("//div[@class='ag-center-cols-viewport']//div[@role='rowgroup']").first()
+        await load.waitFor({ state: 'visible' })
+
+        await this.page.waitForTimeout(500)
+    }
+
 
     async CreateNewOrder() {
         await this.createorder.waitFor({ state: 'visible' })
@@ -53,6 +106,12 @@ exports.CreateNewOrder = class CreateNewOrder {
         await this.Pay_Button()
 
         await this.page.waitForTimeout(1000)
+    }
+    async CreateRequest_Button() {
+        await this.crequest.waitFor({ state: 'visible' });
+
+        await this.crequest.click()
+        await this.page.waitForTimeout(500);
     }
 
     async CustomerName(sh_cus) {
@@ -178,6 +237,7 @@ exports.CreateNewOrder = class CreateNewOrder {
         await this.p_button.click();
     }
     async Tick_Material(tick) {
+        //use anyone medicine name, batch, quantity and etc... 
         var tick_mat = this.page.locator(`//div[@class='ag-center-cols-viewport']//div[@role='rowgroup']/*/div[contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${tick}')]/following-sibling::div[@col-id='action']/div/div/input`)
 
         await tick_mat.click(tick);
@@ -261,6 +321,26 @@ exports.CreateNewOrder = class CreateNewOrder {
         await this.page.waitForTimeout(1000);
 
     }
+    async Viewlatest(latest) {
+        const Viewlatest = this.page.locator(`//p//b[contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${latest}')]`)
+
+        //console.log(CreatePay);
+        await this.page.waitForTimeout(500);
+        const count = await CreatePay.count();
+        if (count > 1) {
+            await CreatePay.first().waitFor({ state: 'visible' });
+            await CreatePay.first().click()
+        } else if (count == 1) {
+            await CreatePay.waitFor({ state: 'visible' });
+            await CreatePay.click()
+            return;
+        }
+        const load = this.page.locator("//div[@class='ag-center-cols-viewport']//div[@role='rowgroup']").first()
+        await load.waitFor({ state: 'visible' })
+
+        await this.page.waitForTimeout(500)
+
+    }
     //Go to NewOrder Page
     async NewOrder_Button() {
 
@@ -292,30 +372,37 @@ exports.CreateNewOrder = class CreateNewOrder {
         await this.page.waitForTimeout(1000);
     }
     async ConfirmYes() {
-        await this.confirmYes.waitFor({ state: 'visible' });
+        await this.confYes.waitFor({ state: 'visible' });
 
-        await this.confirmYes.click();
+        await this.confYes.click();
         await this.page.waitForTimeout(1000);
     }
     async ConfirmNo() {
-        await this.confirmNo.waitFor({ state: 'visible' });
-        await this.confirmNo.click();
+        await this.confNo.waitFor({ state: 'visible' });
+        await this.confNo.click();
         await this.page.waitForTimeout(1000);
     }
-    async CancelIcon() {
-        const isVisible1 = this.page.locator("//strong[text()='latest OP appointments']")
-        const isVisible2 = this.page.locator("//strong[text()='Sales History']")
+    async Cancelclose() {
+        const isVisible1 = await this.page.locator("//strong[text()='latest OP appointments']").isVisible()
+        const isVisible2 = await this.page.locator("//strong[text()='Sales History']").isVisible()
+        const isVisible3 = await this.page.locator("//h5[@id='pharmacyModal___BV_modal_title_']").isVisible()
 
+        await this.page.waitForTimeout(500)
         if (isVisible1) {
-
             const Latest = this.page.locator("//div[@id='sidebar-latest']//button[@class='close text-dark']/*")
             await Latest.waitFor({ state: 'visible' });
             await Latest.click();
         } else if (isVisible2) {
             const History = this.page.locator("//div[@id='sidebar-history']//button[@class='close text-dark']/*")
-            await Latest.waitFor({ state: 'visible' });
+            await History.waitFor({ state: 'visible' });
             await History.click();
-        } else {
+        } else if (isVisible3) {
+            const App = this.page.locator("//header[@id='pharmacyModal___BV_modal_header_']//button[@class='close']")
+            await App.waitFor({ state: 'visible' });
+            await App.click();
+
+        }
+        else {
             await this.cancelIcon.waitFor({ state: 'visible' });
             await this.cancelIcon.click();
         } await this.page.waitForTimeout(1000);

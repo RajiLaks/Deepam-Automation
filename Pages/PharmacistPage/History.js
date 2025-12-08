@@ -126,13 +126,13 @@ exports.History = class History {
     async Return_Quan(medi, RQ) {
         const med = medi.toLowerCase();
 
-        const returnQ1 = this.page.locator(`//div[@col-id="medicine" and contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${med}')]//following-sibling::div[@col-id="quantityupdate"]`)
+        const returnQ1 = this.page.locator(`//div[@col-id="medicine" and contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${med}')]//following-sibling::div[@col-id="quantityupdate" or @col-id="quantity"]`)
         await returnQ1.waitFor({ state: 'visible' });
         await returnQ1.click()
 
         await this.page.waitForTimeout(500);
 
-        const returnQ2 = this.page.locator(`//div[@col-id="medicine" and contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${med}')]//following-sibling::div[@col-id="quantityupdate"]/div/input`)
+        const returnQ2 = this.page.locator(`//div[@col-id="medicine" and contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${med}')]//following-sibling::div[@col-id="quantityupdate" or @col-id="quantity"]/div/input`)
 
 
         await returnQ2.fill(RQ, { force: true });
