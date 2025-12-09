@@ -1,40 +1,8 @@
-<testsuites id="" name="" tests="16" failures="0" skipped="0" errors="0" time="89.557769">
-<testsuite name="DoctorTests\WaitingTest.spec.js" timestamp="2025-12-09T07:41:09.046Z" hostname="chromium" tests="16" failures="0" skipped="0" time="74.342" errors="0">
-<testcase name="TS01 › TC001 - Navigate to the On-Demand consultation screen" classname="DoctorTests\WaitingTest.spec.js" time="1.093">
+<testsuites id="" name="" tests="2" failures="0" skipped="0" errors="0" time="38.230760000000004">
+<testsuite name="DoctorTests\ScheduleTest.spec.js" timestamp="2025-12-09T12:42:03.218Z" hostname="chromium" tests="2" failures="0" skipped="0" time="24.96" errors="0">
+<testcase name="TS01 › TC001 - Verify that the Application navigate to the schedule consultation screen" classname="DoctorTests\ScheduleTest.spec.js" time="2.052">
 </testcase>
-<testcase name="TS01 › TC002 - Verify that the Waiting appointment screen" classname="DoctorTests\WaitingTest.spec.js" time="19.728">
-</testcase>
-<testcase name="TS01 › TC003 - Verify that the Vitals screen displays the all data and it should be editable." classname="DoctorTests\WaitingTest.spec.js" time="5.809">
-</testcase>
-<testcase name="TS01 › TC004 - Verify that the Medical History fields should be present and editable" classname="DoctorTests\WaitingTest.spec.js" time="6.901">
-<system-out>
-<![CDATA[Medical History updated successfully.
-]]>
-</system-out>
-</testcase>
-<testcase name="TS01 › TC005 - Verify that the Surgery details field displays the data and it should be editable" classname="DoctorTests\WaitingTest.spec.js" time="2.367">
-</testcase>
-<testcase name="TS01 › TC006 - Verify that the Family details field displays the data and it should be editable" classname="DoctorTests\WaitingTest.spec.js" time="3.502">
-</testcase>
-<testcase name="TS01 › TC007 - Verify that the allergies details field displays the data and it should be editable" classname="DoctorTests\WaitingTest.spec.js" time="2.151">
-</testcase>
-<testcase name="TS01 › TC008 - Verify that the OnExamination details field displays the data and it should be editable" classname="DoctorTests\WaitingTest.spec.js" time="2.527">
-</testcase>
-<testcase name="TS01 › TC009 - Verify that the medicataion details field displays the data and it should be editable" classname="DoctorTests\WaitingTest.spec.js" time="1.591">
-</testcase>
-<testcase name="TS01 › TC010 - Verify that the life style details field displays the data and it should be editable" classname="DoctorTests\WaitingTest.spec.js" time="1.497">
-</testcase>
-<testcase name="TS01 › TC011 - Verify that the appointment history details field displays the data and it should be editable" classname="DoctorTests\WaitingTest.spec.js" time="1.565">
-</testcase>
-<testcase name="TS01 › TC012 - Verify that the reports screen displays the data and it should be editable" classname="DoctorTests\WaitingTest.spec.js" time="2.658">
-</testcase>
-<testcase name="TS01 › TC013 - Verify that the user can able to edit the NOTES details" classname="DoctorTests\WaitingTest.spec.js" time="6.648">
-</testcase>
-<testcase name="TS01 › TC014 - Verify that the RX screen displays the data and it should be editable" classname="DoctorTests\WaitingTest.spec.js" time="5.75">
-</testcase>
-<testcase name="TS01 › TC015 - Verify that the Lab screen displays the data and it should be editable" classname="DoctorTests\WaitingTest.spec.js" time="4.062">
-</testcase>
-<testcase name="TS01 › TC016 - Verify that the Summary screen displays the correct data." classname="DoctorTests\WaitingTest.spec.js" time="6.493">
+<testcase name="TS01 › TC002 - Verify that the Schedule scren displays the data." classname="DoctorTests\ScheduleTest.spec.js" time="22.908">
 </testcase>
 </testsuite>
 </testsuites>
