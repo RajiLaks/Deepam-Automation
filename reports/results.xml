@@ -1,6 +1,12 @@
+<<<<<<< Updated upstream
 <testsuites id="" name="" tests="6" failures="0" skipped="0" errors="0" time="67.260426">
 <testsuite name="DoctorTests\WaitingTest.spec.js" timestamp="2025-12-08T13:11:30.832Z" hostname="chromium" tests="6" failures="0" skipped="0" time="55.052" errors="0">
 <testcase name="TS01 › TC001 - Navigate to the On-Demand consultation screen" classname="DoctorTests\WaitingTest.spec.js" time="1.053">
+=======
+<testsuites id="" name="" tests="26" failures="0" skipped="24" errors="0" time="21.874919000000002">
+<testsuite name="PharmacistTest\CreateNewOrder.spec.js" timestamp="2025-12-08T06:39:47.449Z" hostname="chromium" tests="26" failures="0" skipped="24" time="17.354" errors="0">
+<testcase name="Pharmacist › TC001 - Login Pharmacist" classname="PharmacistTest\CreateNewOrder.spec.js" time="13.97">
+>>>>>>> Stashed changes
 </testcase>
 <testcase name="TS01 › TC002 - Verify that the Waiting appointment screen" classname="DoctorTests\WaitingTest.spec.js" time="16.835">
 </testcase>
@@ -10,7 +16,356 @@
 </testcase>
 <testcase name="TS01 › TC005 - Verify that the Lab screen displays the data and it should be editable" classname="DoctorTests\WaitingTest.spec.js" time="7.291">
 </testcase>
+<<<<<<< Updated upstream
 <testcase name="TS01 › TC006 - Verify that the Summary screen displays the correct data." classname="DoctorTests\WaitingTest.spec.js" time="18.151">
+=======
+<testcase name="Pharmacist › TC006 - Create and Edit the Medicine and pay" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC007 - Create New Order with Multiple Medicine and pay" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC008 - Add Multiple Medicine then delete a medicine and pay" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC009 - Goto Create Order page and View Ordered_History" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC010 - Goto Reorder page and order the same medicine" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC011 - Goto Reorder page and Delete and add an medicine then reorder it" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC012 - Goto Reorder page and click the NewOrder module to Create a New Medicine order" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC013 - Goto Return the Purchased Medicine" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC014 - Goto Return page and Click the Neworder Module" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC015 - Goto Purchased Bill Page " classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC016 - Goto New Order page and Click the Latest Module then Comeback" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC017 - Goto Create Order page and Come back to Dashboard" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC018 - View the Appointment Orders and Click Create Cancel Icon" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC019 - View the Appointment Orders and pay the order" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC020 - View the Appointment &amp; goto Order page,then Reduce the Quantity and Pay" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC021 - Pay the Appointment order with Extra medicines" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC022 - Pay the Appointment order with Untick the Appointment medicine and add Extra medicines" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC023 - Pay the Appointment Order" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC024 - Go to Create Order page and Click the Latest module &amp; Click CloseIcon" classname="PharmacistTest\CreateNewOrder.spec.js" time="3.384">
+<system-out>
+<![CDATA[Excel data: [
+  {
+    CustomerName: [32m'Pradeep'[39m,
+    CusNumber: [32m''[39m,
+    SearchMed: [32m''[39m,
+    BatchNo: [32m''[39m,
+    Quantity: [32m''[39m,
+    Discount: [32m''[39m,
+    Amount: [32m''[39m,
+    Ref_Type: [32m''[39m,
+    RefBy: [32m''[39m,
+    PaymentMode: [32m''[39m,
+    Received: [32m''[39m,
+    __EMPTY: [32m''[39m,
+    OrderID: [32m''[39m
+  },
+  {
+    CustomerName: [32m'Muthu'[39m,
+    CusNumber: [32m'7339300832'[39m,
+    SearchMed: [32m'Ascoril'[39m,
+    BatchNo: [32m'asc000'[39m,
+    Quantity: [32m'0'[39m,
+    Discount: [32m'10'[39m,
+    Amount: [32m''[39m,
+    Ref_Type: [32m'Doctor'[39m,
+    RefBy: [32m''[39m,
+    PaymentMode: [32m'Cash'[39m,
+    Received: [32m''[39m,
+    __EMPTY: [32m''[39m,
+    OrderID: [32m'3354'[39m
+  },
+  {
+    CustomerName: [32m'prakash'[39m,
+    CusNumber: [32m''[39m,
+    SearchMed: [32m'Citrazine'[39m,
+    BatchNo: [32m'cit123'[39m,
+    Quantity: [32m'1'[39m,
+    Discount: [32m'20'[39m,
+    Amount: [32m''[39m,
+    Ref_Type: [32m'Employee'[39m,
+    RefBy: [32m''[39m,
+    PaymentMode: [32m'Card'[39m,
+    Received: [32m''[39m,
+    __EMPTY: [32m''[39m,
+    OrderID: [32m'3357'[39m
+  },
+  {
+    CustomerName: [32m''[39m,
+    CusNumber: [32m''[39m,
+    SearchMed: [32m'DOLO'[39m,
+    BatchNo: [32m'dolo12'[39m,
+    Quantity: [32m'2'[39m,
+    Discount: [32m'30'[39m,
+    Amount: [32m''[39m,
+    Ref_Type: [32m'Coupon'[39m,
+    RefBy: [32m''[39m,
+    PaymentMode: [32m'UPI'[39m,
+    Received: [32m''[39m,
+    __EMPTY: [32m''[39m,
+    OrderID: [32m''[39m
+  },
+  {
+    CustomerName: [32m''[39m,
+    CusNumber: [32m''[39m,
+    SearchMed: [32m'paracetomol'[39m,
+    BatchNo: [32m'para12'[39m,
+    Quantity: [32m'3'[39m,
+    Discount: [32m'40'[39m,
+    Amount: [32m''[39m,
+    Ref_Type: [32m''[39m,
+    RefBy: [32m''[39m,
+    PaymentMode: [32m''[39m,
+    Received: [32m''[39m,
+    __EMPTY: [32m''[39m,
+    OrderID: [32m''[39m
+  },
+  {
+    CustomerName: [32m''[39m,
+    CusNumber: [32m''[39m,
+    SearchMed: [32m''[39m,
+    BatchNo: [32m''[39m,
+    Quantity: [32m'4'[39m,
+    Discount: [32m'50'[39m,
+    Amount: [32m''[39m,
+    Ref_Type: [32m''[39m,
+    RefBy: [32m''[39m,
+    PaymentMode: [32m''[39m,
+    Received: [32m''[39m,
+    __EMPTY: [32m''[39m,
+    OrderID: [32m''[39m
+  },
+  {
+    CustomerName: [32m''[39m,
+    CusNumber: [32m''[39m,
+    SearchMed: [32m''[39m,
+    BatchNo: [32m''[39m,
+    Quantity: [32m'5'[39m,
+    Discount: [32m'60'[39m,
+    Amount: [32m''[39m,
+    Ref_Type: [32m''[39m,
+    RefBy: [32m''[39m,
+    PaymentMode: [32m''[39m,
+    Received: [32m''[39m,
+    __EMPTY: [32m''[39m,
+    OrderID: [32m''[39m
+  },
+  {
+    CustomerName: [32m''[39m,
+    CusNumber: [32m''[39m,
+    SearchMed: [32m''[39m,
+    BatchNo: [32m''[39m,
+    Quantity: [32m'6'[39m,
+    Discount: [32m'70'[39m,
+    Amount: [32m''[39m,
+    Ref_Type: [32m''[39m,
+    RefBy: [32m''[39m,
+    PaymentMode: [32m''[39m,
+    Received: [32m''[39m,
+    __EMPTY: [32m''[39m,
+    OrderID: [32m''[39m
+  },
+  {
+    CustomerName: [32m''[39m,
+    CusNumber: [32m''[39m,
+    SearchMed: [32m''[39m,
+    BatchNo: [32m''[39m,
+    Quantity: [32m'7'[39m,
+    Discount: [32m'80'[39m,
+    Amount: [32m''[39m,
+    Ref_Type: [32m''[39m,
+    RefBy: [32m''[39m,
+    PaymentMode: [32m''[39m,
+    Received: [32m''[39m,
+    __EMPTY: [32m''[39m,
+    OrderID: [32m''[39m
+  },
+  {
+    CustomerName: [32m''[39m,
+    CusNumber: [32m''[39m,
+    SearchMed: [32m''[39m,
+    BatchNo: [32m''[39m,
+    Quantity: [32m'8'[39m,
+    Discount: [32m'90'[39m,
+    Amount: [32m''[39m,
+    Ref_Type: [32m''[39m,
+    RefBy: [32m''[39m,
+    PaymentMode: [32m''[39m,
+    Received: [32m''[39m,
+    __EMPTY: [32m''[39m,
+    OrderID: [32m''[39m
+  },
+  {
+    CustomerName: [32m''[39m,
+    CusNumber: [32m''[39m,
+    SearchMed: [32m''[39m,
+    BatchNo: [32m''[39m,
+    Quantity: [32m'9'[39m,
+    Discount: [32m'100'[39m,
+    Amount: [32m''[39m,
+    Ref_Type: [32m''[39m,
+    RefBy: [32m''[39m,
+    PaymentMode: [32m''[39m,
+    Received: [32m''[39m,
+    __EMPTY: [32m''[39m,
+    OrderID: [32m''[39m
+  },
+  {
+    CustomerName: [32m''[39m,
+    CusNumber: [32m''[39m,
+    SearchMed: [32m''[39m,
+    BatchNo: [32m''[39m,
+    Quantity: [32m'10'[39m,
+    Discount: [32m''[39m,
+    Amount: [32m''[39m,
+    Ref_Type: [32m''[39m,
+    RefBy: [32m''[39m,
+    PaymentMode: [32m''[39m,
+    Received: [32m''[39m,
+    __EMPTY: [32m''[39m,
+    OrderID: [32m''[39m
+  }
+]
+]]>
+</system-out>
+</testcase>
+<testcase name="Pharmacist › TC025 - Goto Reorder page and Click the Neworder Module" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC026 - Goto Reorder page and Click the Neworder Module" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+>>>>>>> Stashed changes
 </testcase>
 </testsuite>
 </testsuites>

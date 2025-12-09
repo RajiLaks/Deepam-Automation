@@ -322,17 +322,17 @@ exports.CreateNewOrder = class CreateNewOrder {
 
     }
     async Viewlatest(latest) {
-        const Viewlatest = this.page.locator(`//p//b[contains(translate(normalize-space(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${latest}')]`)
+        const Viewlatest = this.page.locator(`//p//b[normalize-space()='${latest}']/../../ancestor-or-self::div[@class="ag-cell-wrapper"]/parent::div[@col-id="description"]/following-sibling::div[@col-id="action"]//button`)
 
         //console.log(CreatePay);
         await this.page.waitForTimeout(500);
-        const count = await CreatePay.count();
+        const count = await Viewlatest.count();
         if (count > 1) {
-            await CreatePay.first().waitFor({ state: 'visible' });
-            await CreatePay.first().click()
+            await Viewlatest.first().waitFor({ state: 'visible' });
+            await Viewlatest.first().click()
         } else if (count == 1) {
-            await CreatePay.waitFor({ state: 'visible' });
-            await CreatePay.click()
+            await Viewlatest.waitFor({ state: 'visible' });
+            await Viewlatest.click()
             return;
         }
         const load = this.page.locator("//div[@class='ag-center-cols-viewport']//div[@role='rowgroup']").first()
@@ -382,7 +382,7 @@ exports.CreateNewOrder = class CreateNewOrder {
         await this.confNo.click();
         await this.page.waitForTimeout(1000);
     }
-    async Cancelclose() {
+    async CloseIcon() {
         const isVisible1 = await this.page.locator("//strong[text()='latest OP appointments']").isVisible()
         const isVisible2 = await this.page.locator("//strong[text()='Sales History']").isVisible()
         const isVisible3 = await this.page.locator("//h5[@id='pharmacyModal___BV_modal_title_']").isVisible()

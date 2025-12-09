@@ -235,7 +235,7 @@ test.describe.serial('Pharmacist', () => {
         const His = new History(page);
         await Create.CreateNewOrder();
         await Create.Latest_Button();
-        await Create.Cancelclose();
+        await Create.CloseIcon();
 
 
     });
@@ -255,7 +255,7 @@ test.describe.serial('Pharmacist', () => {
         const His = new History(page);
         await Create.View_Appointment(data[0].CustomerName, data[0].OrderID, data[0].CusNumber);
         // await page.pause();
-        await Create.Cancelclose();
+        await Create.CloseIcon();
 
 
     });
@@ -319,7 +319,7 @@ test.describe.serial('Pharmacist', () => {
         await Create.ConfirmNo();
 
     });
-    test('TC023 - Goto Reorder page and Click the Neworder Module', async () => {
+    test.skip('TC023 - Pay the Appointment Order', async () => {
         const data = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'Pharmacist');
         console.log("Excel data:", data);
         const Create = new CreateNewOrder(page);
@@ -330,15 +330,15 @@ test.describe.serial('Pharmacist', () => {
         await Create.Pay_Button();
         await Create.ConfirmNo();
     });
-    test.skip('TC024 - Goto Reorder page and Click the Neworder Module', async () => {
+    test('TC024 - Go to Create Order page and Click the Latest module & Click CloseIcon', async () => {
         const data = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'Pharmacist');
         console.log("Excel data:", data);
         const Create = new CreateNewOrder(page);
         const His = new History(page);
         await Create.CreateNewOrder();
         await Create.Latest_Button();
+        await Create.CloseIcon();
 
-      
     });
     test.skip('TC025 - Goto Reorder page and Click the Neworder Module', async () => {
         const data = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'Pharmacist');
@@ -346,11 +346,9 @@ test.describe.serial('Pharmacist', () => {
         const Create = new CreateNewOrder(page);
         const His = new History(page);
         await Create.CreateNewOrder();
-        await His.History();
-        await His.View_History(data[0].OrderID, data[1].CustomerName)
-        await His.Reorder_Button();
-        await Create.NewOrder_Button();
-        await Create.ConfirmYes();
+        await Create.Latest_Button();
+        
+        await Create.CloseIcon();
 
     });
     test.skip('TC026 - Goto Reorder page and Click the Neworder Module', async () => {
