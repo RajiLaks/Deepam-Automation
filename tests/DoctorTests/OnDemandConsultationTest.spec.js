@@ -14,7 +14,7 @@ test.describe('TS01', async()=>{
         page = await context.newPage();
         const loginpage = new LoginPage(page);
         const excelreader = new ExcelReader();
-        const dataset = await excelreader.readExcel('C:/Users/RajalakshmiRajasekar/Desktop/Deepam_Automation/Deepam/Utils/Deepam_Dataset.xlsx', 'Login');
+        const dataset = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'Login');
         const {URL,MobileNo, Password} = dataset[0];
         await loginpage.LaunchURL(URL);    
         await loginpage.DoctorLogin(MobileNo, Password);
@@ -30,7 +30,8 @@ test.describe('TS01', async()=>{
         await waiting.Waiting();
     })
 
-    test('TC003 - Verify that the ongoing appointment screen', async()=>{
+    test('TC003 - Verify that the Ongoing screen', async()=>{
+        
         const ongoing = new OnDemandConsultation(page);
         await ongoing.OngoingScreen();
     })
@@ -97,6 +98,14 @@ test.describe('TS01', async()=>{
         const Data_Notes = await excelreader.readExcel("Utils/Deepam_Dataset.xlsx", "Doctor-EHR");
         const {Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan} = Data_Notes[0];
         await notesscreen.NotesScreen(Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan);
+    })
+
+    test('TC015 - Verify that the RX screen displays the data and it should be editable', async()=>{
+        const rxscreen = new OnDemandConsultation(page);
+        const excelreader = new ExcelReader();
+        const Data_RX = await excelreader.readExcel("Utils/Deepam_Dataset.xlsx", "Doctor-EHR");
+        const {medicine} = Data_RX[0];
+        await rxscreen.RX(medicine);
     })
 
 })

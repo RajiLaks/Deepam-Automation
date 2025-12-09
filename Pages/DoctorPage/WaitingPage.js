@@ -1,6 +1,5 @@
 const {expect} = require ('@playwright/test');
-
-class OnDemandConsultation{
+class WaitingFlow{
     constructor(page){
         this.page = page;
         this.ODC = page.locator('(//p[@class="icon-head"])[1]'); //ODC - OnDemand Consultation
@@ -8,7 +7,7 @@ class OnDemandConsultation{
         this.WaitingNoData = page.locator('(//div[@class="card-body text-center"])[2]/p');
         this.Scroll = page.locator('(//p[@class="profile-details mt-1"])[8]');
         this.viewButton = page.locator("//div[@class='row']//div[3]//div[1]//div[1]//div[1]//div[1]//div[1]//div[1]//div[1]//div[1]//div[3]//div[1]//button[1]");
-        
+
         //Patient appointment- Doctor will accept
         this.backbutton = page.locator('(//div[@class="rectangle-view"])/button[1]');    
         this.ViewEHR = page.locator('(//div[@class="rectangle-view"])/button[2]');
@@ -22,31 +21,7 @@ class OnDemandConsultation{
         this.closeEHR = page.locator('//div[@class="rectangle-view"]/button');
         this.AcceptButton = page.locator('//div[@class="row back-align margintext"]/div[2]');
 
-        //Ongoing
-        this.ongoingButton = page.locator('(//div[@class="card type-card"])[1]');
-        this.countForOngoing = page.locator('(//div[@class="text-center mt-2"])[1]/span');
-        this.continueButton = page.locator('(//button[@class="btn primary-btn continue-btn-size btn-secondary"])[1]');
-        this.OngoingNoData = page.locator('(//div[@class="card-body text-center"])[1]/p');
-        
-
-        //Notes
-        this.cheifComplaints = page.locator('(//label[@class="label-profile"])[3]');
-        this.diagnosis = page.locator('//div[@id="infodiagnosis"]');
-        this.notes = page.locator('(//div[@class="nav-item"])[3]/a[text()="NOTES"]');
-        this.NotesText = page.locator('//a[text()="NOTES"]');
-        this.Notes_BackButton = page.locator('//button[@class="btn secondary-btn back-btn-size btn-secondary"]');
-        this.followUp = page.locator('//h4[text()="Follow Up"]');
-        this.TreatmentPlan = page.locator('(//textarea[@class="form-control form-control"])[5]');
-        this.symptoms = page.locator('(//textarea[@class="form-control form-control"])[1]');
-        this.CheifComplaintField = page.locator('(//textarea[@class="form-control form-control"])[3]');
-        this.Diagnosis = page.locator('(//textarea[@class="form-control form-control"])[4]');
-        this.notes_continuebutton = page.locator('//div[@class="col-12 notes-button"]/button[2]');
-
-        //RX
-        this.RXText = page.locator('//a[text()="RX"]');
-        this.BackButton = page.locator('//button[@class="btn mr-2 secondary-btn back-btn-size btn-secondary"]');
-        this.SearchMedicine = page.locator('//input[@id="searchInput"]');
-
+        //EHR
         //Vitals
         this.vitalsButton = page.locator('(//div[@class="row emraccordionrow"])[1]/a[@role="button"]');
         this.EditButton_Vitals = page.locator('//div[@class="edit-flex"]/div[2]/button');
@@ -114,24 +89,59 @@ class OnDemandConsultation{
         //Reports
         this.reports = page.locator('(//div[@class="row emraccordionrow"])[10]/a[@role="button"]');
         this.EHR_nextButton = page.locator('//div[@class="col-12 close-button"]/button[2]');
-    } 
-    async RX(medicine){
-        await this.SearchMedicine.click();
-        await this.page.pause();
-        await this.SearchMedicine.fill(medicine); 
-        await this.SearchMedicine.press("ArrowDown");
-        await this.SearchMedicine.press("Enter");
-        await this.page.pause();
 
+
+        //Notes
+        this.cheifComplaints = page.locator('(//label[@class="label-profile"])[3]');
+        this.diagnosis = page.locator('//div[@id="infodiagnosis"]');
+        this.notes = page.locator('(//div[@class="nav-item"])[3]/a[text()="NOTES"]');
+        this.NotesText = page.locator('//a[text()="NOTES"]');
+        this.Notes_BackButton = page.locator('//button[@class="btn secondary-btn back-btn-size btn-secondary"]');
+        this.followUp = page.locator('//h4[text()="Follow Up"]');
+        this.TreatmentPlan = page.locator('(//textarea[@class="form-control form-control"])[5]');
+        this.symptoms = page.locator('(//textarea[@class="form-control form-control"])[1]');
+        this.CheifComplaintField = page.locator('(//textarea[@class="form-control form-control"])[3]');
+        this.Diagnosis = page.locator('(//textarea[@class="form-control form-control"])[4]');
+        this.notes_continuebutton = page.locator('//div[@class="col-12 notes-button"]/button[2]');
+
+        //RX
+        this.RXText = page.locator('//a[text()="RX"]');
+        this.BackButton = page.locator('//button[@class="btn mr-2 secondary-btn back-btn-size btn-secondary"]');
+        this.SearchMedicine = page.locator('//input[@id="searchInput"]');
+        this.selectDolo = page.locator('//div[@id="suggestions"]/ul/li[1]');
+        this.dosage = page.locator('//input[@id="input-strength"]');
+        this.Intake = page.locator('//select[@id="intakefood"]');
+        this.IntakeOption = page.locator('//select[@id="intakefood"]/option[text()="Before food"]');
+        this.medicinedaysCount = page.locator('//input[@id="medicinecount"]');
+        this.morningMedicine = page.locator('//select[@id="medmorn"]');
+        this.mornMedCount = page.locator('//select[@id="medmorn"]/option[3]');
+        this.afternoonMedicine = page.locator('//select[@id="mednoon"]');
+        this.afNoonMedCount = page.locator('//select[@id="mednoon"]/option[1]');
+        this.nightMedicine = page.locator('//select[@id="mednight"]');
+        this.nightMedCount = page.locator('//select[@id="mednight"]/option[3]');
+        this.addButton = page.locator('//button[@id="add-btn"]');
+        this.ContinueButton_RX = page.locator('//div[@class="rxcontinue pt-2"]/div[2]/button');
+
+        //Lab
+        this.Category = page.locator('//select[@class="custom-select"]');
+        this.Investigation = page.locator('//div[@class="input-group"]/input');
+        this.Option_Investigation = page.locator('//div[@id="labsuggestionscat"]/ul/li[1]');
+        this.ContinueButton_Lab = page.locator('//div[@class="text-center mt-3"]/button[2]');
+
+        //summary
+        this.Advice = page.locator('(//div[@class="form-group"])[6]');
+        this.complete = page.locator('//div[@class="text-center pt-3"]/button[2]'); 
+        this.Confirm_YesButton = page.locator('//div[@class="el-message-box__btns"]/button[2]');
+        this.FeedBack_SubmitButton = page.locator('//div[@class="btn_center col"]/button');
+        this.BackToDashboardButton = page.locator('//div[@id="button-id"]/div/div[1]/div/button');
     }
-          
 
     async ODC_Screen(){  
         await this.ODC.click();
         await this.page.waitForTimeout(1000);
     }
 
-    async Waiting(){
+    async waitingScreen(){
         const WaitingCountText = await this.waitingText.innerText();
         const waiting_Count = parseInt(await WaitingCountText.trim(), 10);
         if(waiting_Count === 0){
@@ -176,41 +186,7 @@ class OnDemandConsultation{
             await this.followUp.scrollIntoViewIfNeeded();
             await this.page.waitForTimeout(1000);
             await this.Notes_BackButton.click();
-            //await this.Vitals();
         }
-    }
-
-    async OngoingScreen(){
-        await this.ongoingButton.click();
-        await this.continueButton.scrollIntoViewIfNeeded();
-        await this.page.waitForTimeout(1000);
-        await this.continueButton.click();
-        await this.page.waitForTimeout(1000);
-        const rx_text = await this.RXText.innerText();
-        console.log(rx_text);
-        const notes_text = await this.NotesText.innerText();
-        if(notes_text === "NOTES"){
-            //await this.cheifComplaints.scrollIntoViewIfNeeded();
-            await this.page.waitForTimeout(1000);
-            await this.diagnosis.scrollIntoViewIfNeeded();
-            await this.page.waitForTimeout(1000);
-            await this.followUp.scrollIntoViewIfNeeded();
-            await this.page.waitForTimeout(1000);
-            await this.Notes_BackButton.click();
-               
-        }
-        else{          
-            await this.BackButton.scrollIntoViewIfNeeded();
-            await this.BackButton.click();
-            await this.page.waitForTimeout(2000);
-            //await this.cheifComplaints.scrollIntoViewIfNeeded();
-            await this.diagnosis.scrollIntoViewIfNeeded();
-            await this.page.waitForTimeout(1000);
-            await this.followUp.scrollIntoViewIfNeeded();
-            await this.page.waitForTimeout(1000);
-            await this.Notes_BackButton.click(); 
-        }
-        
     }
 
     async Vitals(Systolic, Diastolic, height, weight, Temp, pulseRate, SpO2Level){
@@ -322,11 +298,12 @@ class OnDemandConsultation{
         await this.EHR_nextButton.click();
     }
 
+
     async NotesScreen(Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan){
         //const notetab = await this.notes.innerText();
         expect(this.notes).toHaveText("NOTES");
         await this.page.waitForTimeout(1000);
-        await this.symptoms.clear();
+        //await this.symptoms.clear();
         await this.symptoms.fill(Symptoms);
         await this.page.waitForTimeout(1000);
         await this.CheifComplaintField.clear();
@@ -339,29 +316,61 @@ class OnDemandConsultation{
         await this.followUp.scrollIntoViewIfNeeded();
         await this.page.waitForTimeout(1000);
         await this.notes_continuebutton.click();
-        await this.page.pause();
-    } 
-
-    
-
-    
-
-/*    
-    async Ongoing(){
-        await this.ongoingButton.click();
-        const Ongoing_Count = await this.countForOngoing.innerText();
-        const CountOngoing = parseInt(await Ongoing_Count.trim(), 10);
-        if(CountOngoing === 0){
-            const NoAppointment = await this.OngoingNoData.innerText();
-            console.log(NoAppointment);
-        }
-        else{
-            await this.continueButton.scrollIntoViewIfNeeded();
-            await this.page.waitForTimeout(1000);
-            await this.continueButton.click();
-            await this.page.pause();
-        }
+        await this.page.waitForTimeout(1000);
     }
-        */
+
+    async RX_Flow(medicine, Dosage, M_Count){
+        await this.SearchMedicine.click();
+        await this.page.waitForTimeout(1000);
+        await this.SearchMedicine.fill(medicine); 
+        await this.selectDolo.click();
+        await this.page.waitForTimeout(1000);
+        await this.dosage.fill(Dosage);
+        await this.Intake.click();
+        await this.Intake.selectOption({value : "BF"});
+        await this.medicinedaysCount.fill(M_Count);
+        await this.morningMedicine.click();
+        await this.morningMedicine.selectOption({value : "2"});
+        await this.afternoonMedicine.click();
+        await this.afternoonMedicine.selectOption({value : "1"});
+        await this.nightMedicine.click();
+        await this.nightMedicine.selectOption({value : "3"});
+        await this.addButton.click();
+        await this.ContinueButton_RX.scrollIntoViewIfNeeded();
+        await this.ContinueButton_RX.click();
+        await this.page.waitForTimeout(2000);
+    }
+
+    async LabFlow(){
+        await this.Category.click();
+        await this.page.waitForTimeout(500);
+        await this.Category.selectOption({value : "Radiological"});
+        await this.page.waitForTimeout(500);
+        await this.Investigation.fill("Blood");
+        await this.page.waitForTimeout(500);
+        await this.Option_Investigation.click();
+        await this.page.waitForTimeout(500);
+        await this.addButton.click();
+        await this.page.waitForTimeout(500);
+        await this.ContinueButton_Lab.click();
+        await this.page.waitForTimeout(1000);
+
+    }
+
+    async SummaryFlow(){
+        await this.Advice.scrollIntoViewIfNeeded();
+        await this.page.waitForTimeout(1000);
+        await this.complete.scrollIntoViewIfNeeded();
+        await this.page.waitForTimeout(1000);
+        await this.complete.click();
+        await this.page.waitForTimeout(1000);
+        await this.Confirm_YesButton.click();
+        await this.page.waitForTimeout(1000);
+        await this.FeedBack_SubmitButton.click();
+        await this.page.waitForTimeout(1000);
+        await this.BackToDashboardButton.click();
+        await this.page.waitForTimeout(1000);
+    }
+
 }
-module.exports = {OnDemandConsultation};
+module.exports = {WaitingFlow};
