@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <testsuites id="" name="" tests="2" failures="0" skipped="0" errors="0" time="42.914215">
 <testsuite name="PharmacyAdminTests\ProductTest.spec.js" timestamp="2025-12-09T13:04:29.186Z" hostname="chromium" tests="2" failures="0" skipped="0" time="39.121" errors="0">
 <testcase name="Supplier Module Test › TC009_Get the purchase and MRP amount" classname="PharmacyAdminTests\ProductTest.spec.js" time="18.589">
@@ -25,6 +26,13 @@
 }
 ]]>
 </system-out>
+=======
+<testsuites id="" name="" tests="2" failures="0" skipped="0" errors="0" time="38.230760000000004">
+<testsuite name="DoctorTests\ScheduleTest.spec.js" timestamp="2025-12-09T12:42:03.218Z" hostname="chromium" tests="2" failures="0" skipped="0" time="24.96" errors="0">
+<testcase name="TS01 › TC001 - Verify that the Application navigate to the schedule consultation screen" classname="DoctorTests\ScheduleTest.spec.js" time="2.052">
+</testcase>
+<testcase name="TS01 › TC002 - Verify that the Schedule scren displays the data." classname="DoctorTests\ScheduleTest.spec.js" time="22.908">
+>>>>>>> 28e539611a810ea30fe61848ddc08f13463877d0
 </testcase>
 </testsuite>
 </testsuites>
