@@ -1,6 +1,6 @@
-<testsuites id="" name="" tests="2" failures="0" skipped="0" errors="0" time="34.79254100000001">
-<testsuite name="PharmacyAdminTests\ProductTest.spec.js" timestamp="2025-12-09T12:20:13.856Z" hostname="chromium" tests="2" failures="0" skipped="0" time="32.233" errors="0">
-<testcase name="Supplier Module Test › TC009_Get the purchase and MRP amount" classname="PharmacyAdminTests\ProductTest.spec.js" time="15.64">
+<testsuites id="" name="" tests="2" failures="0" skipped="0" errors="0" time="42.914215">
+<testsuite name="PharmacyAdminTests\ProductTest.spec.js" timestamp="2025-12-09T13:04:29.186Z" hostname="chromium" tests="2" failures="0" skipped="0" time="39.121" errors="0">
+<testcase name="Supplier Module Test › TC009_Get the purchase and MRP amount" classname="PharmacyAdminTests\ProductTest.spec.js" time="18.589">
 <system-out>
 <![CDATA[{
   amount: [
@@ -13,7 +13,7 @@
 ]]>
 </system-out>
 </testcase>
-<testcase name="Supplier Module Test › TC010_Get the purchase and MRP amount" classname="PharmacyAdminTests\ProductTest.spec.js" time="16.593">
+<testcase name="Supplier Module Test › TC010_Get the purchase and MRP amount" classname="PharmacyAdminTests\ProductTest.spec.js" time="20.532">
 <system-out>
 <![CDATA[{
   amount: [
