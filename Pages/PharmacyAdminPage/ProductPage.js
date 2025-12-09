@@ -19,6 +19,9 @@ class ProductPage {
         this.productTab = page.locator("//a[@class='nav-link active']");
         this.batchTab = page.locator("//a[@class='nav-link']");
 
+        //Total Amounts about purchase and Mrp
+        this.amount=page.locator("div.text-center span");
+
         //Add Product or Import Product
         this.addProductBtn = page.locator(".product-btn-align button[class='btn primary-btn addproduct-btn-size mr-3 btn-secondary']");
         this.importProductBtn = page.locator(".product-btn-align button[class='btn secondary-btn importproduct-btn-size btn-secondary']");
@@ -138,6 +141,14 @@ class ProductPage {
         await this.noBtn.click();
     }
 
+    async clickProductTab() {
+        await this.productTab.click();
+    }
+
+    async clickBatchTab() {
+        await this.batchTab.click();
+    }
+
     async getToastMessage(givenToast) {
         const toastMessage = await this.toast.textContent();
         await expect(toastMessage).toBe(givenToast);
@@ -167,6 +178,18 @@ class ProductPage {
 
     async clickDeleteBtn(){
         await this.deleteIcon.click();
+    }
+
+    async getTotalAmount(){
+        const elements=await this.amount.count();
+        const amount=[];
+        for(let i=0; i<elements; i++){
+            const text= await this.page.locator("div.text-center p").nth(i).textContent();
+            const value= await this.amount.nth(i).textContent();
+            amount.push(text);
+            amount.push(value);
+        }
+        return {amount};
     }
 
 
