@@ -51,6 +51,4 @@ test.describe('TS01', async()=>{
         const {Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan, medicine, Dosage, M_Count} = dataset[0];
         await waitingroom.ongoingScreen(Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan, medicine, Dosage, M_Count);
     })
-
-    
 })
