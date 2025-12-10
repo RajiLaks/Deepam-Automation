@@ -2,8 +2,8 @@ const {test} = require ('@playwright/test');
 const {LoginPage} = require ('../../Pages/BasePage/LoginPage');
 const {ExcelReader} = require ('../../Utils/ExcelReader');
 
-let page;
-let context;
+// let page;
+// let context;
 
 test.describe('Login', async()=>{
     test('TC001 - Login with valid data', async({page})=>{
