@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "csv": "^6.4.1",
-    "playwright": "^1.57.0",
     "xlsx": "^0.18.5",
     "xml2js": "^0.6.2"
   }

@@ -29,7 +29,63 @@ test.describe('TS01', async()=>{
         await waiting.waitingScreen();
     })
 
-    test('TC003 - Verify that the user can able to edit the NOTES details', async()=>{
+    test('TC003 - Verify that the Vitals screen displays the all data and it should be editable.', async()=>{
+        const vitals = new WaitingFlow(page);
+        const excelreader = new ExcelReader();
+        const vitals_data = await excelreader.readExcel("Utils/Deepam_Dataset.xlsx", "Doctor-EHR");
+        const {Systolic, Diastolic, height, weight, Temp, pulseRate, SpO2Level} = vitals_data[0];
+        await vitals.Vitals(Systolic, Diastolic, height, weight, Temp, pulseRate, SpO2Level);
+    })
+    
+    test('TC004 - Verify that the Medical History fields should be present and editable', async()=>{
+        const medicalHistory = new WaitingFlow(page);
+        const excelreader = new ExcelReader();
+        const Data_MH = await excelreader.readExcel("Utils/Deepam_Dataset.xlsx", "Doctor-EHR");
+        const {diabeteseDetails, Subclinical_Hypothyroidism, asthma} = Data_MH[0];
+        await medicalHistory.MedicalHistoryDropDown(diabeteseDetails, Subclinical_Hypothyroidism, asthma);
+    })
+
+    test('TC005 - Verify that the Surgery details field displays the data and it should be editable', async()=>{
+        const surgeryhistory = new WaitingFlow(page);
+        await surgeryhistory.Surgery_History();
+    })
+
+    test('TC006 - Verify that the Family details field displays the data and it should be editable', async()=>{
+        const family_history = new WaitingFlow(page);
+        await family_history.Family_History();
+    })
+
+    test('TC007 - Verify that the allergies details field displays the data and it should be editable', async()=>{
+        const Allergieshistory = new WaitingFlow(page);
+        await Allergieshistory.Allergies_Dropdown();
+    })   
+    
+    test('TC008 - Verify that the OnExamination details field displays the data and it should be editable', async()=>{
+        const onexamination = new WaitingFlow(page);
+        await onexamination.On_Examination();
+    }) 
+    
+    test('TC009 - Verify that the medicataion details field displays the data and it should be editable', async()=>{
+        const medicaionDetails = new WaitingFlow(page);
+        await medicaionDetails.Medicationdropdown();
+    }) 
+
+    test('TC010 - Verify that the life style details field displays the data and it should be editable', async()=>{
+        const lifestyle = new WaitingFlow(page);
+        await lifestyle.Life_Style();
+    }) 
+
+    test('TC011 - Verify that the appointment history details field displays the data and it should be editable', async()=>{
+        const appointmenthistory = new WaitingFlow(page);
+        await appointmenthistory.Appointment_History();
+    }) 
+
+    test('TC012 - Verify that the reports screen displays the data and it should be editable', async()=>{
+        const reportsdetails = new WaitingFlow(page);
+        await reportsdetails.Reports_Screen();
+    }) 
+
+    test('TC013 - Verify that the user can able to edit the NOTES details', async()=>{
         const notesflow = new WaitingFlow(page);
         const excelreader = new ExcelReader();
         const Data_Notes = await excelreader.readExcel("Utils/Deepam_Dataset.xlsx", "Doctor-EHR");
@@ -37,7 +93,7 @@ test.describe('TS01', async()=>{
         await notesflow.NotesScreen(Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan);
     })
 
-    test('TC004 - Verify that the RX screen displays the data and it should be editable', async()=>{
+    test('TC014 - Verify that the RX screen displays the data and it should be editable', async()=>{
         const rxscreen = new WaitingFlow(page);
         const excelreader = new ExcelReader();
         const Data_RX = await excelreader.readExcel("Utils/Deepam_Dataset.xlsx", "Doctor-EHR");
@@ -45,12 +101,12 @@ test.describe('TS01', async()=>{
         await rxscreen.RX_Flow(medicine, Dosage, M_Count);
     })
 
-    test('TC005 - Verify that the Lab screen displays the data and it should be editable', async()=>{
+    test('TC015 - Verify that the Lab screen displays the data and it should be editable', async()=>{
         const labscreen = new WaitingFlow(page);
         await labscreen.LabFlow();
     })
 
-    test('TC006 - Verify that the Summary screen displays the correct data.', async()=>{
+    test('TC016 - Verify that the Summary screen displays the correct data.', async()=>{
         const summaryscreen = new WaitingFlow(page);
         await summaryscreen.SummaryFlow();
     })

@@ -88,24 +88,102 @@ test.describe('Supplier Module Test', () => {
     //     await productPage.clickAddProductBtn();
     //     await productPage.clickSubmitBtn();
     //     console.log(await productPage.validateErrorMessage());
+    // });
+
+    // //Add the product in the product master list without data
+    // test('TC005_Edit the existing product details', async () => {
+    //     const productPage = new ProductPage(page);
+    //     const excelreader = new ExcelReader();
+    //     const productDataset = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'PharmacyAdmin_Product');
+    //     const { Name, Manufacturer, MRP, BestPrice, ProductCategory, ProductType, UOMPurchase, HSNCode, CGST, SGST, GenericName, PrescriptionRequired } = productDataset[2];
+    //     await productPage.clickProductModule();
+    //     await productPage.clickProductBtn();
+    //     await productPage.searchValue(productDataset[0].Search);
+    //     await productPage.clickEditBtn();
+    //     await productPage.enterProductDetails(Name, Manufacturer, MRP, BestPrice, ProductCategory, ProductType, UOMPurchase, HSNCode, CGST, SGST, GenericName, PrescriptionRequired);
+    //     await productPage.clickSubmitBtn();
+    //     await productPage.getToastMessage(productDataset[1].Toast);
+    //     await page.waitForTimeout(1000);
 
     // });
 
-    //Add the product in the product master list without data
-    test('TC005_Edit the existing product details', async () => {
+    // //Delete the existing product details
+    // test('TC006_Delete the existing product details', async () => {
+    //     const productPage = new ProductPage(page);
+    //     const excelreader = new ExcelReader();
+    //     const productDataset = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'PharmacyAdmin_Product');
+    //     const { Name, Manufacturer, MRP, BestPrice, ProductCategory, ProductType, UOMPurchase, HSNCode, CGST, SGST, GenericName, PrescriptionRequired } = productDataset[2];
+    //     await productPage.clickProductModule();
+    //     await productPage.clickProductBtn();
+    //     await productPage.searchValue(productDataset[0].Search);
+    //     await productPage.clickDeleteBtn();
+    //     await productPage.clickConfirmationYes();
+    //     await productPage.getToastMessage(productDataset[2].Toast);
+    //     await page.waitForTimeout(1000);
+
+    // });
+
+    // //User can able to delete the product details, if that product is mapped with orders
+    // test('TC007_Delete the product details if the product is mapped with orders', async () => {
+    //     const productPage = new ProductPage(page);
+    //     const excelreader = new ExcelReader();
+    //     const productDataset = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'PharmacyAdmin_Product');
+    //     const { Name, Manufacturer, MRP, BestPrice, ProductCategory, ProductType, UOMPurchase, HSNCode, CGST, SGST, GenericName, PrescriptionRequired } = productDataset[2];
+    //     await productPage.clickProductModule();
+    //     await productPage.clickProductBtn();
+    //     await productPage.searchValue(productDataset[0].Search);
+    //     await productPage.clickDeleteBtn();
+    //     await productPage.clickConfirmationYes();
+    //     await productPage.getToastMessage(productDataset[3].Toast);
+    //     await page.waitForTimeout(1000);
+    // });
+
+ //Batch Tab
+
+    // //User can able to dleete the product details, if that product is mapped with orders
+    // test('TC008_Delete the product details if the product is mapped with orders', async () => {
+    //     const productPage = new ProductPage(page);
+    //     const excelreader = new ExcelReader();
+    //     const productDataset = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'PharmacyAdmin_Product');
+    //     const { Name, Manufacturer, MRP, BestPrice, ProductCategory, ProductType, UOMPurchase, HSNCode, CGST, SGST, GenericName, PrescriptionRequired } = productDataset[2];
+    //     await productPage.clickProductModule();
+    //     await productPage.clickProductBtn();
+    //     await productPage.clickBatchTab();
+    //     await productPage.searchValue(productDataset[0].Search);
+    //     await productPage.clickDeleteBtn();
+    //     await productPage.clickConfirmationYes();
+    //     await productPage.getToastMessage(productDataset[4].Toast);
+    //     await page.waitForTimeout(1000);
+    // });
+
+
+    //Get the overall  purchase and mrp values
+    test('TC009_Get the purchase and MRP amount', async () => {
         const productPage = new ProductPage(page);
         const excelreader = new ExcelReader();
         const productDataset = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'PharmacyAdmin_Product');
         const { Name, Manufacturer, MRP, BestPrice, ProductCategory, ProductType, UOMPurchase, HSNCode, CGST, SGST, GenericName, PrescriptionRequired } = productDataset[2];
         await productPage.clickProductModule();
         await productPage.clickProductBtn();
-        await productPage.searchValue(productDataset[0].Search);
-        await productPage.clickEditBtn();
-        await productPage.enterProductDetails(Name, Manufacturer, MRP, BestPrice, ProductCategory, ProductType, UOMPurchase, HSNCode, CGST, SGST, GenericName, PrescriptionRequired);
-        await productPage.clickSubmitBtn();
-        await productPage.getToastMessage(productDataset[1].Toast);
         await page.waitForTimeout(1000);
+        const amount=await productPage.getTotalAmount();
+        console.log(amount);
+       
+    });
 
+    //Get the overall  purchase and mrp values
+    test('TC010_Get the purchase and MRP amount', async () => {
+        const productPage = new ProductPage(page);
+        const excelreader = new ExcelReader();
+        const productDataset = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'PharmacyAdmin_Product');
+        const { Name, Manufacturer, MRP, BestPrice, ProductCategory, ProductType, UOMPurchase, HSNCode, CGST, SGST, GenericName, PrescriptionRequired } = productDataset[2];
+        await productPage.clickProductModule();
+        await productPage.clickProductBtn();
+        await productPage.clickBatchTab();
+        await page.waitForTimeout(1000);
+        const amount=await productPage.getTotalAmount();
+        console.log(amount);
+       
     });
 
 
