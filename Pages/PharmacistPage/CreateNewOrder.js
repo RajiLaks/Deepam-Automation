@@ -30,7 +30,7 @@ exports.CreateNewOrder = class CreateNewOrder {
         this.newOrder = page.locator("//div[contains(@class,'options-div')]//button[@class='btn add-cancel-btn btn-secondary btn-sm']//*[name()='svg' and @data-icon='check']")
 
         //
-        this.back = this.page.locator("//button[@class='btn back-btn-size secondary-btn btn-secondary']")
+        this.lat_Back = this.page.locator("//button[@class='btn back-btn-size secondary-btn mr-3 btn-secondary btn-sm']")
     }
     async View_Appointment(Cus, ord, num) {
 
@@ -179,11 +179,12 @@ exports.CreateNewOrder = class CreateNewOrder {
         }
     }
     async Reference(type, fill) {
+        console.log("type:", type);
 
         const selecttype = this.page.locator(`//label[text()='Reference']/following-sibling::div/button[contains(text(),'${type}')]`)
         await this.page.waitForTimeout(500);
         const Text = this.page.locator(`//div[@class='refform-height']/input`)
-        if (type != null) {
+        if (type !== null && type !== undefined && type !== '') {
             const clickable = await Text.isDisabled()
             console.log("isEnable:", clickable);
 
@@ -195,7 +196,7 @@ exports.CreateNewOrder = class CreateNewOrder {
                 await Text.fill(type);
             }
         }
-        if (fill != null && await Text.isEnabled()) {
+        if (type !== null && type !== undefined && type !== ''&& await Text.isEnabled()) {
             await Text.waitFor({ state: 'visible' });
             await this.Text.fill(fill)
         }
@@ -322,23 +323,30 @@ exports.CreateNewOrder = class CreateNewOrder {
 
     }
     async Viewlatest(latest) {
-        const Viewlatest = this.page.locator(`//p//b[normalize-space()='${latest}']/../../ancestor-or-self::div[@class="ag-cell-wrapper"]/parent::div[@col-id="description"]/following-sibling::div[@col-id="action"]//button`)
+        const lat = latest.toLowerCase();
+
+        const Viewlatest = this.page.locator(`//p//b[contains(translate(normalize-space(.), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '${lat}')]/../../ancestor-or-self::div[@class="ag-cell-wrapper"]/parent::div[@col-id="description"]/following-sibling::div[@col-id="action"]//button`)
 
         //console.log(CreatePay);
         await this.page.waitForTimeout(500);
         const count = await Viewlatest.count();
+        console.log("count:", count);
+
         if (count > 1) {
             await Viewlatest.first().waitFor({ state: 'visible' });
             await Viewlatest.first().click()
         } else if (count == 1) {
             await Viewlatest.waitFor({ state: 'visible' });
             await Viewlatest.click()
-            return;
         }
-        const load = this.page.locator("//div[@class='ag-center-cols-viewport']//div[@role='rowgroup']").first()
-        await load.waitFor({ state: 'visible' })
+        await this.lat_Back.waitFor({ state: 'visible' })
 
         await this.page.waitForTimeout(500)
+
+    }
+    async Latest_Back() {
+        await this.lat_Back.waitFor({ state: 'visible' });
+
 
     }
     //Go to NewOrder Page
@@ -383,8 +391,8 @@ exports.CreateNewOrder = class CreateNewOrder {
         await this.page.waitForTimeout(1000);
     }
     async CloseIcon() {
-        const isVisible1 = await this.page.locator("//strong[text()='latest OP appointments']").isVisible()
-        const isVisible2 = await this.page.locator("//strong[text()='Sales History']").isVisible()
+        var isVisible1 = await this.page.locator("//strong[text()='latest OP appointments']").isVisible()
+        var isVisible2 = await this.page.locator("//strong[text()='Sales History']").isVisible()
         const isVisible3 = await this.page.locator("//h5[@id='pharmacyModal___BV_modal_title_']").isVisible()
 
         await this.page.waitForTimeout(500)
@@ -407,15 +415,24 @@ exports.CreateNewOrder = class CreateNewOrder {
             await this.cancelIcon.click();
         } await this.page.waitForTimeout(1000);
     }
-    async search(data) {
-        const locator = this.page("//div[(@class='latest-table')or(@class='search-grid px-0 py-1 pb-2 col')or(@class='search-grid px-0 col')]//input")
-        const length = await locator.count();
-        const index = length <= 2 ? 2 : 1
-        const search = this.page(`(//div[(@class='latest-table')or(@class='search-grid px-0 py-1 pb-2 col')or(@class='search-grid px-0 col')]//input)[${index}]`)
-        await search.waitFor({ state: 'visible' })
-        console.log(search);
+    async Search(data) {
+        var isVisible1 = await this.page.locator("//strong[text()='Sales History']").isVisible()
 
-        await search.fill(data)
+        if (isVisible1) {
+
+            await this.page.locator("//input[@id='patientmobquickFilter']").fill(data);
+
+        } else if (isVisible2) {
+            await this.page.locator("//input[@id='pharmacyhistoryFilter']").fill(data);
+
+        } else {
+            await this.page.locator("//input[@id='patientquickFilter']").fill(data);
+
+        }
+
+        await this.page.waitForTimeout(1000);
+
+
     }
 
 

@@ -3,7 +3,7 @@ exports.History = class History {
     constructor(page) {
         this.page = page;
 
-        this.history = page.locator("//div[contains(@class,'options-div')]//button[@class='btn history-btn btn-secondary btn-sm']//*[name()='svg' and @data-icon='history']")
+        this.history = page.locator("//div[contains(@class,'options-div')]//button[@class='btn history-btn btn-secondary btn-sm']//*[name()='svg' and @data-icon='history']");
 
         this.xicon = page.locator("//div[contains(@class,'b-sidebar-outer')]/div/following-sibling::div/header[@class='b-sidebar-header']//button[@aria-label='Close']//*[name()='svg']");
 
@@ -32,14 +32,14 @@ exports.History = class History {
 
         //Confirm Message Box
         this.confirmNo = page.locator("//span[text()='Confirm']/../../following-sibling::div/button[@class='el-button el-button--default el-button--small']")
-        this.confirmYes = page.locator("//span[text()='Confirm']/../../following-sibling::div/button[@class='el-button el-button--default el-button--small el-button--primary ']")
+        this.confirmYes = page.locator("//span[text()='Confirm']/../../following-sibling::div/button[@class='el-button el-button--default el-button--small el-button--primary']")
         this.cancelIcon = page.locator("//span[text()='Confirm']/../following-sibling::button[@class='el-message-box__headerbtn']");
 
 
 
     }
 
-    async History() {
+    async History_Button() {
         await this.history.waitFor({ state: 'visible' });
 
         await this.history.click()
@@ -181,11 +181,11 @@ exports.History = class History {
         await this.cancelIcon.click();
         await this.page.waitForTimeout(1000);
     }
-     async Back() {
+    async Back() {
         const locator = this.page.locator("//button[(@class='btn back-btn-size secondary-btn btn-secondary')or(@class='btn cancelbtn-color btn-secondary')]")
         //Bill Page for visible purpose
         const isvis = await this.page.locator("//div[@id='payment-bill']").isVisible();
-         if (isvis) {
+        if (isvis) {
 
             await this.page.locator("//button[@class='btn back-btn-size secondary-btn btn-secondary']").click();
 
