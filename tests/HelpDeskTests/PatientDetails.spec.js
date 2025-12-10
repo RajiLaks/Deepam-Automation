@@ -58,6 +58,10 @@ test("TC002 - Verify application displays Red Asterisk symbol across mandatory f
 
     //Verify Mandatory fields have Red Asterisk symbol across their field names
     await patientPage.VerifyMandatoryFields() 
+
+    //Close the Add Patient box by clicking Cancel button
+    await patientPage.APClose()
+    await patientPage.APCloseYes()
 })
 
 test("TC003 - Verify application displays error message across all mandatory fields when user submits empty input in Add Patient Box", async () => {     
@@ -72,6 +76,10 @@ test("TC003 - Verify application displays error message across all mandatory fie
     //Verify Error message is displayed across Mandatory fields when users enters empty values
     await patientPage.APSubmit()
     await patientPage.VerifyMandatoryErrorMessages() 
+
+    //Close the Add Patient box by clicking Cancel button
+    await patientPage.APClose()
+    await patientPage.APCloseYes()
 
 })
 
@@ -100,9 +108,13 @@ test("TC004 - Verify application adds patient when user submits with correct inp
     // Positive case – adding a valid patient
     await patientPage.AddPatient(data);
     await patientPage.APSubmit();
+
+    //Close the Add Patient box by clicking Cancel button
+    await patientPage.APClose()
+    await patientPage.APCloseYes()
 });
 
-test.only("TC005 - Verify Search functionality works correctly for both valid and invalid inputs", async () => {     
+test("TC005 - Verify Search functionality works correctly for both valid and invalid inputs", async () => {     
 
     const patientPage = new PatientPage(page)
     const excelreader = new ExcelReader();

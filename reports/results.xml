@@ -1,31 +1,6 @@
-<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="19.056644">
-<testsuite name="HelpDeskTests\PatientDetails.spec.js" timestamp="2025-12-01T13:15:57.731Z" hostname="chromium" tests="1" failures="1" skipped="0" time="4.831" errors="0">
-<testcase name="Patient Details › TC005 - Verify Search functionality works correctly for both valid and invalid inputs" classname="HelpDeskTests\PatientDetails.spec.js" time="4.831">
-<failure message="PatientDetails.spec.js:105:6 TC005 - Verify Search functionality works correctly for both valid and invalid inputs" type="FAILURE">
-<![CDATA[  [chromium] › HelpDeskTests\PatientDetails.spec.js:105:6 › Patient Details › TC005 - Verify Search functionality works correctly for both valid and invalid inputs 
-
-    Error: expect(received).toBe(expected) // Object.is equality
-
-    Expected: false
-    Received: true
-
-      120 |
-      121 |         // Assert based on Excel expected value
-    > 122 |         expect(result).toBe(expected);
-          |                        ^
-      123 |     
-      124 |     }
-      125 |     })
-        at C:\Users\JV\Desktop\Deepam\Deepam-Automation\tests\HelpDeskTests\PatientDetails.spec.js:122:24
-
-    Error Context: ..\test-results\HelpDeskTests-PatientDetai-c1e6b-th-valid-and-invalid-inputs-chromium\error-context.md
-]]>
-</failure>
-<system-out>
-<![CDATA[
-[[ATTACHMENT|..\test-results\HelpDeskTests-PatientDetai-c1e6b-th-valid-and-invalid-inputs-chromium\error-context.md]]
-]]>
-</system-out>
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="27.927895">
+<testsuite name="HelpDeskTests\HelpdeskHistory.spec.js" timestamp="2025-12-10T12:36:43.699Z" hostname="chromium" tests="1" failures="0" skipped="0" time="13.543" errors="0">
+<testcase name="Patient Details › TC003 - Verify next,previous pagenation button works properly" classname="HelpDeskTests\HelpdeskHistory.spec.js" time="13.543">
 </testcase>
 </testsuite>
 </testsuites>
