@@ -1,14 +1,15 @@
-const {expect} = require ('@playwright/test');
-const {WaitingFlow} = require ('../DoctorPage/WaitingPage');
-class OnDemandConsultation{
+const { expect } = require ('@playwright/test');
+const { join } = require('path');
+
+class OnDemandPage{
     constructor(page){
         this.page = page;
-        this.ODC = page.locator('(//p[@class="icon-head"])[1]'); //ODC - OnDemand Consultation
+        this.OndemandConsultationCard = page.locator('(//p[@class="icon-head"])[1]'); //ODC - OnDemand Consultation
         this.waitingText = page.locator('(//div[@class="text-center mt-2"])[2]/span');
         this.WaitingNoData = page.locator('(//div[@class="card-body text-center"])[2]/p');
         this.Scroll = page.locator('(//p[@class="profile-details mt-1"])[8]');
         this.viewButton = page.locator("//div[@class='row']//div[3]//div[1]//div[1]//div[1]//div[1]//div[1]//div[1]//div[1]//div[1]//div[3]//div[1]//button[1]");
-
+        this.onlineText = page.locator('(//div[@class="ribbon ribbon-top-left ribbon_online"])[1]/span');
         //Patient appointment- Doctor will accept
         this.backbutton = page.locator('(//div[@class="rectangle-view"])/button[1]');    
         this.ViewEHR = page.locator('(//div[@class="rectangle-view"])/button[2]');
@@ -23,6 +24,7 @@ class OnDemandConsultation{
         this.AcceptButton = page.locator('//div[@class="row back-align margintext"]/div[2]');
 
         //EHR
+        this.EH_BackButton = page.locator('//div[@class="col-12 close-button"]/button[1]');
         //Vitals
         this.vitalsButton = page.locator('(//div[@class="row emraccordionrow"])[1]/a[@role="button"]');
         this.EditButton_Vitals = page.locator('//div[@class="edit-flex"]/div[2]/button');
@@ -104,6 +106,9 @@ class OnDemandConsultation{
         this.CheifComplaintField = page.locator('(//textarea[@class="form-control form-control"])[3]');
         this.Diagnosis = page.locator('(//textarea[@class="form-control form-control"])[4]');
         this.notes_continuebutton = page.locator('//div[@class="col-12 notes-button"]/button[2]');
+        this.NotesText = page.locator('//div[@id="infosymptoms"]');
+        this.RXText = page.locator('//fieldset[@id="fieldset-medicine"]');
+        this.LabText = page.locator('//div[@id="lab-notes"]');
 
         //RX
         this.RXText = page.locator('//a[text()="RX"]');
@@ -140,201 +145,93 @@ class OnDemandConsultation{
         this.ongoingbutton = page.locator('(//div[@class="text-center mt-2"])/p[text()="Ongoing"]');
         this.ongoingText = page.locator('(//div[@class="text-center mt-2"])[1]/span');
         this.continueButton = page.locator('(//button[@class="btn primary-btn continue-btn-size btn-secondary"])[1]');
-        
-        //Notes
-        this.NotesText = page.locator('//div[@id="infosymptoms"]');
-        this.RXText = page.locator('//fieldset[@id="fieldset-medicine"]');
-        this.LabText = page.locator('//div[@id="lab-notes"]');
+        //online
+        this.verification_qn1 = page.locator('(//label[@class="custom-control-label"])[1]/span[text()="Yes"]');
+        this.verification_qn2 = page.locator('(//label[@class="custom-control-label"])[3]/span[text()="Yes"]');
+        this.Verification_Continue = page.locator('//button[@class="continue_btn primary_btn submitbtn-color"]');
+        this.audioIcon = page.locator('//button[@id="audio-off"]');
+        this.videoIcon = page.locator('//button[@title="Video Off"]');
+        this.JoinButton = page.locator('//button[@id="button-join1"]');
+        //this.physicalConsultation = page.locator('(//div[@class="ribbon ribbon-top-left ribbon_physical"])[1]/span');
+    }
 
-    } 
-    
-    async waitingScreen(){
+    async nav_OndemandScreen(){
+        await this.OndemandConsultationCard.click();
+        await this.page.waitForTimeout(1000);
+    }
+
+    async Waitingroom(){
         const WaitingCountText = await this.waitingText.innerText();
         const waiting_Count = parseInt(await WaitingCountText.trim(), 10);
+        await this.page.waitForTimeout(1000);
+        
         if(waiting_Count === 0){
             const NoPatient = await this.WaitingNoData.innerText();
             console.log(NoPatient);
-        }
-        else{
-            await this.page.waitForTimeout(1000);
-            await this.viewButton.scrollIntoViewIfNeeded();
-            await this.page.waitForTimeout(1000);
-            await this.viewButton.click();
-            await this.page.waitForTimeout(1000);
-            await this.backbutton.click();
-            await this.page.waitForTimeout(1000);
-            await this.viewButton.click();
-            await this.page.waitForTimeout(1000);
-            await this.ViewEHR.click();
-            await this.page.waitForTimeout(1000);
-            await this.Reports.scrollIntoViewIfNeeded();
-            await this.page.waitForTimeout(1000);
-            await this.MedicalHistory.click();
-            await this.page.waitForTimeout(1000);
-            await this.SurgeryHistory.click();
-            await this.page.waitForTimeout(1000);
-            await this.FamilyHistory.click();
-            await this.page.waitForTimeout(1000);
-            await this.Allergies.click();
-            await this.page.waitForTimeout(1000);
-            await this.Medications.click();
-            await this.page.waitForTimeout(1000);
-            await this.LifeStyle.click();
-            await this.page.waitForTimeout(1000);
-            await this.Reports.click();
-            await this.page.waitForTimeout(1000);
-            await this.closeEHR.scrollIntoViewIfNeeded();
-            await this.page.waitForTimeout(1000);
-            await this.closeEHR.click();
-            await this.AcceptButton.click();
-            await this.page.waitForTimeout(1000);
-            /*await this.diagnosis.scrollIntoViewIfNeeded();
-            await this.page.waitForTimeout(1000);
-            await this.followUp.scrollIntoViewIfNeeded();
-            await this.page.waitForTimeout(1000);
-            await this.Notes_BackButton.click();*/
-        }
-    }
-
-    async ongoingScreen(Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan, medicine, Dosage, M_Count){
-        await this.ongoingbutton.click();
-        const OngoingCountText = await this.ongoingText.innerText();
-        const ongoing_Count = parseInt(await OngoingCountText.trim(), 10);
-        if(ongoing_Count === 0){
-            console.log("There is no ongoing data...");
-        }
-        else{
-            await this.page.waitForTimeout(1000);
-            await this.continueButton.scrollIntoViewIfNeeded();
-            await this.continueButton.click();
-            await this.page.waitForTimeout(1000);
-        }
-        
-        const text_notes = await this.NotesText.isVisible();
-        const text_rx = await this.RXText.isVisible();
-        const text_lab = await this.LabText.isVisible();
-        const waitingflow = new WaitingFlow(this.page);
-        //const notes_value = text_notes.trim();
-        if(text_notes){
-            await this.page.waitForTimeout(1000);
-            await waitingflow.NotesScreen(Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan);
-            await this.page.waitForTimeout(1000);
-            await waitingflow.RX_Flow(medicine, Dosage, M_Count);
-            await this.page.waitForTimeout(1000);
-            await waitingflow.LabFlow();
-            await this.page.waitForTimeout(1000);
-            await waitingflow.SummaryFlow();
-        }
-        else if(text_rx){
-            await this.page.waitForTimeout(1000);
-            await waitingflow.RX_Flow(medicine, Dosage, M_Count);
-            await this.page.waitForTimeout(1000);
-            await waitingflow.LabFlow();
-            await this.page.waitForTimeout(1000);
-            await waitingflow.SummaryFlow();
-        }
-
-        else if(text_lab){
-            await this.page.waitForTimeout(1000);
-            await waitingflow.LabFlow();
-            await this.page.waitForTimeout(1000);
-            await waitingflow.SummaryFlow();
-        }
-
-        else{
-            await this.page.waitForTimeout(1000);
-            await waitingflow.SummaryFlow();
-        }
-        
-    }
-          
-
-    async ODC_Screen(){  
-        await this.ODC.click();
-        await this.page.waitForTimeout(1000);
-    }
-
-    async Waiting(){
-        const WaitingCountText = await this.waitingText.innerText();
-        const waiting_Count = parseInt(await WaitingCountText.trim(), 10);
-        if(waiting_Count === 0){
-            const NoPatient = await this.WaitingNoData.innerText();
-            console.log(NoPatient);
-        }
-        else{
-            await this.page.waitForTimeout(1000);
-            await this.viewButton.scrollIntoViewIfNeeded();
-            await this.page.waitForTimeout(1000);
-            await this.viewButton.click();
-            await this.page.waitForTimeout(1000);
-            await this.backbutton.click();
-            await this.page.waitForTimeout(1000);
-            await this.viewButton.click();
-            await this.page.waitForTimeout(1000);
-            await this.ViewEHR.click();
-            await this.page.waitForTimeout(1000);
-            await this.Reports.scrollIntoViewIfNeeded();
-            await this.page.waitForTimeout(1000);
-            await this.MedicalHistory.click();
-            await this.page.waitForTimeout(1000);
-            await this.SurgeryHistory.click();
-            await this.page.waitForTimeout(1000);
-            await this.FamilyHistory.click();
-            await this.page.waitForTimeout(1000);
-            await this.Allergies.click();
-            await this.page.waitForTimeout(1000);
-            await this.Medications.click();
-            await this.page.waitForTimeout(1000);
-            await this.LifeStyle.click();
-            await this.page.waitForTimeout(1000);
-            await this.Reports.click();
-            await this.page.waitForTimeout(1000);
-            await this.closeEHR.scrollIntoViewIfNeeded();
-            await this.page.waitForTimeout(1000);
-            await this.closeEHR.click();
-            await this.AcceptButton.click();
-            await this.page.waitForTimeout(1000);
-            await this.diagnosis.scrollIntoViewIfNeeded();
-            await this.page.waitForTimeout(1000);
-            await this.followUp.scrollIntoViewIfNeeded();
-            await this.page.waitForTimeout(1000);
-            await this.Notes_BackButton.click();
-            //await this.Vitals();
-        }
-    }
-
-    async OngoingScreen(){
-        await this.ongoingButton.click();
-        await this.page.waitForTimeout(1000);
-        await this.continueButton.scrollIntoViewIfNeeded();
-        await this.page.waitForTimeout(1000);
-        await this.continueButton.click();
-        await this.page.waitForTimeout(1000);
-        const rx_text = await this.RXText.innerText();
-        console.log(rx_text);
-        const notes_text = await this.NotesText.innerText();
-        if(notes_text === "NOTES"){
-            //await this.cheifComplaints.scrollIntoViewIfNeeded();
-            await this.page.waitForTimeout(1000);
-            await this.diagnosis.scrollIntoViewIfNeeded();
-            await this.page.waitForTimeout(1000);
-            await this.followUp.scrollIntoViewIfNeeded();
-            await this.page.waitForTimeout(1000);
-            await this.Notes_BackButton.click();
-               
-        }
-        else{          
-            await this.BackButton.scrollIntoViewIfNeeded();
-            await this.BackButton.click();
             await this.page.waitForTimeout(2000);
-            //await this.cheifComplaints.scrollIntoViewIfNeeded();
+            await this.ongoingScreen();
+        }
+        else{
+            await this.page.waitForTimeout(1000);
+            await this.viewButton.scrollIntoViewIfNeeded();
+            await this.page.waitForTimeout(1000);
+            await this.viewButton.click();
+            await this.page.waitForTimeout(1000);
+            await this.backbutton.click();
+            await this.page.waitForTimeout(1000);
+            await this.viewButton.click();
+            await this.page.waitForTimeout(1000);
+            await this.ViewEHR.click();
+            await this.page.waitForTimeout(1000);
+            await this.Reports.scrollIntoViewIfNeeded();
+            await this.page.waitForTimeout(500);
+            await this.MedicalHistory.click();
+            await this.page.waitForTimeout(500);
+            await this.SurgeryHistory.click();
+            await this.page.waitForTimeout(500);
+            await this.FamilyHistory.click();
+            await this.page.waitForTimeout(500);
+            await this.Allergies.click();
+            await this.page.waitForTimeout(500);
+            await this.Medications.click();
+            await this.page.waitForTimeout(1000);
+            await this.LifeStyle.click();
+            await this.page.waitForTimeout(1000);
+            await this.Reports.click();
+            await this.page.waitForTimeout(1000);
+            await this.MedicalHistory.scrollIntoViewIfNeeded();
+            await expect(this.closeEHR).toBeVisible();
+            await this.closeEHR.click();
+            await this.AcceptButton.click();
+            await this.page.waitForTimeout(2000);
+            await this.diagnosis.waitFor({ state: 'visible' });
             await this.diagnosis.scrollIntoViewIfNeeded();
+            await this.page.pause();
             await this.page.waitForTimeout(1000);
             await this.followUp.scrollIntoViewIfNeeded();
             await this.page.waitForTimeout(1000);
-            await this.Notes_BackButton.click(); 
+            await this.Notes_BackButton.click();            
         }
-        
+    }
+
+    async onlineConsultation(){
+        await this.verification_qn1.click();
+        await this.page.waitForTimeout(1000);
+        await this.verification_qn2.click();
+        await this.page.waitForTimeout(1000);
+        await this.Verification_Continue.click();
+        await this.page.waitForTimeout(1000);
+        await this.audioIcon.click();
+        await this.page.waitForTimeout(1000);
+        await this.audioIcon.click();
+        await this.page.waitForTimeout(1000);
+        await this.videoIcon.click();
+        await this.page.waitForTimeout(1000);
+        await this.videoIcon.click();
+        await this.page.waitForTimeout(1000);
+        await this.JoinButton.click();
+        await this.page.waitForTimeout(1000);
+        await this.NotesScreen();
     }
 
     async Vitals(Systolic, Diastolic, height, weight, Temp, pulseRate, SpO2Level){
@@ -356,8 +253,7 @@ class OnDemandConsultation{
         await this.SubmitButton.click();
         await this.page.waitForTimeout(3000);
         //const toastMSG = await this.VitalsToastMsg.innerText();
-        await expect(this.VitalsToastMsg).toHaveText('Vitals added successfully.');
-        
+        await expect(this.VitalsToastMsg).toHaveText('Vitals added successfully.');      
     }
 
     async MedicalHistoryDropDown(diabeteseDetails, Subclinical_Hypothyroidism, asthma){
@@ -444,13 +340,15 @@ class OnDemandConsultation{
         await this.reports.click();
         await this.page.waitForTimeout(1000);
         await this.EHR_nextButton.click();
+        await this.page.pause();
     }
+
 
     async NotesScreen(Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan){
         //const notetab = await this.notes.innerText();
         expect(this.notes).toHaveText("NOTES");
         await this.page.waitForTimeout(1000);
-        await this.symptoms.clear();
+        //await this.symptoms.clear();
         await this.symptoms.fill(Symptoms);
         await this.page.waitForTimeout(1000);
         await this.CheifComplaintField.clear();
@@ -463,17 +361,116 @@ class OnDemandConsultation{
         await this.followUp.scrollIntoViewIfNeeded();
         await this.page.waitForTimeout(1000);
         await this.notes_continuebutton.click();
+        await this.page.waitForTimeout(1000);
         await this.page.pause();
-    } 
-
-    async RX(medicine){
-        await this.SearchMedicine.click();
-        await this.page.pause();
-        await this.SearchMedicine.fill(medicine); 
-        await this.SearchMedicine.press("ArrowDown");
-        await this.SearchMedicine.press("Enter");
-        await this.page.pause();
-
     }
+
+    async RX_Flow(medicine, Dosage, M_Count){
+        await this.SearchMedicine.click();
+        await this.page.waitForTimeout(1000);
+        await this.SearchMedicine.fill(medicine); 
+        await this.selectDolo.click();
+        await this.page.waitForTimeout(1000);
+        await this.dosage.fill(Dosage);
+        await this.Intake.click();
+        await this.Intake.selectOption({value : "BF"});
+        await this.medicinedaysCount.fill(M_Count);
+        await this.morningMedicine.click();
+        await this.morningMedicine.selectOption({value : "2"});
+        await this.afternoonMedicine.click();
+        await this.afternoonMedicine.selectOption({value : "1"});
+        await this.nightMedicine.click();
+        await this.nightMedicine.selectOption({value : "3"});
+        await this.addButton.click();
+        await this.ContinueButton_RX.scrollIntoViewIfNeeded();
+        await this.ContinueButton_RX.click();
+        await this.page.waitForTimeout(2000);
+        await this.page.pause();
+    }
+
+    async LabFlow(){
+        await this.Category.click();
+        await this.page.waitForTimeout(500);
+        await this.Category.selectOption({value : "Radiological"});
+        await this.page.waitForTimeout(500);
+        await this.Investigation.fill("Blood");
+        await this.page.waitForTimeout(500);
+        await this.Option_Investigation.click();
+        await this.page.waitForTimeout(500);
+        await this.addButton.click();
+        await this.page.waitForTimeout(500);
+        await this.ContinueButton_Lab.click();
+        await this.page.waitForTimeout(1000);
+        await this.page.pause();
+    }
+
+    async SummaryFlow(){
+        await this.Advice.scrollIntoViewIfNeeded();
+        await this.page.waitForTimeout(1000);
+        await this.complete.scrollIntoViewIfNeeded();
+        await this.page.waitForTimeout(1000);
+        await this.complete.click();
+        await this.page.waitForTimeout(1000);
+        await this.Confirm_YesButton.click();
+        await this.page.waitForTimeout(1000);
+        await this.FeedBack_SubmitButton.click();
+        await this.page.waitForTimeout(1000);
+        await this.BackToDashboardButton.click();
+        await this.page.waitForTimeout(1000);
+        await this.page.pause();
+    }
+
+    async ongoingScreen(Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan, medicine, Dosage, M_Count){
+        await this.ongoingbutton.click();
+        const OngoingCountText = await this.ongoingText.innerText();
+        const ongoing_Count = parseInt(await OngoingCountText.trim(), 10);
+        if(ongoing_Count === 0){
+            console.log("There is no ongoing data...");
+        }
+        else{
+            await this.page.waitForTimeout(1000);
+            await this.continueButton.scrollIntoViewIfNeeded();
+            await this.continueButton.click();
+            await this.page.waitForTimeout(1000);
+        }
+        
+        const text_notes = await this.NotesText.isVisible();
+        const text_rx = await this.RXText.isVisible();
+        const text_lab = await this.LabText.isVisible();
+        //const notes_value = text_notes.trim();
+        if(text_notes){
+            await this.page.waitForTimeout(1000);
+            await this.NotesScreen(Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan);
+            await this.page.waitForTimeout(1000);
+            await this.RX_Flow(medicine, Dosage, M_Count);
+            await this.page.waitForTimeout(1000);
+            await this.LabFlow();
+            await this.page.waitForTimeout(1000);
+            await this.SummaryFlow();
+        }
+        else if(text_rx){
+            await this.page.waitForTimeout(1000);
+            await this.RX_Flow(medicine, Dosage, M_Count);
+            await this.page.waitForTimeout(1000);
+            await this.LabFlow();
+            await this.page.waitForTimeout(1000);
+            await this.SummaryFlow();
+        }
+        else if(text_lab){
+            await this.page.waitForTimeout(1000);
+            await this.LabFlow();
+            await this.page.waitForTimeout(1000);
+            await this.SummaryFlow();
+        }
+        else{
+            await this.page.waitForTimeout(1000);
+            await this.SummaryFlow();
+        }
+        await this.page.pause();
+    }
+
+
+
 }
-module.exports = {OnDemandConsultation};
+
+module.exports = {OnDemandPage};
