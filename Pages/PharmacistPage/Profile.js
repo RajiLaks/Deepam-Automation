@@ -8,7 +8,8 @@ exports.Profile = class Profile {
         this.lastName = page.locator("#lastname");
         this.genderName = page.locator("//label[contains(normalize-space(),'Gender')]/../div/select");
         //DOB
-        this.datepicker = page.locator("#dateOfBirth");
+        this.datepicker = page.locator("#dateofbirth");
+        this.cldob = page.locator("//i[@class='el-input__icon el-icon-circle-close']")
         this.currentDate = page.locator("//td[@class='available today']/div");
 
         this.selectLanguage = page.locator("#language");   //Language
@@ -31,10 +32,11 @@ exports.Profile = class Profile {
 
         this.clickTrnNo = page.locator("#trnNo") //TrnNo
 
-        // upload photos
-        //this.customer_profilepicture = page.locator("//div[@class='dz-default dz-message']").nth(0);  
         //Click the upload icon
+        this.editprofileicon = page.locator("//div[@class='button']//span//*[name()='svg']")
         this.uploadPhotoTrigger = page.locator("//div[@class='dz-default dz-message']/span[text()='UPLOAD PHOTO']");
+        this.removefile = page.locator("//a[normalize-space()='Remove file']");
+
 
         // clicks the Id Proof
         this.uploadIdProof = page.locator("//div[@class='col-sm-12 col-md-12 col-lg-6']//div[@class='label-content']//div[@class='py-0 pl-0 col']//div//div[@class='row m-0']//i[@class='fa fa-cloud-upload']");
@@ -126,6 +128,12 @@ exports.Profile = class Profile {
         await this.currentDate.click();
         await this.page.waitForTimeout(500);
     }
+    async Clear_DOB() {
+        await this.datepicker.hover()
+        await this.cldob.waitFor({ state: 'visible' });
+        await this.cldob.click();
+
+    }
 
     //Language
     async Language(Language) {
@@ -185,10 +193,10 @@ exports.Profile = class Profile {
     }
 
     //New method for photo upload
-    async upload_ProfilePhoto(uploadPhotoPath) {
+    async Upload_ProfilePhoto(uploadPhotoPath) {
 
-        await this.uploadPhotoTrigger.waitFor({ state: 'visible' })
-
+        await this.editprofileicon.waitFor({ state: 'visible' })
+        await this.editprofileicon.click()
 
         const [fileChooser] = await Promise.all([
             this.page.waitForEvent('filechooser'),
@@ -198,51 +206,21 @@ exports.Profile = class Profile {
 
         await fileChooser.setFiles(uploadPhotoPath);  // Set the file to upload
 
-        await this.page.waitForTimeout(500);
-
+        await this.page.waitForTimeout(1000);
+    }
+    async RemoveUpload() {
+        await this.removefile.waitFor({ state: 'visible' })
+        await this.removefile.click()
 
     }
-
-
-    //New method for ID photo upload
-    async upload_IdProof(IdProofPath) {
-        await this.uploadIdProof.waitFor({ state: 'visible' });
-
-        const [fileChooser] = await Promise.all([
-            this.page.waitForEvent('filechooser'),
-
-            await this.uploadIdProof.click(),  // Trigger the file chooser
-        ]);
-
-        await fileChooser.setFiles(IdProofPath);  // Set the file to upload
-        const load = "//div[@class='col-sm-12 col-md-12 col-lg-6']//div[contains(@class,'mb-2')]//div[@class='row m-0']"
-
-        await this.page.waitForSelector(load, { state: 'visible', timeout: 5000 });
-
-        await this.page.waitForTimeout(2000);
-
+    //Uploaded profile Unsucessfully
+    async UnsucessUpload(path) {
+        await this.Upload_ProfilePhoto(path)
+        const unsucess = await this.page.locator("//div[@class='dz-error-message']/span").textContent()
+        if (unsucess=="You can't upload files of this type.") {
+            await this.RemoveUpload();
+           }          
     }
-
-
-    //New method for Other Photo upload
-    async upload_OtherDocuments(OtherDocumentsPath) {
-        await this.uploadOtherDocuments.waitFor({ state: 'visible' });
-
-        const [fileChooser] = await Promise.all([
-            this.page.waitForEvent('filechooser'),
-
-            await this.uploadOtherDocuments.click(),  // Trigger the file chooser
-        ]);
-
-        await fileChooser.setFiles(OtherDocumentsPath);  // Set the file to upload
-        const load = "//div[@class='col-sm-12 col-md-8 col-lg-6']//div[@class='mb-2 ']"
-
-        await this.page.waitForSelector(load, { state: 'visible', timeout: 5000 });
-        await this.page.waitForTimeout(2000);
-
-
-    }
-
     //submit
     async Submit() {
         await this.page.waitForTimeout(1000);
@@ -252,6 +230,7 @@ exports.Profile = class Profile {
         const index = count >= 2 ? 2 : 1;
         const submitbutton = await this.page.locator(`(//button[@class='btn submit-btn-size primary-btn btn-secondary'])[${index}]`)
         await submitbutton.waitFor({ state: 'visible' });
+        await submitbutton.scrollIntoViewIfNeeded()
         await submitbutton.click();
         await this.page.waitForTimeout(500);
 
@@ -275,7 +254,7 @@ exports.Profile = class Profile {
             await this.closeIcon.waitFor({ state: 'visible', timeout: 5000 });
             await this.closeIcon.click();
         } else {
-            await this.page.locator("//button[normalize-space()='×']")
+            await this.page.locator("//i[@class='el-message__closeBtn el-icon-close']|//button[normalize-space()='×']")
         }
         await this.page.waitForTimeout(1000);
     }
@@ -288,6 +267,8 @@ exports.Profile = class Profile {
     async Resent_OTP() {
         await this.re_otp.waitFor({ state: 'visible', timeout: 5000 });
         await this.re_otp.click();
+        await this.page.waitForTimeout(2000);
+
 
     }
 
