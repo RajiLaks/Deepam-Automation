@@ -36,9 +36,10 @@ class OngoingFlow{
         const text_notes = await this.NotesText.isVisible();
         const text_rx = await this.RXText.isVisible();
         const text_lab = await this.LabText.isVisible();
-        const waitingflow = new WaitingFlow(this.page);
+        
         //const notes_value = text_notes.trim();
         if(text_notes){
+            const waitingflow = new WaitingFlow(this.page);
             await this.page.waitForTimeout(1000);
             await waitingflow.NotesScreen(Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan);
             await this.page.waitForTimeout(1000);
@@ -49,6 +50,7 @@ class OngoingFlow{
             await waitingflow.SummaryFlow();
         }
         else if(text_rx){
+            const waitingflow = new WaitingFlow(this.page);
             await this.page.waitForTimeout(1000);
             await waitingflow.RX_Flow(medicine, Dosage, M_Count);
             await this.page.waitForTimeout(1000);
@@ -58,6 +60,7 @@ class OngoingFlow{
         }
 
         else if(text_lab){
+            const waitingflow = new WaitingFlow(this.page);
             await this.page.waitForTimeout(1000);
             await waitingflow.LabFlow();
             await this.page.waitForTimeout(1000);
@@ -65,6 +68,7 @@ class OngoingFlow{
         }
 
         else{
+            const waitingflow = new WaitingFlow(this.page);
             await this.page.waitForTimeout(1000);
             await waitingflow.SummaryFlow();
         }

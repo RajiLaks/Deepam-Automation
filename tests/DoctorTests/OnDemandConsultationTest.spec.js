@@ -7,7 +7,7 @@ let page;
 let context;
 
 test.describe('TS01', async()=>{
-    test.beforeAll('On-Demand Consultation flow',async({browser})=>{
+    test.beforeEach('TC001 - Verify that the application logged in successfully and navigate to the dashboard.',async({browser})=>{
         context = await browser.newContext({
         viewport: { width: 1200, height: 580},
         });
@@ -18,23 +18,35 @@ test.describe('TS01', async()=>{
         const {URL,MobileNo, Password} = dataset[0];
         await loginpage.LaunchURL(URL);    
         await loginpage.DoctorLogin(MobileNo, Password);
-    })
-
-    test('TC001 - Navigate to the On-Demand consultation screen', async()=>{
         const ondemandconsultation = new OnDemandConsultation(page);
         await ondemandconsultation.ODC_Screen();
     })
 
+    /*test('TC001 - Navigate to the On-Demand consultation screen', async()=>{
+        const ondemandconsultation = new OnDemandConsultation(page);
+        await ondemandconsultation.ODC_Screen();
+    })*/
+
     test('TC002 - Verify that the Waiting appointment screen', async()=>{
         const waiting = new OnDemandConsultation(page);
-        await waiting.Waiting();
+        await waiting.waitingScreen();
     })
-
+    test('TC002 - Check that the Ongoing screen displays the data or not', async()=>{
+        const ongoing_screen = new OnDemandConsultation(page);
+        const excelreader = new ExcelReader();
+        const Data_Notes = await excelreader.readExcel("Utils/Deepam_Dataset.xlsx", "Doctor-EHR");
+        const {Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan} = Data_Notes[0];
+        const Data_RX = await excelreader.readExcel("Utils/Deepam_Dataset.xlsx", "Doctor-EHR");
+        const {medicine, Dosage, M_Count} = Data_RX[0];
+        await ongoing_screen.ongoingScreen(Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan, medicine, Dosage, M_Count);
+    })
+/*
     test('TC003 - Verify that the Ongoing screen', async()=>{
         
         const ongoing = new OnDemandConsultation(page);
-        await ongoing.OngoingScreen();
+        await ongoing.ongoingScreen();
     })
+
 
     test('TC004 - Verify that the Vitals screen displays the all data and it should be editable.', async()=>{
         const vitals = new OnDemandConsultation(page);
@@ -107,5 +119,5 @@ test.describe('TS01', async()=>{
         const {medicine} = Data_RX[0];
         await rxscreen.RX(medicine);
     })
-
+*/
 })

@@ -1,43 +1,8 @@
-<testsuites id="" name="" tests="2" failures="1" skipped="0" errors="0" time="28.929894">
-<testsuite name="PharmacistTest\Profile.spec.js" timestamp="2025-12-09T13:15:22.864Z" hostname="chromium" tests="2" failures="1" skipped="0" time="25.276" errors="0">
-<testcase name="Pharmacist Tests › TC001 - Login Pharmacist" classname="PharmacistTest\Profile.spec.js" time="15.091">
+<testsuites id="" name="" tests="2" failures="0" skipped="0" errors="0" time="27.259626">
+<testsuite name="DoctorTests\OnDemandConsultationTest.spec.js" timestamp="2025-11-28T04:52:28.463Z" hostname="chromium" tests="2" failures="0" skipped="0" time="10.448" errors="0">
+<testcase name="TS01 › TC001 - Navigate to the On-Demand consultation screen" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="1.066">
 </testcase>
-<testcase name="TS01 › TC002 - Verify that the Waiting appointment screen" classname="DoctorTests\WaitingTest.spec.js" time="16.835">
-</testcase>
-<testcase name="TS01 › TC003 - Verify that the user can able to edit the NOTES details" classname="DoctorTests\WaitingTest.spec.js" time="6.332">
-</testcase>
-<testcase name="TS01 › TC004 - Verify that the RX screen displays the data and it should be editable" classname="DoctorTests\WaitingTest.spec.js" time="5.39">
-</testcase>
-<testcase name="TS01 › TC005 - Verify that the Lab screen displays the data and it should be editable" classname="DoctorTests\WaitingTest.spec.js" time="7.291">
-</testcase>
-<testcase name="TS01 › TC006 - Verify that the Summary screen displays the correct data." classname="DoctorTests\WaitingTest.spec.js" time="18.151">
-=======
-<testsuites id="" name="" tests="2" failures="1" skipped="0" errors="0" time="28.929894">
-<testsuite name="PharmacistTest\Profile.spec.js" timestamp="2025-12-09T13:15:22.864Z" hostname="chromium" tests="2" failures="1" skipped="0" time="25.276" errors="0">
-<testcase name="Pharmacist Tests › TC001 - Login Pharmacist" classname="PharmacistTest\Profile.spec.js" time="15.091">
-</testcase>
-<testcase name="Pharmacist Tests › TC001 - Edit Profile" classname="PharmacistTest\Profile.spec.js" time="10.185">
-<failure message="Profile.spec.js:31:3 TC001 - Edit Profile" type="FAILURE">
-<![CDATA[  [chromium] › PharmacistTest\Profile.spec.js:31:3 › Pharmacist Tests › TC001 - Edit Profile ───────
-
-    Error: locator.waitFor: Target page, context or browser has been closed
-    Call log:
-      - waiting for locator('#firstName') to be visible
-
-
-       at ..\Pages\PharmacistPage\Profile.js:93
-
-      91 |     //firstname
-      92 |     async Firstname(firstname) {
-    > 93 |         await this.firstName.waitFor({ state: 'visible' });
-         |                              ^
-      94 |
-      95 |         await this.firstName.fill(firstname);
-      96 |
-        at Profile.Firstname (C:\Deepam\Pages\PharmacistPage\Profile.js:93:30)
-        at C:\Deepam\tests\PharmacistTest\Profile.spec.js:39:19
-]]>
-</failure>
+<testcase name="TS01 › TC002 - Verify that the Waiting appointment screen" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="9.382">
 </testcase>
 </testsuite>
 </testsuites>
