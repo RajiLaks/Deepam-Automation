@@ -8,7 +8,7 @@ let page;
 let context;
 
 test.describe('TS01', async()=>{
-    test.beforeAll('On-Demand Consultation flow',async({browser})=>{
+    test.beforeEach('On-Demand Consultation flow',async({browser})=>{
         context = await browser.newContext({
         viewport: { width: 1200, height: 580},
         });
