@@ -6,21 +6,21 @@ exports.Profile = class Profile {
 
         this.firstName = page.locator("#firstnames");
         this.lastName = page.locator("#lastname");
-        this.genderName = page.locator("//label[normalize-space()='Gender']/../following-sibling::div/select");
+        this.genderName = page.locator("//label[contains(normalize-space(),'Gender')]/../div/select");
         //DOB
         this.datepicker = page.locator("#dateOfBirth");
         this.currentDate = page.locator("//td[@class='available today']/div");
 
         this.selectLanguage = page.locator("#language");   //Language
 
-        this.clickMobileNo = page.locator("#mobileNumber");    //MObileNumber
+        this.clickMobileNo = page.locator("#phonenumber");    //MObileNumber
 
         this.clickEmail = page.locator("#email"); //E-mail
 
-        this.clickMaritalStatus = page.locator("#maritalStatus");  //Marital Status
+        this.clickMaritalStatus = page.locator("#maritalstatus");  //Marital Status
         this.scrollToMarital = page.locator("//label[text()='ID Proof']") // scroll to Marital Status
 
-        this.clickEmergencyNumber = page.locator("#emergencyContactNumber");  //Emergency Number
+        this.clickEmergencyNumber = page.locator("//label[contains(normalize-space(),'Emergency Contact')]/../following-sibling::div/input");  //Emergency Number
         this.blood_G = page.locator("//label[normalize-space()='Blood Group']/../following-sibling::div/select");  //Blood-Group
 
         this.clickAddress = page.locator("#address");  //Address
@@ -42,12 +42,18 @@ exports.Profile = class Profile {
         // Clicks the OtherDocuments
         this.uploadOtherDocuments = page.locator("//div[@class='col-sm-12 col-md-8 col-lg-6']//div[@class='label-content']//div[@class='py-0 pl-0 col']//div//div[@class='row m-0']//div[@id='dropzone']");
 
+        //OTP
+        this.otp = page.locator("input[name='otp']");
+        this.re_otp = page.locator("//a[(text()='Resend OTP??' or text()='Resend OTP in ')]")
+
+
         //Confim message 
-        this.cancelbutton = page.locator(`//button[@class='btn secondary-btn cancel-btn-size mr-3 btn-secondary']`)
-        this.submitbutton = page.locator(`//button[@class='btn primary-btn submit-btn-size btn-secondary']`)
+        this.cancelbutton = page.locator(`//button[@class='btn cancel-btn-size secondary-btn mr-3 btn-secondary']`)
+        //Submit
+
         this.conNo = page.locator("//span[text()='Confirm']/../../following-sibling::div/button[@class='el-button el-button--default el-button--small']")
         this.conYes = page.locator("//span[text()='Confirm']/../../following-sibling::div/button[@class='el-button el-button--default el-button--small el-button--primary ']")
-        this.cancelIcon = page.locator("//span[text()='Confirm']/../following-sibling::button[@class='el-message-box__headerbtn']");
+        this.closeIcon = page.locator("//span[text()='Confirm']/../following-sibling::button[@class='el-message-box__headerbtn']");
 
         this.toastMessage = page.locator("//p[text()='User details created successfully']") //toast message
         //Notification
@@ -84,6 +90,8 @@ exports.Profile = class Profile {
         await this.Editbutton.waitFor({ state: 'visible' });
 
         await this.Editbutton.click();
+        await this.page.waitForTimeout(500);
+
 
 
     }
@@ -91,67 +99,88 @@ exports.Profile = class Profile {
     //firstname
     async Firstname(firstname) {
         await this.firstName.waitFor({ state: 'visible' });
+        await this.firstName.fill(" ");
 
         await this.firstName.fill(firstname);
+        await this.page.waitForTimeout(500);
 
     }
     //Last name     
     async Lastname(Lastname) {
+        await this.lastName.fill(" ");
         await this.lastName.fill(Lastname);
+        await this.page.waitForTimeout(500);
 
     }
     // gender
     async Gender(Gender) {
+        await this.genderName.waitFor({ state: 'visible' });
 
         await this.genderName.selectOption(Gender);
+        await this.page.waitForTimeout(500);
 
     }
     //DOB
     async DateOfBirth() {
         await this.datepicker.click();
         await this.currentDate.click();
+        await this.page.waitForTimeout(500);
     }
 
     //Language
     async Language(Language) {
         await this.selectLanguage.selectOption(Language);
+        await this.page.waitForTimeout(500);
     }
 
     async Mobile(MobileNo) {
         await this.clickMobileNo.fill(MobileNo);
+        await this.page.waitForTimeout(500);
     }
     async Email(Email) {
         await this.clickEmail.fill(Email);
+        await this.page.waitForTimeout(500);
     }
     //Marital Status
     async MaritalStatus(Marital) {
+        await this.clickMaritalStatus.waitFor({ state: 'visible' });
         await this.clickMaritalStatus.selectOption(Marital)
+        await this.page.waitForTimeout(500);
 
     }
     async Emergency(EmergencyCon) {
+
+        await this.clickEmergencyNumber.waitFor({ state: 'visible' });
         await this.clickEmergencyNumber.fill(EmergencyCon);
+        await this.page.waitForTimeout(500);
 
     }
     async BloodGroup(BG) {
+        await this.blood_G.waitFor({ state: 'visible' });
         await this.blood_G.selectOption(BG);
+        await this.page.waitForTimeout(500);
 
     }
 
     async Address(Address) {
         await this.clickAddress.fill(Address);
+        await this.page.waitForTimeout(500);
 
     }
     async EmirateID(EmiratesId) {
         await this.clickEmiratesId.fill(EmiratesId);
+        await this.page.waitForTimeout(500);
 
     }
     async TRNno(TRNno) {
         await this.clickTrnNo.fill(TRNno)
+        await this.page.waitForTimeout(500);
 
     }
     //Emirates
     async Emirate(Emirate) {
         await this.clickEmirates.selectOption(Emirate)
+        await this.page.waitForTimeout(500);
 
     }
 
@@ -169,6 +198,7 @@ exports.Profile = class Profile {
 
         await fileChooser.setFiles(uploadPhotoPath);  // Set the file to upload
 
+        await this.page.waitForTimeout(500);
 
 
     }
@@ -215,10 +245,20 @@ exports.Profile = class Profile {
 
     //submit
     async Submit() {
-        await this.submitbutton.click();
+        await this.page.waitForTimeout(1000);
+
+        const submit = await this.page.locator(`//button[@class='btn submit-btn-size primary-btn btn-secondary']`)
+        const count = await submit.count();
+        const index = count >= 2 ? 2 : 1;
+        const submitbutton = await this.page.locator(`(//button[@class='btn submit-btn-size primary-btn btn-secondary'])[${index}]`)
+        await submitbutton.waitFor({ state: 'visible' });
+        await submitbutton.click();
+        await this.page.waitForTimeout(500);
+
     }
     async Cancel() {
         await this.cancelbutton.click();
+        await this.page.waitForTimeout(500);
     }
 
     async ConfirmYes() {
@@ -229,11 +269,27 @@ exports.Profile = class Profile {
         await this.conNo.click();
         await this.page.waitForTimeout(1000);
     }
-    async CancelIcon() {
-        await this.cancelIcon.click();
+    async CloseIcon() {
+
+        if (await this.closeIcon.isVisible()) {
+            await this.closeIcon.waitFor({ state: 'visible', timeout: 5000 });
+            await this.closeIcon.click();
+        } else {
+            await this.page.locator("//button[normalize-space()='×']")
+        }
         await this.page.waitForTimeout(1000);
     }
+    async OTP_Verify(userData) {
+        await this.otp.waitFor({ state: 'visible', timeout: 5000 });
+        //const userData = await this.page.evaluate(() => prompt("Enter some data:"));
+        await this.otp.fill(userData);
+        await this.page.waitForTimeout(1000);
+    }
+    async Resent_OTP() {
+        await this.re_otp.waitFor({ state: 'visible', timeout: 5000 });
+        await this.re_otp.click();
 
+    }
 
 
 
