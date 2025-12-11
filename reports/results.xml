@@ -1,38 +1,17 @@
-<<<<<<< HEAD
-<testsuites id="" name="" tests="2" failures="0" skipped="0" errors="0" time="42.914215">
-<testsuite name="PharmacyAdminTests\ProductTest.spec.js" timestamp="2025-12-09T13:04:29.186Z" hostname="chromium" tests="2" failures="0" skipped="0" time="39.121" errors="0">
-<testcase name="Supplier Module Test › TC009_Get the purchase and MRP amount" classname="PharmacyAdminTests\ProductTest.spec.js" time="18.589">
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="22.533841">
+<testsuite name="PharmacyAdminTests\PurchaseOrderTest.spec.js" timestamp="2025-12-11T10:15:28.458Z" hostname="chromium" tests="1" failures="0" skipped="0" time="20.6" errors="0">
+<testcase name="Supplier Module Test › TC005_Add purchase order without mandatory fields" classname="PharmacyAdminTests\PurchaseOrderTest.spec.js" time="20.6">
 <system-out>
-<![CDATA[{
-  amount: [
-    [32m'\n                  Overall Purchase Total ₹ -\n                  16386.9'[39m,
-    [32m'16386.9'[39m,
-    [32m'\n                  Overall MRP Total ₹ -\n                  173070'[39m,
-    [32m'173070'[39m
-  ]
-}
+<![CDATA[[
+  [32m'\n                      Purchase Date is required\n                    '[39m,
+  [32m'\n                    Medicine is required\n                  '[39m,
+  [32m'\n                    Quantity is required\n                  '[39m,
+  [32m'\n                    Batch is required\n                  '[39m,
+  [32m'\n                    Expiry Date is required\n                  '[39m,
+  [32m'\n                    UOM Purchase is required\n                  '[39m
+]
 ]]>
 </system-out>
-</testcase>
-<testcase name="Supplier Module Test › TC010_Get the purchase and MRP amount" classname="PharmacyAdminTests\ProductTest.spec.js" time="20.532">
-<system-out>
-<![CDATA[{
-  amount: [
-    [32m'\n                  Overall Purchase Total ₹ -\n                  16386.9'[39m,
-    [32m'16386.9'[39m,
-    [32m'\n                  Overall MRP Total ₹ -\n                  488820'[39m,
-    [32m'488820'[39m
-  ]
-}
-]]>
-</system-out>
-=======
-<testsuites id="" name="" tests="2" failures="0" skipped="0" errors="0" time="38.230760000000004">
-<testsuite name="DoctorTests\ScheduleTest.spec.js" timestamp="2025-12-09T12:42:03.218Z" hostname="chromium" tests="2" failures="0" skipped="0" time="24.96" errors="0">
-<testcase name="TS01 › TC001 - Verify that the Application navigate to the schedule consultation screen" classname="DoctorTests\ScheduleTest.spec.js" time="2.052">
-</testcase>
-<testcase name="TS01 › TC002 - Verify that the Schedule scren displays the data." classname="DoctorTests\ScheduleTest.spec.js" time="22.908">
->>>>>>> 28e539611a810ea30fe61848ddc08f13463877d0
 </testcase>
 </testsuite>
 </testsuites>
