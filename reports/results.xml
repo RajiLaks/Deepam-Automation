@@ -1,8 +1,12 @@
-<testsuites id="" name="" tests="2" failures="0" skipped="0" errors="0" time="27.259626">
-<testsuite name="DoctorTests\OnDemandConsultationTest.spec.js" timestamp="2025-11-28T04:52:28.463Z" hostname="chromium" tests="2" failures="0" skipped="0" time="10.448" errors="0">
-<testcase name="TS01 › TC001 - Navigate to the On-Demand consultation screen" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="1.066">
+<testsuites id="" name="" tests="2" failures="0" skipped="2" errors="0" time="40.521454">
+<testsuite name="DoctorTests\OnDemandTest.spec.js" timestamp="2025-12-11T04:44:23.168Z" hostname="chromium" tests="2" failures="0" skipped="2" time="0" errors="0">
+<testcase name="TS01 › TC001 - Verify that the waiting appointment are displaying correctly" classname="DoctorTests\OnDemandTest.spec.js" time="0">
+<skipped>
+</skipped>
 </testcase>
-<testcase name="TS01 › TC002 - Verify that the Waiting appointment screen" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="9.382">
+<testcase name="TS01 › TC002 - Verify that the ongoing appointment details should display the correct data" classname="DoctorTests\OnDemandTest.spec.js" time="0">
+<skipped>
+</skipped>
 </testcase>
 </testsuite>
 </testsuites>
