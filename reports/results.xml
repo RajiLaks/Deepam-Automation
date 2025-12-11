@@ -1,6 +1,6 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="27.927895">
-<testsuite name="HelpDeskTests\HelpdeskHistory.spec.js" timestamp="2025-12-10T12:36:43.699Z" hostname="chromium" tests="1" failures="0" skipped="0" time="13.543" errors="0">
-<testcase name="Patient Details › TC003 - Verify next,previous pagenation button works properly" classname="HelpDeskTests\HelpdeskHistory.spec.js" time="13.543">
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="28.320812">
+<testsuite name="HelpDeskTests\HelpdeskHistory.spec.js" timestamp="2025-12-11T05:38:59.944Z" hostname="chromium" tests="1" failures="0" skipped="0" time="11.774" errors="0">
+<testcase name="Patient Details › TC004 - Verify View Box opens and closes correctly under Actions column" classname="HelpDeskTests\HelpdeskHistory.spec.js" time="11.774">
 </testcase>
 </testsuite>
 </testsuites>

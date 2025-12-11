@@ -56,7 +56,7 @@ test("TC002 - Verify Back button works corectly in History Page", async () => {
     await historyPage.verifyDashboardPage()
 })
 
-test.only("TC003 - Verify next,previous pagenation button works properly", async () => {     
+test("TC003 - Verify next,previous pagenation buttons works properly", async () => {     
 
     const historyPage = new HistoryPage(page)
     //Select the History option in Top navbar 
@@ -69,6 +69,18 @@ test.only("TC003 - Verify next,previous pagenation button works properly", async
     //Navigate to Previous Pages
     await historyPage.Previouspage()
     await historyPage.Previouspage()   
+})
+
+test.only("TC004 - Verify View Box opens and closes correctly under Actions column", async () => {     
+
+    const historyPage = new HistoryPage(page)
+    //Select the History option in Top navbar 
+    await historyPage.HistoryClick()
+
+    //Click the View option under Action column
+    await historyPage.ViewOpen()
+    await historyPage.ScrollViewBox()
+    await historyPage.ViewClose()
 })
 
 })
