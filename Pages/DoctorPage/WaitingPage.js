@@ -1,4 +1,5 @@
 const {expect} = require ('@playwright/test');
+const {OngoingFlow} = require ('../DoctorPage/OngoingPage');
 class WaitingFlow{
     constructor(page){
         this.page = page;
@@ -22,6 +23,7 @@ class WaitingFlow{
         this.AcceptButton = page.locator('//div[@class="row back-align margintext"]/div[2]');
 
         //EHR
+        this.EH_BackButton = page.locator('//div[@class="col-12 close-button"]/button[1]');
         //Vitals
         this.vitalsButton = page.locator('(//div[@class="row emraccordionrow"])[1]/a[@role="button"]');
         this.EditButton_Vitals = page.locator('//div[@class="edit-flex"]/div[2]/button');
@@ -371,6 +373,59 @@ class WaitingFlow{
         await this.BackToDashboardButton.click();
         await this.page.waitForTimeout(1000);
     }
+
+    async waitingpageAccept(Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan, medicine, Dosage, M_Count){
+        const WaitingCountText = await this.waitingText.innerText();
+        const waiting_Count = parseInt(await WaitingCountText.trim(), 10);
+        if(waiting_Count === 0){
+            const NoPatient = await this.WaitingNoData.innerText();
+            console.log(NoPatient);
+        }
+        else{
+            await this.page.waitForTimeout(1000);
+            await this.viewButton.scrollIntoViewIfNeeded();
+            await this.page.waitForTimeout(1000);
+            await this.viewButton.click();
+            await this.page.waitForTimeout(1000);
+            await this.backbutton.click();
+            await this.page.waitForTimeout(1000);
+            await this.viewButton.click();
+            await this.page.waitForTimeout(1000);
+            await this.ViewEHR.click();
+            await this.page.waitForTimeout(1000);
+            await this.Reports.scrollIntoViewIfNeeded();
+            await this.page.waitForTimeout(1000);
+            await this.MedicalHistory.click();
+            await this.page.waitForTimeout(1000);
+            await this.SurgeryHistory.click();
+            await this.page.waitForTimeout(1000);
+            await this.FamilyHistory.click();
+            await this.page.waitForTimeout(1000);
+            await this.Allergies.click();
+            await this.page.waitForTimeout(1000);
+            await this.Medications.click();
+            await this.page.waitForTimeout(1000);
+            await this.LifeStyle.click();
+            await this.page.waitForTimeout(1000);
+            await this.Reports.click();
+            await this.page.waitForTimeout(1000);
+            await this.closeEHR.scrollIntoViewIfNeeded();
+            await this.page.waitForTimeout(1000);
+            await this.closeEHR.click();
+            await this.AcceptButton.click();
+            await this.page.waitForTimeout(1000);
+            await this.diagnosis.scrollIntoViewIfNeeded();
+            await this.page.waitForTimeout(1000);
+            await this.followUp.scrollIntoViewIfNeeded();
+            await this.page.waitForTimeout(1000);
+            await this.Notes_BackButton.click();
+            await this.EH_BackButton.click();
+        }
+        const ongoingflowneedstorun = new OngoingFlow(this.page);
+        await ongoingflowneedstorun.ongoingScreen(Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan, medicine, Dosage, M_Count);
+    }
+
+
 
 }
 module.exports = {WaitingFlow};

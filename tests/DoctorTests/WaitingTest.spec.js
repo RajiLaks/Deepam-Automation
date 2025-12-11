@@ -17,16 +17,21 @@ test.describe('TS01', async()=>{
         const {URL,MobileNo, Password} = dataset[0];
         await loginpage.LaunchURL(URL);    
         await loginpage.DoctorLogin(MobileNo, Password);
-    })
-
-    test('TC001 - Navigate to the On-Demand consultation screen', async()=>{
         const ondemandconsultation = new WaitingFlow(page);
         await ondemandconsultation.ODC_Screen();
     })
 
+    /*test('TC001 - Navigate to the On-Demand consultation screen', async()=>{
+        const ondemandconsultation = new WaitingFlow(page);
+        await ondemandconsultation.ODC_Screen();
+    })*/
+
     test('TC002 - Verify that the Waiting appointment screen', async()=>{
         const waiting = new WaitingFlow(page);
-        await waiting.waitingScreen();
+        const excelreader = new ExcelReader();
+        const Data = await excelreader.readExcel("Utils/Deepam_Dataset.xlsx", "Doctor-EHR");
+        const {Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan, medicine, Dosage, M_Count} = Data[0];
+        await waiting.waitingScreen(Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan, medicine, Dosage, M_Count);
     })
 
     test('TC003 - Verify that the Vitals screen displays the all data and it should be editable.', async()=>{
@@ -110,5 +115,15 @@ test.describe('TS01', async()=>{
         const summaryscreen = new WaitingFlow(page);
         await summaryscreen.SummaryFlow();
     })
+
+    test('TC017 - Verify that the user can accept the patient appointment', async()=>{
+        const ondemandconsultation = new WaitingFlow(page);
+        const excelreader = new ExcelReader();
+        const Data = await excelreader.readExcel("Utils/Deepam_Dataset.xlsx", "Doctor-EHR");
+        const {Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan, medicine, Dosage, M_Count} = Data[0];        
+        await ondemandconsultation.ODC_Screen();
+        await ondemandconsultation.waitingpageAccept(Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan, medicine, Dosage, M_Count);
+
+    } )
 
 })

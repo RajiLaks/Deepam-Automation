@@ -1,17 +1,8 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="22.533841">
-<testsuite name="PharmacyAdminTests\PurchaseOrderTest.spec.js" timestamp="2025-12-11T10:15:28.458Z" hostname="chromium" tests="1" failures="0" skipped="0" time="20.6" errors="0">
-<testcase name="Supplier Module Test › TC005_Add purchase order without mandatory fields" classname="PharmacyAdminTests\PurchaseOrderTest.spec.js" time="20.6">
-<system-out>
-<![CDATA[[
-  [32m'\n                      Purchase Date is required\n                    '[39m,
-  [32m'\n                    Medicine is required\n                  '[39m,
-  [32m'\n                    Quantity is required\n                  '[39m,
-  [32m'\n                    Batch is required\n                  '[39m,
-  [32m'\n                    Expiry Date is required\n                  '[39m,
-  [32m'\n                    UOM Purchase is required\n                  '[39m
-]
-]]>
-</system-out>
+<testsuites id="" name="" tests="2" failures="0" skipped="0" errors="0" time="27.259626">
+<testsuite name="DoctorTests\OnDemandConsultationTest.spec.js" timestamp="2025-11-28T04:52:28.463Z" hostname="chromium" tests="2" failures="0" skipped="0" time="10.448" errors="0">
+<testcase name="TS01 › TC001 - Navigate to the On-Demand consultation screen" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="1.066">
+</testcase>
+<testcase name="TS01 › TC002 - Verify that the Waiting appointment screen" classname="DoctorTests\OnDemandConsultationTest.spec.js" time="9.382">
 </testcase>
 </testsuite>
 </testsuites>
