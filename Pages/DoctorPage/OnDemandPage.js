@@ -153,6 +153,10 @@ class OnDemandPage{
         this.videoIcon = page.locator('//button[@title="Video Off"]');
         this.JoinButton = page.locator('//button[@id="button-join1"]');
         //this.physicalConsultation = page.locator('(//div[@class="ribbon ribbon-top-left ribbon_physical"])[1]/span');
+
+        //AfterAccept
+        this.patientName = page.locator('(//div[@class="modal-grid"])[1]/p[@class="mb-0 wrap_word text-justify"]');
+
     }
 
     async nav_OndemandScreen(){
@@ -466,9 +470,60 @@ class OnDemandPage{
             await this.page.waitForTimeout(1000);
             await this.SummaryFlow();
         }
-        await this.page.pause();
+        
     }
 
+    async AcceptOnly(){
+        const WaitingCountText = await this.waitingText.innerText();
+        const waiting_Count = parseInt(await WaitingCountText.trim(), 10);
+        await this.page.waitForTimeout(1000);
+        
+        if(waiting_Count === 0){
+            const NoPatient = await this.WaitingNoData.innerText();
+            console.log(NoPatient);
+            await this.page.waitForTimeout(2000);
+            await this.ongoingScreen();
+        }
+        else{
+            await this.page.waitForTimeout(1000);
+            await this.viewButton.scrollIntoViewIfNeeded();
+            await this.page.waitForTimeout(1000);
+            await this.viewButton.click();
+            await this.page.waitForTimeout(1000);
+            await this.backbutton.click();
+            await this.page.waitForTimeout(1000);
+            await this.viewButton.click();
+            await this.page.waitForTimeout(1000);
+            await this.ViewEHR.click();
+            await this.page.waitForTimeout(1000);
+            await this.Reports.scrollIntoViewIfNeeded();
+            await this.page.waitForTimeout(500);
+            await this.MedicalHistory.click();
+            await this.page.waitForTimeout(500);
+            await this.SurgeryHistory.click();
+            await this.page.waitForTimeout(500);
+            await this.FamilyHistory.click();
+            await this.page.waitForTimeout(500);
+            await this.Allergies.click();
+            await this.page.waitForTimeout(500);
+            await this.Medications.click();
+            await this.page.waitForTimeout(1000);
+            await this.LifeStyle.click();
+            await this.page.waitForTimeout(1000);
+            await this.Reports.click();
+            await this.page.waitForTimeout(1000);
+            await this.MedicalHistory.scrollIntoViewIfNeeded();
+            await expect(this.closeEHR).toBeVisible();
+            await this.closeEHR.click();
+            await this.AcceptButton.click();
+            await this.page.waitForTimeout(2000);
+        }
+    }
+
+    async ongoingAfterAccept(){
+        const name = await this.patientName.innerText();
+        
+    }
 
 
 }

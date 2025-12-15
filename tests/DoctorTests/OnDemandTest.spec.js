@@ -2,6 +2,7 @@ const {test} = require ('@playwright/test');
 const {LoginPage} = require ('../../Pages/BasePage/LoginPage');
 const {OnDemandPage} = require ('../../Pages/DoctorPage/OnDemandPage');
 const {ExcelReader} = require ('../../Utils/ExcelReader');
+const { on } = require('events');
 
 let page;
 let context;
@@ -51,4 +52,16 @@ test.describe('TS01', async()=>{
         const {Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan, medicine, Dosage, M_Count} = dataset[0];
         await waitingroom.ongoingScreen(Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan, medicine, Dosage, M_Count);
     })
+
+    test('TC003 - Verify that the accepted waiting appointment should navigate to the ongoing screen', async()=>{
+        const waitingroom = new OnDemandPage(page);
+        await waitingroom.AcceptOnly();
+    })
+
+  /*  test('TC004 - Check the Ongoing appointment', async()=>{
+        const ongoingroom = new OnDemandPage(page);
+        await ongoingroom.
+    })
+     */
+
 })
