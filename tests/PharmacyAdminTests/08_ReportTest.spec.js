@@ -49,12 +49,6 @@ test.describe('TS03 - Scrap', () => {
 
     });
 
-    // test('TC003 - select To date ', async () => {
-    //     const reportPage=new ReportPage(page);
-    //     await reportPage.navigateToReportModule();
-    //     await reportPage.selectTodate('12',"Dec",'2024');
-
-    // });
 
 
 
