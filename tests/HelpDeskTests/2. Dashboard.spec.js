@@ -76,7 +76,6 @@ test.only("TC004 - Verify View Box opens and closes correctly under Actions colu
     const historyPage = new HistoryPage(page)
     //Select the History option in Top navbar 
     await historyPage.HistoryClick()
-
     //Click the View option under Action column
     await historyPage.ViewOpen()
     await historyPage.ScrollViewBox()
