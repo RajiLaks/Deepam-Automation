@@ -11,6 +11,7 @@ test.describe('TS01', async()=>{
         context = await browser.newContext({
         viewport: { width: 1200, height: 580},
         });
+        await context.grantPermissions(['camera', 'microphone']);
         page = await context.newPage();
         const loginpage = new LoginPage(page);
         const excelreader = new ExcelReader();
@@ -25,9 +26,22 @@ test.describe('TS01', async()=>{
         await schedule_flow.SC();
     })
 
-    test('TC002 - Verify that the Schedule scren displays the data.', async()=>{
+    test('TC002 - Verify that the Schedule screen displays the data.', async()=>{
         const schedule_flow = new scheduleScreen(page);
         await schedule_flow.ScheduleFlow();
     })
 
-})
+    test('TC003 - Verify that the Edit functionality', async()=>{
+        const Schedule_flow = new scheduleScreen(page);
+        await Schedule_flow.EditSchedule();
+        const waiting_flow = new scheduleScreen(page);
+        const excelreader = new ExcelReader();
+        const Data = await excelreader.readExcel("Utils/Deepam_Dataset.xlsx", "Doctor-EHR");
+        const {Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan, medicine, Dosage, M_Count} = Data[0];
+        await waiting_flow.waitingScreen(Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan, medicine, Dosage, M_Count);
+    })
+
+    /*test('TC004 - Verify that the Waiting screen displays the data.', async()=>{
+        
+    })*/
+ })

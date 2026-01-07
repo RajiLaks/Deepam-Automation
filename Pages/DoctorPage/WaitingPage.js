@@ -1,6 +1,6 @@
 const {expect} = require ('@playwright/test');
 const {OngoingFlow} = require ('../DoctorPage/OngoingPage');
-class WaitingFlow{
+class WaitingScreen{
     constructor(page){
         this.page = page;
         this.ODC = page.locator('(//p[@class="icon-head"])[1]'); //ODC - OnDemand Consultation
@@ -428,4 +428,4 @@ class WaitingFlow{
 
 
 }
-module.exports = {WaitingFlow};
+module.exports = {WaitingScreen};

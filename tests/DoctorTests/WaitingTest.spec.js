@@ -1,7 +1,8 @@
 const {test} = require ('@playwright/test');
-const {WaitingFlow} = require ('../../Pages/DoctorPage/WaitingPage');
+const {WaitingScreen} = require ('../../Pages/DoctorPage/WaitingPage');
 const {ExcelReader} = require ('../../Utils/ExcelReader');
 const {LoginPage} = require ('../../Pages/BasePage/LoginPage');
+const {scheduleScreen} = require ('../../Pages/DoctorPage/SchedulePage');
 
 let page;
 let context;
@@ -17,8 +18,8 @@ test.describe('TS01', async()=>{
         const {URL,MobileNo, Password} = dataset[0];
         await loginpage.LaunchURL(URL);    
         await loginpage.DoctorLogin(MobileNo, Password);
-        const ondemandconsultation = new WaitingFlow(page);
-        await ondemandconsultation.ODC_Screen();
+        const scheduleConsultation = new scheduleScreen(page);
+        await scheduleConsultation.SC();
     })
 
     /*test('TC001 - Navigate to the On-Demand consultation screen', async()=>{
@@ -27,7 +28,7 @@ test.describe('TS01', async()=>{
     })*/
 
     test('TC002 - Verify that the Waiting appointment screen', async()=>{
-        const waiting = new WaitingFlow(page);
+        const waiting = new WaitingScreen(page);
         const excelreader = new ExcelReader();
         const Data = await excelreader.readExcel("Utils/Deepam_Dataset.xlsx", "Doctor-EHR");
         const {Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan, medicine, Dosage, M_Count} = Data[0];
@@ -35,7 +36,7 @@ test.describe('TS01', async()=>{
     })
 
     test('TC003 - Verify that the Vitals screen displays the all data and it should be editable.', async()=>{
-        const vitals = new WaitingFlow(page);
+        const vitals = new WaitingScreen(page);
         const excelreader = new ExcelReader();
         const vitals_data = await excelreader.readExcel("Utils/Deepam_Dataset.xlsx", "Doctor-EHR");
         const {Systolic, Diastolic, height, weight, Temp, pulseRate, SpO2Level} = vitals_data[0];
@@ -43,7 +44,7 @@ test.describe('TS01', async()=>{
     })
     
     test('TC004 - Verify that the Medical History fields should be present and editable', async()=>{
-        const medicalHistory = new WaitingFlow(page);
+        const medicalHistory = new WaitingScreen(page);
         const excelreader = new ExcelReader();
         const Data_MH = await excelreader.readExcel("Utils/Deepam_Dataset.xlsx", "Doctor-EHR");
         const {diabeteseDetails, Subclinical_Hypothyroidism, asthma} = Data_MH[0];
@@ -51,47 +52,47 @@ test.describe('TS01', async()=>{
     })
 
     test('TC005 - Verify that the Surgery details field displays the data and it should be editable', async()=>{
-        const surgeryhistory = new WaitingFlow(page);
+        const surgeryhistory = new WaitingScreen(page);
         await surgeryhistory.Surgery_History();
     })
 
     test('TC006 - Verify that the Family details field displays the data and it should be editable', async()=>{
-        const family_history = new WaitingFlow(page);
+        const family_history = new WaitingScreen(page);
         await family_history.Family_History();
     })
 
     test('TC007 - Verify that the allergies details field displays the data and it should be editable', async()=>{
-        const Allergieshistory = new WaitingFlow(page);
+        const Allergieshistory = new WaitingScreen(page);
         await Allergieshistory.Allergies_Dropdown();
     })   
     
     test('TC008 - Verify that the OnExamination details field displays the data and it should be editable', async()=>{
-        const onexamination = new WaitingFlow(page);
+        const onexamination = new WaitingScreen(page);
         await onexamination.On_Examination();
     }) 
     
     test('TC009 - Verify that the medicataion details field displays the data and it should be editable', async()=>{
-        const medicaionDetails = new WaitingFlow(page);
+        const medicaionDetails = new WaitingScreen(page);
         await medicaionDetails.Medicationdropdown();
     }) 
 
     test('TC010 - Verify that the life style details field displays the data and it should be editable', async()=>{
-        const lifestyle = new WaitingFlow(page);
+        const lifestyle = new WaitingScreen(page);
         await lifestyle.Life_Style();
     }) 
 
     test('TC011 - Verify that the appointment history details field displays the data and it should be editable', async()=>{
-        const appointmenthistory = new WaitingFlow(page);
+        const appointmenthistory = new WaitingScreen(page);
         await appointmenthistory.Appointment_History();
     }) 
 
     test('TC012 - Verify that the reports screen displays the data and it should be editable', async()=>{
-        const reportsdetails = new WaitingFlow(page);
+        const reportsdetails = new WaitingScreen(page);
         await reportsdetails.Reports_Screen();
     }) 
 
     test('TC013 - Verify that the user can able to edit the NOTES details', async()=>{
-        const notesflow = new WaitingFlow(page);
+        const notesflow = new WaitingScreen(page);
         const excelreader = new ExcelReader();
         const Data_Notes = await excelreader.readExcel("Utils/Deepam_Dataset.xlsx", "Doctor-EHR");
         const {Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan} = Data_Notes[0];
@@ -99,7 +100,7 @@ test.describe('TS01', async()=>{
     })
 
     test('TC014 - Verify that the RX screen displays the data and it should be editable', async()=>{
-        const rxscreen = new WaitingFlow(page);
+        const rxscreen = new WaitingScreen(page);
         const excelreader = new ExcelReader();
         const Data_RX = await excelreader.readExcel("Utils/Deepam_Dataset.xlsx", "Doctor-EHR");
         const {medicine, Dosage, M_Count} = Data_RX[0];
@@ -107,17 +108,17 @@ test.describe('TS01', async()=>{
     })
 
     test('TC015 - Verify that the Lab screen displays the data and it should be editable', async()=>{
-        const labscreen = new WaitingFlow(page);
+        const labscreen = new WaitingScreen(page);
         await labscreen.LabFlow();
     })
 
     test('TC016 - Verify that the Summary screen displays the correct data.', async()=>{
-        const summaryscreen = new WaitingFlow(page);
+        const summaryscreen = new WaitingScreen(page);
         await summaryscreen.SummaryFlow();
     })
 
     test('TC017 - Verify that the user can accept the patient appointment', async()=>{
-        const ondemandconsultation = new WaitingFlow(page);
+        const ondemandconsultation = new WaitingScreen(page);
         const excelreader = new ExcelReader();
         const Data = await excelreader.readExcel("Utils/Deepam_Dataset.xlsx", "Doctor-EHR");
         const {Cheif_Complaint, Symptoms, Diagnosis_data, treatment_plan, medicine, Dosage, M_Count} = Data[0];        
