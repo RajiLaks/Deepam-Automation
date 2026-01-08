@@ -20,7 +20,7 @@ class SalesPage {
 
         this.getDetails=page.locator("//div[@class='ag-center-cols-container']//div[@col-id='product']/../div");
 
-
+        this.noRecordFound=page.locator("(//span[text()='No record found'])[1]");
 
     }
 
@@ -51,6 +51,15 @@ class SalesPage {
               printdetails.push(value);
         }
         return printdetails;
+    }
+
+    async validateMessage(){
+        if(await expect(this.noRecordFound).toBeVisible){
+
+            return console.log("No Record Found");
+        }else{
+            return console.log("Sales details are displayed");
+        }
     }
 
 
