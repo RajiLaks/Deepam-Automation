@@ -1,0 +1,206 @@
+<testsuites id="" name="" tests="26" failures="1" skipped="24" errors="0" time="35.638652">
+<testsuite name="PharmacistTest\CreateNewOrder.spec.js" timestamp="2026-01-08T12:38:20.884Z" hostname="chromium" tests="26" failures="1" skipped="24" time="30.378" errors="0">
+<testcase name="Pharmacist › TC001 - Login Pharmacist" classname="PharmacistTest\CreateNewOrder.spec.js" time="16.481">
+</testcase>
+<testcase name="Pharmacist › TC002 - Create a New Order with Valid Credential" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC003 - Check Application displays Alert Message for Invalid Purchase of Medicine" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC004 - Create a New Order with 50% Discount" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC005 - Create a New Order with 50% Discount and without entering Ref_By and Paymentmode" classname="PharmacistTest\CreateNewOrder.spec.js" time="13.897">
+<failure message="CreateNewOrder.spec.js:61:5 TC005 - Create a New Order with 50% Discount and without entering Ref_By and Paymentmode" type="FAILURE">
+<![CDATA[  [chromium] › PharmacistTest\CreateNewOrder.spec.js:61:5 › Pharmacist › TC005 - Create a New Order with 50% Discount and without entering Ref_By and Paymentmode 
+
+    Error: page.reload: Target page, context or browser has been closed
+    Call log:
+      - waiting for navigation until "load"
+        - navigated to "https://qa-deepam.medyaan.com/pharmacy-order"
+
+
+      74 |         await Create.Received(Received);
+      75 |         await Create.Pay_Button();
+    > 76 |         await page.reload()
+         |                    ^
+      77 |         
+      78 |     });
+      79 |     test('TC006 - Create and Edit the Medicine and pay', async () => {
+        at C:\Deepam\tests\PharmacistTest\CreateNewOrder.spec.js:76:20
+]]>
+</failure>
+<system-out>
+<![CDATA[type: Employee
+isEnable: [33mfalse[39m
+negative
+[33m62[39m
+]]>
+</system-out>
+</testcase>
+<testcase name="Pharmacist › TC006 - Create and Edit the Medicine and pay" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC007 - Create New Order with Multiple Medicine and pay" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC008 - Add Multiple Medicine then delete a medicine and pay" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC009 - Goto Create Order page and View Ordered_History" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC010 - Goto Reorder page and order the same medicine" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC011 - Goto Reorder page and Delete and add an medicine then reorder it" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC012 - Goto Reorder page and click the NewOrder module to Create a New Medicine order" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC013 - Goto Return the Purchased Medicine" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC014 - Goto Return page and Click the Neworder Module" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC015 - Goto Purchased Bill page " classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC016 - Goto New Order page and Click the Latest Module then Comeback" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC017 - Goto Create Order page and Come back to Dashboard" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC018 - View the Appointment Orders and Click Create Cancel Icon" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC019 - View the Appointment Orders and pay the order" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC020 - View the Appointment &amp; goto Order page,then Reduce the Quantity and Pay" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC021 - Pay the Appointment order with Extra medicines" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC022 - Pay the Appointment order with Untick the Appointment medicine and add Extra medicines" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC023 - Pay the Appointment Order" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC024 - Go to Create Order page and Click the Latest module &amp; Click CloseIcon" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC025 - Goto Reorder page and Click the Neworder Module" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+<testcase name="Pharmacist › TC026 - Goto Reorder page and Click the Neworder Module" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
+<properties>
+<property name="skip" value="">
+</property>
+</properties>
+<skipped>
+</skipped>
+</testcase>
+</testsuite>
+</testsuites>

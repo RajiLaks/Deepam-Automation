@@ -136,6 +136,7 @@ exports.CreateNewOrder = class CreateNewOrder {
         //  console.log("Count", count);
 
         if (count == 0) {
+            await this.page.waitForTimeout(500)
 
             await locator.waitFor({ state: 'visible' });
             await locator.click();
@@ -193,12 +194,12 @@ exports.CreateNewOrder = class CreateNewOrder {
                 await selecttype.click();
             } else if (clickable == true) {
                 await selecttype.dblclick();
-                await Text.fill(type);
+                await Text.fill(fill);
             }
         }
-        if (type !== null && type !== undefined && type !== ''&& await Text.isEnabled()) {
+        if (type !== null && type !== undefined && type !== '' && await Text.isEnabled()) {
             await Text.waitFor({ state: 'visible' });
-            await this.Text.fill(fill)
+            await Text.fill(fill)
         }
         await this.page.waitForTimeout(500);
     }
@@ -236,6 +237,7 @@ exports.CreateNewOrder = class CreateNewOrder {
     async Pay_Button() {
         await this.p_button.waitFor({ state: 'visible' });
         await this.p_button.click();
+        await this.page.waitForTimeout(2000)
     }
     async Tick_Material(tick) {
         //use anyone medicine name, batch, quantity and etc... 
