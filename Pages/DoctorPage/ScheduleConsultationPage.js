@@ -133,17 +133,19 @@ class ScheduleConsultaionPage{
             await this.page.waitForTimeout(1000);   
             await this.audioButton.click();
             await this.page.waitForTimeout(1000);
-            await this.videoButton.click();
+            await this.videoButtonOff.click();
             await this.page.waitForTimeout(1000);   
-            await this.videoButton.click();
+            await this.videoButtonOn.click();
             await this.page.waitForTimeout(1000);
             await this.joinCallbutton.click();
             await this.page.waitForTimeout(5000);
+            /*
             await this.diagnosis.scrollIntoViewIfNeeded();
             await this.page.waitForTimeout(1000);
             await this.followUp.scrollIntoViewIfNeeded();
             await this.page.waitForTimeout(1000);
             await this.Notes_BackButton.click();
+            */
         }
     }
 
