@@ -4,6 +4,7 @@ const {ExcelReader} = require ('../../Utils/ExcelReader');
 const {DashboardPage} = require ('../../Pages/HelpDeskPage/DashboardPage');
 import { searchAvailableDoctor } from '../../Pages/HelpDeskPage/Availability_Utils';
 import { ScheduleAppointment } from '../../Pages/HelpDeskPage/CreateSchedule_Utils';
+import { ScheduleConsulation } from '../../Pages/HelpDeskPage/SCFulflow_Utils';
  
 let page;
 let context;
@@ -17,7 +18,7 @@ test.describe('Helpdesk Dashboard', ()=>{
         page = await context.newPage();        
         const loginpage = new LoginPage(page);
         const excelreader = new ExcelReader();
-        const dataset = await excelreader.readExcel('C:/Users/JV/Desktop/Deepam/Deepam-Automation/Utils/Deepam_Dataset.xlsx', 'Login');
+        const dataset = await excelreader.readExcel("C:/Users/JV/Desktop/Deepam/Deepam-Automation/Utils/Deepam_Dataset.xlsx", 'Login');
         const {URL} = dataset[0];
         await loginpage.LaunchURL(URL);
         const {MobileNo, Password} = dataset[1];
@@ -54,7 +55,7 @@ test("TC003 - Enter valid input and view the available doctor", async () => {
     const dashboardPage = new DashboardPage(page)
     const excelreader = new ExcelReader();
     const dataset = await excelreader.readExcel(
-        'C:/Users/JV/Desktop/Deepam/Deepam-Automation/Utils/Deepam_Dataset.xlsx','Helpdesk_Dashboard')
+        "C:/Users/JV/Desktop/Deepam/Deepam-Automation/Utils/Deepam_Dataset.xlsx",'Helpdesk_Dashboard')
    
     //Import Availability flow    
     await searchAvailableDoctor(dashboardPage, dataset)
@@ -70,14 +71,11 @@ test("TC004 - Select the available doctor and Schedule appointment", async () =>
     const dataset = await excelreader.readExcel(
         'C:/Users/JV/Desktop/Deepam/Deepam-Automation/Utils/Deepam_Dataset.xlsx','Helpdesk_Dashboard');
    
-    //Import Availability flow    
-    await searchAvailableDoctor(dashboardPage, dataset)
-   
     //Import Create Schedule flow
     await ScheduleAppointment(dashboardPage,dataset)
 })
  
-test.only("TC005 - Verify Error message when submitted with empty input in Get Started section", async () => {    
+test("TC005 - Verify Error message when submitted with empty input in Get Started section", async () => {    
     test.setTimeout(45000)
     const dashboardPage = new DashboardPage(page)
     const excelreader = new ExcelReader();
@@ -92,6 +90,114 @@ test.only("TC005 - Verify Error message when submitted with empty input in Get S
  
     //Click Next without entering any fields
     await dashboardPage.clickNext()
+    await dashboardPage.VerifyMandatoryErrorMessages()
+})
+
+
+test("TC006 - User when enters Valid Inputs and clicks Next, should navigate to next page", async () => {    
+    test.setTimeout(45000)
+    const dashboardPage = new DashboardPage(page)
+    const excelreader = new ExcelReader();
+    const dataset = await excelreader.readExcel(
+        'C:/Users/JV/Desktop/Deepam/Deepam-Automation/Utils/Deepam_Dataset.xlsx','Helpdesk_Dashboard');
+   
+    //Import Availability flow    
+    await searchAvailableDoctor(dashboardPage, dataset)
+   
+    //Import Create Schedule flow
+    await ScheduleAppointment(dashboardPage,dataset)
+ 
+    //Click Next without entering any fields
+    await dashboardPage.GetStartedSearch(dataset[0].Search)
+    await dashboardPage.selectPatientByName(dataset[0].PatientName)
+    await dashboardPage.clickNext()
+    
+})
+
+test("TC007 - Verify when user clicks Next from Vitals page, should navigate to next page", async () => {    
+    test.setTimeout(60000)
+    const dashboardPage = new DashboardPage(page)
+    const excelreader = new ExcelReader();
+    const dataset = await excelreader.readExcel(
+        'C:/Users/JV/Desktop/Deepam/Deepam-Automation/Utils/Deepam_Dataset.xlsx','Helpdesk_Dashboard');
+   
+    //Import Availability flow    
+    await searchAvailableDoctor(dashboardPage, dataset)
+   
+    //Import Create Schedule flow
+    await ScheduleAppointment(dashboardPage,dataset)
+ 
+    //Click Next without entering any fields
+    await dashboardPage.GetStartedSearch(dataset[0].Search)
+    await dashboardPage.selectPatientByName(dataset[0].PatientName)
+    await dashboardPage.clickNext()
+
+    //Scroll down and click Continue in Vitals
+    await dashboardPage.VitalsContinue()
+    
+})
+
+test("TC008 - Verify when user clicks Next from Summary page, should navigate to next page", async () => {    
+    test.setTimeout(60000)
+    const dashboardPage = new DashboardPage(page)
+    const excelreader = new ExcelReader();
+    const dataset = await excelreader.readExcel(
+        'C:/Users/JV/Desktop/Deepam/Deepam-Automation/Utils/Deepam_Dataset.xlsx','Helpdesk_Dashboard');
+   
+    //Import Availability flow    
+    await searchAvailableDoctor(dashboardPage, dataset)
+   
+    //Import Create Schedule flow
+    await ScheduleAppointment(dashboardPage,dataset)
+ 
+    //Click Next without entering any fields
+    await dashboardPage.GetStartedSearch(dataset[0].Search)
+    await dashboardPage.selectPatientByName(dataset[0].PatientName)
+    await dashboardPage.clickNext()
+
+    //Scroll down and click Continue in Vitals
+    await dashboardPage.VitalsContinue()
+    await dashboardPage.ScheduleSummaryContinue()
+    await dashboardPage.ScheduleSummaryConfirmYes()
+    
+})
+
+test("TC009 - Verify when user clicks Next from Payment page, should schedule successfully", async () => {    
+    test.setTimeout(90000)
+    const dashboardPage = new DashboardPage(page)
+    const excelreader = new ExcelReader();
+    const dataset = await excelreader.readExcel(
+        'C:/Users/JV/Desktop/Deepam/Deepam-Automation/Utils/Deepam_Dataset.xlsx','Helpdesk_Dashboard');
+   
+    //Import Availability flow    
+    await searchAvailableDoctor(dashboardPage, dataset)
+   
+    //Import Create Schedule flow
+    await ScheduleAppointment(dashboardPage,dataset)
+ 
+    //Click Next without entering any fields
+    await dashboardPage.GetStartedSearch(dataset[0].Search)
+    await dashboardPage.selectPatientByName(dataset[0].PatientName)
+    await dashboardPage.clickNext()
+
+    //Scroll down and click Continue in Vitals
+    await dashboardPage.VitalsContinue()
+    await dashboardPage.ScheduleSummaryContinue()
+    await dashboardPage.ScheduleSummaryConfirmYes()
+    await dashboardPage.PaymentConfirmation()
+    await dashboardPage.PaymentConfirmYes()
+    
+})
+
+test.only("TC010 - Verify Schedule Consultation full flow correctly and return to dashboard", async () => {    
+    test.setTimeout(90000)
+    const dashboardPage = new DashboardPage(page)
+    const excelreader = new ExcelReader();
+    const dataset = await excelreader.readExcel(
+        'C:/Users/JV/Desktop/Deepam/Deepam-Automation/Utils/Deepam_Dataset.xlsx','Helpdesk_Dashboard');
+   
+    //Import Schedule Consulation full flow    
+    await ScheduleConsulation(dashboardPage, dataset) 
 })
  
  

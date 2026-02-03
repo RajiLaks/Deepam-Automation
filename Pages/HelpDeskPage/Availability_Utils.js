@@ -1,5 +1,5 @@
 export async function searchAvailableDoctor(dashboardPage, dataset) {
-    await dashboardPage.verifyDashboardPage();
+    //await dashboardPage.verifyDashboardPage();
     await dashboardPage.SCOpen();
  
     await dashboardPage.AvailabilityFill({

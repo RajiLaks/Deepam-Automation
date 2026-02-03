@@ -24,7 +24,14 @@ class DashboardPage
         this.ScheduletimeDropdown = this.page.locator('select.custom-select:not(.search-doctor)')
         this.ScheduleAppointmentBtn = this.page.getByRole('button', {name: 'Schedule Appointment'})
         this.nextButton = page.getByRole('button', { name: 'Next' })
- 
+        this.GetStartedmandatoryfields = ["Name", "Patient ID", "Date of Birth", "Age", "Gender"]
+        this.searchInput = page.locator('#searchInput').first()
+        this.patientList = page.locator('ul.ul-box')
+        this.VitalscontinueButton = this.page.getByRole('button', { name: /continue/i })
+        this.SummarycontinueButton = page.getByRole('button', { name: /continue/i })
+        this.SummaryConfirmyesBtn = page.getByRole('button', { name: /^yes$/i })
+        this.confirmPaymentButton = page.locator('button.button-payment:has-text("Received")')
+        this.PaymentConfirmyesBtn = page.getByRole('button', { name: /^yes$/i }) 
  
        
     }
@@ -148,9 +155,72 @@ class DashboardPage
             await this.page.waitForTimeout(100)
         }
         await this.nextButton.click()
-        await this.page.waitForTimeout(2000)
+        await this.page.waitForTimeout(1500)
     }  
  
+    async VerifyMandatoryErrorMessages()
+    {
+    for (const field of this.GetStartedmandatoryfields) {
+        const errorText = `${field} is required`;
+        await expect(this.page.getByText(errorText)).toBeVisible()
+        await this.page.waitForTimeout(1000)
+    }
+    }
+
+    async GetStartedSearch(searchText) {
+        await this.searchInput.fill(searchText);
+        await this.patientList.waitFor({ state: 'visible' });
+    }
+
+    async selectPatientByName(patientName) 
+    {
+        const patient = this.patientList
+            .locator('li.app-list div', { hasText: patientName })
+            .first();
+
+        await patient.waitFor({ state: 'visible' });
+        await patient.click();
+        await this.page.waitForTimeout(1000)
+    }
+
+    async VitalsContinue()
+    {
+        for (let i = 0; i < 40; i++) {
+            await this.page.mouse.wheel(0, 60)
+            await this.page.waitForTimeout(100)
+        }
+        await this.VitalscontinueButton.click()
+        await this.page.waitForTimeout(2000)
+    }
+
+    async ScheduleSummaryContinue()
+    {
+        for (let i = 0; i < 40; i++) {
+            await this.page.mouse.wheel(0, 60)
+            await this.page.waitForTimeout(100)
+        }
+        await this.SummarycontinueButton.click()
+        await this.page.waitForTimeout(1500)
+    }
+
+    async ScheduleSummaryConfirmYes()
+    {
+        await this.SummaryConfirmyesBtn.click()
+        await this.page.waitForTimeout(2000)
+    }
+
+    async PaymentConfirmation()
+    {
+        await this.confirmPaymentButton.click()
+        await this.page.waitForTimeout(2000)
+    }
+
+    async PaymentConfirmYes()
+    {
+        await this.PaymentConfirmyesBtn.click()
+        await this.page.waitForTimeout(5000)
+    }
+
  
 }
  
