@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
-const { Changepass } = require('/Deepam/Pages/PharmacistPage/Change_Password');
-const { LoginPage } = require('/Deepam/Pages/BasePage/LoginPage');
+const { Changepass } = require('/Deepam_Automation/Pages/PharmacistPage/Change_Password');
+const { LoginPage } = require('/Deepam_Automation/Pages/BasePage/LoginPage');
 const { ExcelReader } = require('../../Utils/ExcelReader');
 const excelreader = new ExcelReader();
 let page;

@@ -402,7 +402,7 @@ exports.CreateNewOrder = class CreateNewOrder {
             const Latest = this.page.locator("//div[@id='sidebar-latest']//button[@class='close text-dark']/*")
             await Latest.waitFor({ state: 'visible' });
             await Latest.click();
-        } else if (isVisible2) {
+        } else if ( isVisible2) {
             const History = this.page.locator("//div[@id='sidebar-history']//button[@class='close text-dark']/*")
             await History.waitFor({ state: 'visible' });
             await History.click();
@@ -418,7 +418,9 @@ exports.CreateNewOrder = class CreateNewOrder {
         } await this.page.waitForTimeout(1000);
     }
     async Search(data) {
-        var isVisible1 = await this.page.locator("//strong[text()='Sales History']").isVisible()
+       
+        var isVisible2 = await this.page.locator("//strong[text()='Sales History']").isVisible()
+        var isVisible1 = await this.page.locator("//strong[text()='latest OP appointments']").isVisible()
 
         if (isVisible1) {
 
@@ -437,6 +439,26 @@ exports.CreateNewOrder = class CreateNewOrder {
 
     }
 
+
+    async History_Search(data) {
+
+        const His=await this.page.locator("//input[@id='pharmacyhistoryFilter']")
+        await His.waitFor({ state: 'visible' });
+        await His.fill(data)
+        }
+
+    async Latest_Search(data) {
+
+        const His=await this.page.locator("//input[@id='patientmobquickFilter']")
+        await His.waitFor({ state: 'visible' });
+        await His.fill(data)
+        }
+    async Appointment_Search(data) {
+
+        const His=await this.page.locator("//input[@id='patientquickFilter']")
+        await His.waitFor({ state: 'visible' });
+        await His.fill(data)
+        }
 
 
 }
