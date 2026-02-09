@@ -3,6 +3,8 @@ const {LoginPage} = require ('../../Pages/BasePage/LoginPage');
 const {ExcelReader} = require ('../../Utils/ExcelReader');
 const {VideoConsultationPage} = require ('../../Pages/DoctorPage/VideoConsultationPage');
 const { on } = require('events');
+//import {ScheduleConsultation} from '../../Pages/HelpDeskPage/SCFulflow_Utils';
+
 
 let page;
 let context;
@@ -27,7 +29,7 @@ test.describe('Video Consultation Tests for Doctor', () => {
         await context.close();
     });
 
-  /*  test('TC002 - Verify that the waiting appointments', async () => {
+    test('TC002 - Verify that the waiting appointments', async () => {
         const waitingScreen = new VideoConsultationPage(page);
         await waitingScreen.verify_WaitingAppointments();
         await waitingScreen.close_EditPage();
@@ -49,7 +51,13 @@ test.describe('Video Consultation Tests for Doctor', () => {
         await joinCall.EditVitals(Systolic, Diastolic, height, weight, Temp, pulseRate, SpO2Level);
         await joinCall.click_MedicalHistory();
         await joinCall.EditMedicalHistory_selectOptions(diabeteseDetails, Subclinical_Hypothyroidism, asthma);
-    });*/
+        await joinCall.click_MedicalHistory();
+        await joinCall.EditMedicalHistory_selectOptions(diabeteseDetails, Subclinical_Hypothyroidism, asthma);
+        await joinCall.click_SurgicalHistory();
+        await joinCall.Edit_SurgicalHistory();
+        await joinCall.click_FamilyHistory();
+        await joinCall.Edit_FamilyHistory();
+    }); 
 
     test('TC004 - Verify that the Ongoing Appointments', async () => {
         const ongoingScreen = new VideoConsultationPage(page);
@@ -60,14 +68,14 @@ test.describe('Video Consultation Tests for Doctor', () => {
         await ongoingScreen.joincall();
         await ongoingScreen.click_EHR_screen();
         await ongoingScreen.click_Vitals();
-        const excelreader = new ExcelReader();
+      /*  const excelreader = new ExcelReader();
         const dataset = await excelreader.readExcel('C:/Users/Rajalakshmi/OneDrive - Datayaan Solutions Private Limited/Desktop/Deepam_Dataset.xlsx', 'Doctor_EHR');
         const {Systolic, Diastolic, height, weight, Temp, pulseRate, SpO2Level,diabeteseDetails, Subclinical_Hypothyroidism, asthma} = dataset[0];
         await ongoingScreen.EditVitals(Systolic, Diastolic, height, weight, Temp, pulseRate, SpO2Level);
         await ongoingScreen.click_MedicalHistory();
-        await ongoingScreen.EditMedicalHistory_selectOptions(diabeteseDetails, Subclinical_Hypothyroidism, asthma);
-        await ongoingScreen.click_SurgicalHistory();
-        await ongoingScreen.Edit_SurgicalHistory();
+        await ongoingScreen.EditMedicalHistory_selectOptions(diabeteseDetails, Subclinical_Hypothyroidism, asthma); */
+        await ongoingScreen.click_SurgeryHistory();
+        await ongoingScreen.Edit_SurgeryHistory();
         await ongoingScreen.click_FamilyHistory();
         await ongoingScreen.Edit_FamilyHistory();
 

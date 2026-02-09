@@ -1,4 +1,5 @@
 const {expect} = require('@playwright/test');
+const { stringifier } = require('csv');
 
 class VideoConsultationPage {
     constructor(page) {
@@ -61,7 +62,7 @@ class VideoConsultationPage {
         this.Homeoxygenuse = page.locator("//div[@class='problemCheck custom-control custom-control-inline custom-checkbox']/label[text()='Home oxygen use']");
         this.Sleepapnea = page.locator("//div[@class='problemCheck custom-control custom-control-inline custom-checkbox']/label[text()='Sleep apnea']");
         this.Respiratory_Others = page.locator("(//label[text()='Others'])[2]");
-        this.OthersText2 = page.locator("(//div[@class='col-12 pt-2 p-0 pl-1 otherstextfield']/input[@class='otherText form-control'])[2]");
+        this.OthersText2 = page.locator("(//div[@class='col-12 pt-2 p-0 pl-1 otherstextfield']/input[@class='otherText form-control'])[1]");
         //Liver Disease
         this.HepatitisA = page.locator("//div[@class='problemCheck custom-control custom-control-inline custom-checkbox']/label[text()='Hepatitis A']");
         this.HepatitisB = page.locator("//div[@class='problemCheck custom-control custom-control-inline custom-checkbox']/label[text()='Hepatitis B']");
@@ -69,19 +70,19 @@ class VideoConsultationPage {
         this.LiverFailure = page.locator("//div[@class='problemCheck custom-control custom-control-inline custom-checkbox']/label[text()='Liver failure']");
         this.Livertransplant = page.locator("//div[@class='problemCheck custom-control custom-control-inline custom-checkbox']/label[text()='Liver transplant']");
         this.LiverDisease_Others = page.locator("(//label[text()='Others'])[3]");
-        this.LiverDisease_OthersText = page.locator("(//div[@class='col-12 pt-2 p-0 pl-1 otherstextfield']/input[@class='otherText form-control'])[3]");
+        this.LiverDisease_OthersText = page.locator("(//div[@class='col-12 pt-2 p-0 pl-1 otherstextfield']/input[@class='otherText form-control'])[1]");
         //Kidney Disease
         this.Dialysis = page.locator("//div[@class='problemCheck custom-control custom-control-inline custom-checkbox']/label[text()='Dialysis']");
         this.Kidneystones = page.locator("//div[@class='problemCheck custom-control custom-control-inline custom-checkbox']/label[text()='Kidney stones']");
         this.KidneyDisease_Others = page.locator("(//label[text()='Others'])[4]");
-        this.KidneyOthersText = page.locator("(//div[@class='col-12 pt-2 p-0 pl-1 otherstextfield']/input[@class='otherText form-control'])[4]");
+        this.KidneyOthersText = page.locator("(//div[@class='col-12 pt-2 p-0 pl-1 otherstextfield']/input[@class='otherText form-control'])[1]");
         //Gastrointestinal Problems
         this.Bleedinginstool = page.locator("//div[@class='problemCheck custom-control custom-control-inline custom-checkbox']/label[text()='Bleeding in stool']");
         this.Bloodvomiting = page.locator("//div[@class='problemCheck custom-control custom-control-inline custom-checkbox']/label[text()='Blood vomiting']");
         this.Chronicdiarrhea = page.locator("//div[@class='problemCheck custom-control custom-control-inline custom-checkbox']/label[text()='Chronic diarrhea']");
         this.Constipation = page.locator("//div[@class='problemCheck custom-control custom-control-inline custom-checkbox']/label[text()='Constipation']");
         this.Gastrointestinal_Others = page.locator("(//label[text()='Others'])[5]");
-        this.Gastrointestinal_OthersText = page.locator("(//div[@class='col-12 pt-2 p-0 pl-1 otherstextfield']/input[@class='otherText form-control'])[5]");
+        this.Gastrointestinal_OthersText = page.locator("(//div[@class='col-12 pt-2 p-0 pl-1 otherstextfield']/input[@class='otherText form-control'])[1]");
         //Brain stroke
         this.BrainStroke_Yes = page.locator("(//div[@role='radiogroup'])[4]/div/label/span[text()='Yes']");
         this.BrainStroke_No = page.locator("(//div[@role='radiogroup'])[4]/div/label/span[text()='No']");
@@ -110,9 +111,9 @@ class VideoConsultationPage {
         this.Heartsurgery = page.locator("//label[text()='Heart surgery']");
         this.Gallbladderremoval = page.locator("//label[text()='Gall bladder removal']");
         this.Appendixsurgery = page.locator("//label[text()='Appendix surgery']");
-        this.KneeHipReplacement = page.locator("//label[text()='Knee/hip replacement']");
+        this.KneeHipReplacement = page.locator("//label[text()='Knee/hip Replacement']");
         this.SurgeryHistory_Others = page.locator("(//label[text()='Others'])[6]");
-        this.SurgeryHistory_OthersText = page.locator("(//div[@class='col-12 pt-2 p-0 pl-1 otherstextfield']/input[@class='otherText form-control'])[6]");
+        this.SurgeryHistory_OthersText = page.locator("(//div[@class='col-12 pt-2 p-0 pl-1 otherstextfield']/input[@class='otherText form-control'])[1]");
         this.SH_SubmitButton = page.locator('(//div[@align="end"])[2]/button[2]');
         this.toast_SH = page.locator('//p[text()="Surgical History updated successfully."]');
 
@@ -127,14 +128,34 @@ class VideoConsultationPage {
         this.Diabetes = page.locator("//label[text()='Diabetes']");
         this.Heartdisease = page.locator("//label[text()='Heart disease']");
         this.FamilyHistory_Others = page.locator("(//label[text()='Others'])[7]");
-        this.FamilyHistory_OthersText = page.locator("(//div[@class='col-12 pt-2 p-0 pl-1 otherstextfield']/input[@class='otherText form-control'])[6]");
+        this.FamilyHistory_OthersText = page.locator("(//div[@class='col-12 pt-2 p-0 pl-1 otherstextfield']/input[@class='otherText form-control'])[1]");
         this.FH_SubmitButton = page.locator('(//div[@align="end"])[3]/button[2]');
         this.FH_Toast = page.locator('//p[text()="Family History updated successfully."]');
 
         //Allergies
         this.AllergiesButton = page.locator("[aria-controls='accordion5']");
+        this.Allergies_EditButton = page.locator("//div[@id='patient-allergy']/div/div/div/div/button[@class='btn primary-btn edit-btn-size btn-secondary']");
+        //Drug Allergies Options
+        this.Penicillin = page.locator("//label[text()='Penicillin']");
+        this.Bactrim = page.locator("//label[text()='Bactrim']");
+        this.Tetracycline = page.locator("//label[text()='Tetracycline']");
+        this.DrugAllergy_Others = page.locator("(//label[text()='Others'])[8]");
+        this.DrugAllergy_OthersText = page.locator("(//div[@class='col-12 pt-2 p-0 pl-1 otherstextfield']/input[@class='otherText form-control'])[1]");
+        //allergies options
+        this.Pollen = page.locator("//label[text()='Pollen']");
+        this.Dustmites = page.locator("//label[text()='Dust mites']");
+        this.Mold = page.locator("//label[text()='Mold']");
+        this.AnimaldanderandCockroaches = page.locator("//label[text()='Animal dander and Cockroaches']");
+        this.Insectsting = page.locator("//label[text()='Insect sting']");
+        this.Latex = page.locator("//label[text()='Latex']");
+        this.Allergy_Others = page.locator("(//label[text()='Others'])[9]");
+        this.Allergy_OthersText = page.locator("(//div[@class='col-12 pt-2 p-0 pl-1 otherstextfield']/input[@class='otherText form-control'])[1]");
+        this.Allergies_SubmitButton = page.locator('(//div[@class="text_align"])[2]/button[2]');
+        this.Allergies_Toast = page.locator('//p[text()="Allergy details updated successfully."]');
+
         //OnExamination
         this.OnExaminationButton = page.locator("[aria-controls='accordion6']");
+        this.OnExamination_EditButton = page.locator("//div[@id='patient-onexamination']/div/div/div/div/button[@class='btn primary-btn edit-btn-size btn-secondary']");
         //Medications
         this.MedicationsButton = page.locator("[aria-controls='accordion7']");
         //Life Style
@@ -248,6 +269,7 @@ class VideoConsultationPage {
         await this.HeartDisease_Others.click();
         await this.OthersText1.fill('Test');
         await this.page.waitForTimeout(1000);
+        await this.HeartDisease_Others.click();
         //Respiratory Problems
         await this.COPD.click();
         await this.Asthma.click();
@@ -256,7 +278,8 @@ class VideoConsultationPage {
         await this.Homeoxygenuse.click();
         await this.Sleepapnea.click();
         await this.Respiratory_Others.click();
-        await this.OthersText2.fill('Test');     
+        await this.OthersText2.fill('Test');   
+        await this.Respiratory_Others.click();  
         //Liver Disease
         await this.HepatitisA.click();
         await this.HepatitisB.click();
@@ -265,11 +288,13 @@ class VideoConsultationPage {
         await this.Livertransplant.click();
         await this.LiverDisease_Others.click();
         await this.LiverDisease_OthersText.fill('Test');
+        await this.LiverDisease_Others.click();
         //Kidney Disease
         await this.Dialysis.click();
         await this.Kidneystones.click();
         await this.KidneyDisease_Others.click();
         await this.KidneyOthersText.fill('Test');
+        await this.KidneyDisease_Others.click();
         //Gastrointestinal Problems
         await this.Bleedinginstool.click();
         await this.Bloodvomiting.click();
@@ -277,6 +302,7 @@ class VideoConsultationPage {
         await this.Constipation.click();
         await this.Gastrointestinal_Others.click();
         await this.Gastrointestinal_OthersText.fill('Test');
+        await this.Gastrointestinal_Others.click();
         //Brain stroke
         await this.BrainStroke_Yes.click();
         //Hypertension
@@ -285,17 +311,18 @@ class VideoConsultationPage {
         await this.Diabetes_Yes.click();
         //Any Cancer
         await this.AnyCancer_Yes.click();
-        await this.page.waitForTimeout(1000);
+        //await this.page.waitForTimeout(1000);
         await this.scrollForMH.scrollIntoViewIfNeeded();
         await this.DiabetesDetails.fill(diabeteseDetails);
         await this.SubclinicalHypothyroidism.fill(Subclinical_Hypothyroidism);
         await this.asthmaTextField.fill(asthma);
         await this.page.waitForTimeout(1000);
         await this.MH_SubmitButton.click();
-        await this.page.waitForTimeout(3000);
+        await this.page.waitForTimeout(500);
         await expect(this.toast_MH).toHaveText('Medical History updated successfully.');
-        await this.page.waitForTimeout(1000);
+        await this.page.waitForTimeout(500);
         await this.MedicalHistoryButton.click();
+        await this.page.waitForTimeout(1000);
     }
 
     async click_SurgeryHistory(){
@@ -305,6 +332,7 @@ class VideoConsultationPage {
 
     async Edit_SurgeryHistory(){
         await this.Surgery_EditButton.click();
+        await this.page.waitForTimeout(500);
         await this.Tonsilsremoval.click();
         await this.ThyroidSurgery.click();
         await this.Heartsurgery.click();
@@ -313,15 +341,17 @@ class VideoConsultationPage {
         await this.KneeHipReplacement.click();
         await this.SurgeryHistory_Others.click();
         await this.SurgeryHistory_OthersText.fill('Test Surgery');
+        await this.SurgeryHistory_Others.click();
         await this.Gallbladderremoval.click(); 
         await this.Tonsilsremoval.click();
         await this.KneeHipReplacement.click();
-        await this.page.waitForTimeout(1000);
+        await this.page.waitForTimeout(500);
         await this.SH_SubmitButton.click();
-        await this.page.waitForTimeout(3000);
+        await this.page.waitForTimeout(500);
         await expect(this.toast_SH).toHaveText('Surgical History updated successfully.');
-        await this.page.waitForTimeout(1000);
+        await this.page.waitForTimeout(500);
         await this.SurgeryHistoryButton.click();
+        await this.page.waitForTimeout(1000);
     }
 
     async click_FamilyHistory(){
@@ -337,16 +367,63 @@ class VideoConsultationPage {
         await this.Diabetes.click();
         await this.Heartdisease.click();
         await this.FamilyHistory_Others.click();
+        await this.page.waitForTimeout(500);
         await this.FamilyHistory_OthersText.fill('Test History');
-        await this.page.waitForTimeout(1000);
+        await this.FamilyHistory_Others.click();
+        await this.page.waitForTimeout(500);
         await this.FH_SubmitButton.click();
-        await this.page.waitForTimeout(3000);
+        await this.page.waitForTimeout(500);
         await expect(this.FH_Toast).toHaveText('Family History updated successfully.');
         await this.page.waitForTimeout(1000);
         await this.FamilyHistoryButton.click();
+        await this.page.pause();
     }
 
+    //Allergies
+    async click_Allergies(){
+        await this.AllergiesButton.click();
+        await this.page.waitForTimeout(1000);
+    }
+
+    async Edit_Allergies(){
+        await this.Allergies_EditButton.click();
+        //Drug Allergies Options
+        await this.Penicillin.click();  
+        await this.Bactrim.click();
+        await this.Tetracycline.click();
+        await this.DrugAllergy_Others.click();
+        await this.page.waitForTimeout(500);
+        await this.DrugAllergy_OthersText.fill('Test Drug Allergy');
+        await this.DrugAllergy_Others.click();  
+        //allergies options
+        await this.Pollen.click();
+        await this.Dustmites.click();
+        await this.Mold.click();
+        await this.AnimaldanderandCockroaches.click();
+        await this.Insectsting.click();
+        await this.Latex.click();
+        await this.Allergy_Others.click();
+        await this.page.waitForTimeout(500);
+        await this.Allergy_OthersText.fill('Test Allergy');
+        await this.Allergy_Others.click();
+        await this.page.waitForTimeout(500);
+        await this.Allergies_SubmitButton.click();
+        await this.page.waitForTimeout(500);
+        await expect(this.Allergies_Toast).toHaveText('Allergy details updated successfully.');
+        await this.page.waitForTimeout(1000);
+        await this.AllergiesButton.click();
+        await this.page.waitForTimeout(1000);
+    }
     
+    //OnExamination
+    async click_OnExamination(){
+        await this.OnExaminationButton.click();
+        await this.page.waitForTimeout(1000);
+    }
+
+    async Edit_OnExamination(){
+        //To be implemented
+    }
 
     async click_OngoingScreen(){
         await this.ongoingbutton.click();

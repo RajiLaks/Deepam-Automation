@@ -1,204 +1,81 @@
-<testsuites id="" name="" tests="26" failures="1" skipped="24" errors="0" time="35.638652">
-<testsuite name="PharmacistTest\CreateNewOrder.spec.js" timestamp="2026-01-08T12:38:20.884Z" hostname="chromium" tests="26" failures="1" skipped="24" time="30.378" errors="0">
-<testcase name="Pharmacist › TC001 - Login Pharmacist" classname="PharmacistTest\CreateNewOrder.spec.js" time="16.481">
-</testcase>
-<testcase name="Pharmacist › TC002 - Create a New Order with Valid Credential" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
-<properties>
-<property name="skip" value="">
-</property>
-</properties>
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Pharmacist › TC003 - Check Application displays Alert Message for Invalid Purchase of Medicine" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
-<properties>
-<property name="skip" value="">
-</property>
-</properties>
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Pharmacist › TC004 - Create a New Order with 50% Discount" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
-<properties>
-<property name="skip" value="">
-</property>
-</properties>
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Pharmacist › TC005 - Create a New Order with 50% Discount and without entering Ref_By and Paymentmode" classname="PharmacistTest\CreateNewOrder.spec.js" time="13.897">
-<failure message="CreateNewOrder.spec.js:61:5 TC005 - Create a New Order with 50% Discount and without entering Ref_By and Paymentmode" type="FAILURE">
-<![CDATA[  [chromium] › PharmacistTest\CreateNewOrder.spec.js:61:5 › Pharmacist › TC005 - Create a New Order with 50% Discount and without entering Ref_By and Paymentmode 
+<testsuites id="" name="" tests="3" failures="2" skipped="1" errors="0" time="74.897825">
+<testsuite name="DoctorTests\VideoConsultationTest.spec.js" timestamp="2026-01-27T08:36:02.214Z" hostname="chromium" tests="3" failures="2" skipped="1" time="66.538" errors="0">
+<testcase name="Video Consultation Tests for Doctor › TC002 - Verify that the waiting appointments" classname="DoctorTests\VideoConsultationTest.spec.js" time="30.095">
+<failure message="VideoConsultationTest.spec.js:32:5 TC002 - Verify that the waiting appointments" type="FAILURE">
+<![CDATA[  [chromium] › DoctorTests\VideoConsultationTest.spec.js:32:5 › Video Consultation Tests for Doctor › TC002 - Verify that the waiting appointments 
 
-    Error: page.reload: Target page, context or browser has been closed
+    Test timeout of 30000ms exceeded while running "beforeEach" hook.
+
+      11 |
+      12 | test.describe('Video Consultation Tests for Doctor', () => {
+    > 13 |     test.beforeEach('TC001 - Login with valid credentials', async ({browser}) => {
+         |          ^
+      14 |         context = await browser.newContext({viewport: { width: 1200, height: 580}});
+      15 |         await context.grantPermissions(['camera', 'microphone']);
+      16 |         page = await context.newPage();
+        at D:\PlayWright Automation\Deepam\tests\DoctorTests\VideoConsultationTest.spec.js:13:10
+
+    Error: page.goto: Target page, context or browser has been closed
     Call log:
-      - waiting for navigation until "load"
-        - navigated to "https://qa-deepam.medyaan.com/pharmacy-order"
+      - navigating to "https://qa-deepam.medyaan.com/", waiting until "load"
 
 
-      74 |         await Create.Received(Received);
-      75 |         await Create.Pay_Button();
-    > 76 |         await page.reload()
-         |                    ^
-      77 |         
-      78 |     });
-      79 |     test('TC006 - Create and Edit the Medicine and pay', async () => {
-        at C:\Deepam\tests\PharmacistTest\CreateNewOrder.spec.js:76:20
+       at ..\Pages\BasePage\LoginPage.js:19
+
+      17 |     }
+      18 |     async LaunchURL(URL){
+    > 19 |         await this.page.goto(URL);
+         |                         ^
+      20 |         await this.page.waitForTimeout(2000);
+      21 |         await this.SignInDropdownButton.click();
+      22 |     }
+        at LoginPage.LaunchURL (D:\PlayWright Automation\Deepam\Pages\BasePage\LoginPage.js:19:25)
+        at D:\PlayWright Automation\Deepam\tests\DoctorTests\VideoConsultationTest.spec.js:22:25
+]]>
+</failure>
+</testcase>
+<testcase name="Video Consultation Tests for Doctor › TC003 - Verify that the doctor is able to join the waiting video consultation call" classname="DoctorTests\VideoConsultationTest.spec.js" time="30.103">
+<failure message="VideoConsultationTest.spec.js:38:5 TC003 - Verify that the doctor is able to join the waiting video consultation call" type="FAILURE">
+<![CDATA[  [chromium] › DoctorTests\VideoConsultationTest.spec.js:38:5 › Video Consultation Tests for Doctor › TC003 - Verify that the doctor is able to join the waiting video consultation call 
+
+    Test timeout of 30000ms exceeded while running "beforeEach" hook.
+
+      11 |
+      12 | test.describe('Video Consultation Tests for Doctor', () => {
+    > 13 |     test.beforeEach('TC001 - Login with valid credentials', async ({browser}) => {
+         |          ^
+      14 |         context = await browser.newContext({viewport: { width: 1200, height: 580}});
+      15 |         await context.grantPermissions(['camera', 'microphone']);
+      16 |         page = await context.newPage();
+        at D:\PlayWright Automation\Deepam\tests\DoctorTests\VideoConsultationTest.spec.js:13:10
+
+    Error: page.goto: Target page, context or browser has been closed
+    Call log:
+      - navigating to "https://qa-deepam.medyaan.com/", waiting until "load"
+
+
+       at ..\Pages\BasePage\LoginPage.js:19
+
+      17 |     }
+      18 |     async LaunchURL(URL){
+    > 19 |         await this.page.goto(URL);
+         |                         ^
+      20 |         await this.page.waitForTimeout(2000);
+      21 |         await this.SignInDropdownButton.click();
+      22 |     }
+        at LoginPage.LaunchURL (D:\PlayWright Automation\Deepam\Pages\BasePage\LoginPage.js:19:25)
+        at D:\PlayWright Automation\Deepam\tests\DoctorTests\VideoConsultationTest.spec.js:22:25
+
+    Error Context: ..\test-results\DoctorTests-VideoConsultat-d6922-ing-video-consultation-call-chromium\error-context.md
 ]]>
 </failure>
 <system-out>
-<![CDATA[type: Employee
-isEnable: [33mfalse[39m
-negative
-[33m62[39m
+<![CDATA[
+[[ATTACHMENT|..\test-results\DoctorTests-VideoConsultat-d6922-ing-video-consultation-call-chromium\error-context.md]]
 ]]>
 </system-out>
 </testcase>
-<testcase name="Pharmacist › TC006 - Create and Edit the Medicine and pay" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Pharmacist › TC007 - Create New Order with Multiple Medicine and pay" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Pharmacist › TC008 - Add Multiple Medicine then delete a medicine and pay" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Pharmacist › TC009 - Goto Create Order page and View Ordered_History" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Pharmacist › TC010 - Goto Reorder page and order the same medicine" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Pharmacist › TC011 - Goto Reorder page and Delete and add an medicine then reorder it" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
-<properties>
-<property name="skip" value="">
-</property>
-</properties>
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Pharmacist › TC012 - Goto Reorder page and click the NewOrder module to Create a New Medicine order" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
-<properties>
-<property name="skip" value="">
-</property>
-</properties>
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Pharmacist › TC013 - Goto Return the Purchased Medicine" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
-<properties>
-<property name="skip" value="">
-</property>
-</properties>
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Pharmacist › TC014 - Goto Return page and Click the Neworder Module" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
-<properties>
-<property name="skip" value="">
-</property>
-</properties>
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Pharmacist › TC015 - Goto Purchased Bill page " classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
-<properties>
-<property name="skip" value="">
-</property>
-</properties>
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Pharmacist › TC016 - Goto New Order page and Click the Latest Module then Comeback" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
-<properties>
-<property name="skip" value="">
-</property>
-</properties>
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Pharmacist › TC017 - Goto Create Order page and Come back to Dashboard" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
-<properties>
-<property name="skip" value="">
-</property>
-</properties>
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Pharmacist › TC018 - View the Appointment Orders and Click Create Cancel Icon" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
-<properties>
-<property name="skip" value="">
-</property>
-</properties>
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Pharmacist › TC019 - View the Appointment Orders and pay the order" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
-<properties>
-<property name="skip" value="">
-</property>
-</properties>
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Pharmacist › TC020 - View the Appointment &amp; goto Order page,then Reduce the Quantity and Pay" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
-<properties>
-<property name="skip" value="">
-</property>
-</properties>
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Pharmacist › TC021 - Pay the Appointment order with Extra medicines" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
-<properties>
-<property name="skip" value="">
-</property>
-</properties>
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Pharmacist › TC022 - Pay the Appointment order with Untick the Appointment medicine and add Extra medicines" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
-<properties>
-<property name="skip" value="">
-</property>
-</properties>
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Pharmacist › TC023 - Pay the Appointment Order" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
-<properties>
-<property name="skip" value="">
-</property>
-</properties>
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Pharmacist › TC024 - Go to Create Order page and Click the Latest module &amp; Click CloseIcon" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
-<properties>
-<property name="skip" value="">
-</property>
-</properties>
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Pharmacist › TC025 - Goto Reorder page and Click the Neworder Module" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
-<properties>
-<property name="skip" value="">
-</property>
-</properties>
-<skipped>
-</skipped>
-</testcase>
-<testcase name="Pharmacist › TC026 - Goto Reorder page and Click the Neworder Module" classname="PharmacistTest\CreateNewOrder.spec.js" time="0">
-<properties>
-<property name="skip" value="">
-</property>
-</properties>
+<testcase name="Video Consultation Tests for Doctor › TC004 - Verify that the Ongoing Appointments" classname="DoctorTests\VideoConsultationTest.spec.js" time="6.34">
 <skipped>
 </skipped>
 </testcase>
