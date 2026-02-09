@@ -16,7 +16,7 @@ test.describe('Login', async () => {
         const dataset = await excelreader.readExcel('Utils/Deepam_Dataset.xlsx', 'Login');
         const { URL, MobileNo, Password } = dataset[0];
         await loginpage.LaunchURL(URL);
-        await loginpage.DoctorLogin(MobileNo, Password);
+        await loginpage.PharmacyAdminLogin(MobileNo, Password);
     });
 
 

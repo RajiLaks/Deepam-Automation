@@ -11,7 +11,7 @@ class LoginPage{
         this.PharmacyAdmin = page.locator('//a[text()="Pharmacy Admin"]');
         this.mobileNo = page.locator('//input[@id="input-74"]');
         this.password = page.locator('//input[@name="password"]');
-        this.SignInbutton = page.locator('//div[@class="login-button-box"]/button');
+        this.signInbutton = page.locator('//div[@class="login-button-box"]/button');
         this.eyeIcon = page.locator('//div[@class="password-icon"]');
 
     }
@@ -30,7 +30,7 @@ class LoginPage{
         await this.page.waitForTimeout(1000);
         await this.eyeIcon.click();
         await this.page.waitForTimeout(1000);
-        await this.SignInbutton.click();
+        await this.signInbutton.click();
         await this.page.waitForTimeout(1000);
     }
 
@@ -43,7 +43,7 @@ class LoginPage{
         await this.page.waitForTimeout(1000);
         await this.eyeIcon.click();
         await this.page.waitForTimeout(1000);
-        await this.SignInbutton.click();
+        await this.signInbutton.click();
         await this.page.waitForTimeout(1000);
     }
 
@@ -56,7 +56,7 @@ class LoginPage{
         await this.page.waitForTimeout(1000);
         await this.eyeIcon.click();
         await this.page.waitForTimeout(1000);
-        await this.SignInbutton.click();
+        await this.signInbutton.click();
         await this.page.waitForTimeout(1000);
     }
     
@@ -69,7 +69,7 @@ class LoginPage{
         await this.page.waitForTimeout(1000);
         await this.eyeIcon.click();
         await this.page.waitForTimeout(1000);
-        await this.SignInbutton.click();
+        await this.signInbutton.click();
         await this.page.waitForTimeout(1000);
     }
 
@@ -82,7 +82,7 @@ class LoginPage{
         await this.page.waitForTimeout(1000);
         await this.eyeIcon.click();
         await this.page.waitForTimeout(1000);
-        await this.SignInbutton.click();
+        await this.page.locator("[class='btn login-button btn-secondary btn-block']").click();
         await this.page.waitForTimeout(1000);
     }
 
@@ -95,7 +95,7 @@ class LoginPage{
         await this.page.waitForTimeout(1000);
         await this.eyeIcon.click();
         await this.page.waitForTimeout(1000);
-        await this.SignInbutton.click();
+        await this.signInbutton.click();
         await this.page.waitForTimeout(1000);
     }
 
